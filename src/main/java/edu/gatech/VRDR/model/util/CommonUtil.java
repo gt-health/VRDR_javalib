@@ -8,15 +8,15 @@ import org.hl7.fhir.dstu3.model.IdType;
 import org.hl7.fhir.dstu3.model.Resource;
 
 public class CommonUtil {
-	public static Extension getExtension(DomainResource resource,String url) {
-		for(Extension extension: resource.getExtension()) {
-			if(extension.getUrl().equals(url)) {
+	public static Extension getExtension(DomainResource resource, String url) {
+		for (Extension extension : resource.getExtension()) {
+			if (extension.getUrl().equals(url)) {
 				return extension;
 			}
 		}
 		return null;
 	}
-	
+
 	public static void initResource(Resource resource) {
 		resource.setId(new IdType(UUID.randomUUID().toString()));
 	}

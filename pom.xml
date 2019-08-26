@@ -4,7 +4,7 @@
 
   <groupId>edu.gatech</groupId>
   <artifactId>VRDR</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>VRDR</name>
@@ -12,6 +12,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+  	<maven.compiler.target>1.8</maven.compiler.target>
     <fhir.version>3.8.0</fhir.version>
   </properties>
 

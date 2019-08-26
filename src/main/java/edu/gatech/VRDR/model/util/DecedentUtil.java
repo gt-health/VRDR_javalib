@@ -12,6 +12,7 @@ public class DecedentUtil {
 	public static final String birthSexValueSetURL = "http://www.hl7.org/fhir/us/core/ValueSet/us-core-birthsex";
 	public static final String birthPlaceExtensionURL = "http://www.hl7.org/fhir/StructureDefinition/birthPlace";
 	public static final String addressWithCityLimitsIndicatorExtensionURL = "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/Within-City-Limits-Indicator";
-	public static final CodeableConcept identifierTypeFixedValue = new CodeableConcept().addCoding(new Coding().setCode("BR").setDisplay("Social Beneficiary Identifier"));
+	public static final CodeableConcept identifierTypeFixedValue = new CodeableConcept()
+			.addCoding(new Coding().setCode("BR").setDisplay("Social Beneficiary Identifier"));
 	public static final String identifierSystem = "urn:oid:2.16.840.1.113883.4.1";
 }

@@ -4,8 +4,8 @@ import org.hl7.fhir.dstu3.model.CodeableConcept;
 import org.hl7.fhir.dstu3.model.Coding;
 import org.hl7.fhir.dstu3.model.Observation.ObservationStatus;
 
-public class MannerOfDeathUtil {
+public class DecedentEducationLevelUtil {
 	public static final ObservationStatus status = ObservationStatus.FINAL;
 	public static final CodeableConcept code = new CodeableConcept()
-			.addCoding(new Coding("http://loinc.org", "69449-7", "Manner of death"));
+			.addCoding(new Coding("http://loinc.org", "80913-7", "Highest level of education"));
 }

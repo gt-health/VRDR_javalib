@@ -68,7 +68,7 @@ public class AppTest
     	
     	deathCertificate.setStatus(CompositionStatus.FINAL);
     	
-    	Address decedentsHome = new Address().addLine("1808 Stroop Hill Road").setCity("Atlata")
+    	Address decedentsHome = new Address().addLine("1808 Stroop Hill Road").setCity("Atlanta")
 		.setState("GA").setPostalCode("30303").setCountry("USA").setUse(AddressUse.HOME);
     	
     	Decedent decedent = new Decedent();
