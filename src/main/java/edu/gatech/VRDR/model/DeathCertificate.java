@@ -7,6 +7,7 @@ import org.hl7.fhir.dstu3.model.Organization;
 import org.hl7.fhir.dstu3.model.Patient;
 import org.hl7.fhir.dstu3.model.Practitioner;
 import org.hl7.fhir.dstu3.model.Reference;
+import org.hl7.fhir.dstu3.model.Resource;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.VRDR.model.util.CommonUtil;
@@ -18,6 +19,7 @@ public class DeathCertificate extends Composition {
 		super();
 		CommonUtil.initResource(this);
 		setType(DeathCertificateUtil.typeFixedValue);
+		setStatus(DeathCertificateUtil.status);
 		setDate(new Date());
 	}
 
@@ -28,21 +30,21 @@ public class DeathCertificate extends Composition {
 	}
 
 	public void addAttester(Patient resource, Date time) {
-		CompositionAttesterComponent component = addAttesterCommon();
-		component.setTime(time);
-		component.setPartyTarget(resource);
+		addAttesterBase(resource,time);
 	}
 
 	public void addAttester(Practitioner resource, Date time) {
-		CompositionAttesterComponent component = addAttesterCommon();
-		component.setTime(time);
-		component.setPartyTarget(resource);
+		addAttesterBase(resource,time);
 	}
 
 	public void addAttester(Organization resource, Date time) {
+		addAttesterBase(resource,time);
+	}
+	
+	private void addAttesterBase(Resource resource,Date time) {
 		CompositionAttesterComponent component = addAttesterCommon();
 		component.setTime(time);
-		component.setPartyTarget(resource);
+		component.setParty(new Reference(resource.getId()));
 		addAttester(component);
 	}
 

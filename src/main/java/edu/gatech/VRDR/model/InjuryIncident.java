@@ -12,7 +12,7 @@ import edu.gatech.VRDR.model.util.CommonUtil;
 import edu.gatech.VRDR.model.util.DeathDateUtil;
 import edu.gatech.VRDR.model.util.InjuryIncidentUtil;
 
-@ResourceDef(name = "InjuryIncident", profile = "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Injury-Incident")
+@ResourceDef(name = "Observation", profile = "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Injury-Incident")
 public class InjuryIncident extends Observation {
 
 	public InjuryIncident() {

@@ -12,12 +12,14 @@ import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.VRDR.model.util.CommonUtil;
 import edu.gatech.VRDR.model.util.DeathDateUtil;
 
-@ResourceDef(name = "DeathDate", profile = "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Date")
+@ResourceDef(name = "Observation", profile = "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Date")
 public class DeathDate extends Observation {
 
 	public DeathDate() {
 		super();
 		CommonUtil.initResource(this);
+		setCode(DeathDateUtil.code);
+		setStatus(DeathDateUtil.status);
 	}
 
 	public DeathDate(Date dateTime) {

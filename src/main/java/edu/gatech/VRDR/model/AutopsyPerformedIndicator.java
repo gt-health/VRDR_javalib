@@ -8,22 +8,23 @@ import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.VRDR.model.util.AutopsyPerformedIdentifierUtil;
 import edu.gatech.VRDR.model.util.CommonUtil;
 
-@ResourceDef(name = "AutopsyPerformedIndicator", profile = "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Autopsy-Performed-Indicator")
+@ResourceDef(name = "Observation", profile = "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Autopsy-Performed-Indicator")
 public class AutopsyPerformedIndicator extends Observation {
 
 	public AutopsyPerformedIndicator() {
 		super();
 		CommonUtil.initResource(this);
+		setStatus(AutopsyPerformedIdentifierUtil.status);
+		setCode(AutopsyPerformedIdentifierUtil.code);
 	}
 
-	public AutopsyPerformedIndicator(Decedent decedent, CodeableConcept value) {
+	public AutopsyPerformedIndicator(CodeableConcept value) {
 		this();
-		setStatus(AutopsyPerformedIdentifierUtil.status);
-		setSubject(new Reference(decedent));
+		addAutopsyResultsAvailableComponent(value);
 	}
 
 	public void setDecedent(Decedent decedent) {
-		Reference reference = new Reference(decedent);
+		Reference reference = new Reference(decedent.getId());
 		setSubject(reference);
 	}
 

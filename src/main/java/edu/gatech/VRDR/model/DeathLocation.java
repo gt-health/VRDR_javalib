@@ -5,11 +5,13 @@ import org.hl7.fhir.dstu3.model.CodeableConcept;
 import org.hl7.fhir.dstu3.model.Location;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
+import edu.gatech.VRDR.model.util.CommonUtil;
 
-@ResourceDef(name = "Death Location", profile = "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/@ResourceDef(name=\"Death Certificate Reference\", profile=\"http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Location")
+@ResourceDef(name = "Location", profile = "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/@ResourceDef(name=\"Death Certificate Reference\", profile=\"http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Location")
 public class DeathLocation extends Location {
 	public DeathLocation(String name, String description, CodeableConcept type, Address address,
 			CodeableConcept physicalType) {
+		CommonUtil.initResource(this);
 		setName(name);
 		setDescription(description);
 		setType(type);

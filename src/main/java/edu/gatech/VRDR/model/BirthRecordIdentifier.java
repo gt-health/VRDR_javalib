@@ -1,6 +1,7 @@
 package edu.gatech.VRDR.model;
 
 import org.hl7.fhir.dstu3.model.CodeableConcept;
+import org.hl7.fhir.dstu3.model.DateTimeType;
 import org.hl7.fhir.dstu3.model.Observation;
 import org.hl7.fhir.dstu3.model.Reference;
 import org.hl7.fhir.dstu3.model.StringType;
@@ -9,17 +10,16 @@ import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.VRDR.model.util.BirthRecordIdentifierUtil;
 import edu.gatech.VRDR.model.util.CommonUtil;
 
-@ResourceDef(name = "BirthRecordIdentifier", profile = "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Birth-Record-Identifier")
+@ResourceDef(name = "Observation", profile = "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Birth-Record-Identifier")
 public class BirthRecordIdentifier extends Observation {
 
-	public BirthRecordIdentifier(Decedent subject, StringType value, CodeableConcept birthState,
-			CodeableConcept birthYear) {
+	public BirthRecordIdentifier(String value, CodeableConcept birthState,
+			DateTimeType birthYear) {
 		super();
 		CommonUtil.initResource(this);
 		setStatus(BirthRecordIdentifierUtil.status);
 		setCode(BirthRecordIdentifierUtil.code);
-		setSubject(new Reference(subject));
-		setValue(value);
+		setValue(new StringType(value));
 		addBirthState(birthState);
 		addBirthYear(birthYear);
 	}
@@ -43,16 +43,16 @@ public class BirthRecordIdentifier extends Observation {
 		addBirthState(birthState);
 	}
 
-	public CodeableConcept getBirthYear() {
+	public DateTimeType getBirthYear() {
 		for (ObservationComponentComponent component : getComponent()) {
 			if (component.getCode().equalsShallow(BirthRecordIdentifierUtil.componentBirthYearCode)) {
-				return component.getValueCodeableConcept();
+				return component.getValueDateTimeType();
 			}
 		}
 		return null;
 	}
 
-	public void setBirthYear(CodeableConcept birthYear) {
+	public void setBirthYear(DateTimeType birthYear) {
 		for (ObservationComponentComponent component : getComponent()) {
 			if (component.getCode().equalsShallow(BirthRecordIdentifierUtil.componentBirthYearCode)) {
 				component.setValue(birthYear);
@@ -69,7 +69,7 @@ public class BirthRecordIdentifier extends Observation {
 		addComponent(birthStateComponent);
 	}
 
-	private void addBirthYear(CodeableConcept birthYear) {
+	private void addBirthYear(DateTimeType birthYear) {
 		ObservationComponentComponent birthYearComponent = new ObservationComponentComponent();
 		birthYearComponent.setCode(BirthRecordIdentifierUtil.componentBirthYearCode);
 		birthYearComponent.setValue(birthYear);

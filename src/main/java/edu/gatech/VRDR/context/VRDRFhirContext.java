@@ -33,6 +33,7 @@ import edu.gatech.VRDR.model.InjuryLocation;
 import edu.gatech.VRDR.model.InterestedParty;
 import edu.gatech.VRDR.model.MannerOfDeath;
 import edu.gatech.VRDR.model.Mortician;
+import edu.gatech.VRDR.model.TobaccoUseContributedToDeath;
 
 public class VRDRFhirContext {
 	FhirContext ctx;
