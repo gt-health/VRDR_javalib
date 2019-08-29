@@ -108,6 +108,7 @@ public class AppTest
     	decedent.addName(new HumanName().setFamily("Cleaveland").addGiven("Grover").setUse(NameUse.OFFICIAL));
     	decedent.setMaritalStatus(new CodeableConcept().addCoding(new Coding().setCode("S").setSystem("http://hl7.org/fhir/v3/MaritalStatus")));
     	Reference decedentReference = new Reference(decedent.getId());
+    	deathCertificate.setSubject(decedentReference);
     	contents.add(decedent);
     	
     	Certifier certifier = new Certifier();
@@ -149,19 +150,18 @@ public class AppTest
     	AutopsyPerformedIndicator autopsyPerformedIndicator = new AutopsyPerformedIndicator(yesCode);
     	autopsyPerformedIndicator.setSubject(decedentReference);
     	contents.add(autopsyPerformedIndicator);
-    	
+    	/*
     	ConditionContributingToDeath ConditionContributingToDeath = new ConditionContributingToDeath();
     	ConditionContributingToDeath.setSubject(decedentReference);
-    	ConditionContributingToDeath.setAsserter(new Reference(certifier));
+    	ConditionContributingToDeath.setAsserter(certifierReference);
     	ConditionContributingToDeath.setCode(new CodeableConcept().addCoding(new Coding("http://snomed.info/sct","241006","Epilepsia partialis continua")));
-    	ConditionContributingToDeath.setOnset(new Age().setValue(50));
     	contents.add(ConditionContributingToDeath);
     	
     	CauseOfDeathPathway causeOfDeathPathway = new CauseOfDeathPathway();
     	causeOfDeathPathway.setSource(certifierReference);
     	causeOfDeathPathway.addEntry(new ListEntryComponent().setItem(new Reference(ConditionContributingToDeath.getId())));
     	contents.add(causeOfDeathPathway);
-    	
+    	*/
     	ConditionContributingToDeath conditionContributingToDeath = new ConditionContributingToDeath();
     	conditionContributingToDeath.setCode(new CodeableConcept().addCoding(new Coding("http://snomed.info/sct","324007","Plaster ulcer")).setText("Plaster ulcer"));
     	contents.add(conditionContributingToDeath);
@@ -257,11 +257,11 @@ public class AppTest
     	CodeableConcept manner = new CodeableConcept().addCoding(new Coding("http://www.hl7.org/fhir/stu3/valueset-MannerTypeVS","7878000","Accident"));
     	MannerOfDeath mannerOfDeath = new MannerOfDeath(manner,decedent,certifier);
     	contents.add(mannerOfDeath);
-    	
+    	/*
     	TobaccoUseContributedToDeath tobaccoUseContributedToDeath = new TobaccoUseContributedToDeath(false);
     	tobaccoUseContributedToDeath.setSubject(decedentReference);
     	contents.add(tobaccoUseContributedToDeath);
-    	
+    	*/
     	for(Resource resource:contents) {
     		CommonUtil.addSection(deathCertificate, resource);
     		CommonUtil.addBundleEntry(deathCertificateDocument,resource);

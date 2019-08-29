@@ -13,10 +13,14 @@ import edu.gatech.VRDR.model.util.CommonUtil;
 @ResourceDef(name = "Observation", profile = "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Birth-Record-Identifier")
 public class BirthRecordIdentifier extends Observation {
 
-	public BirthRecordIdentifier(String value, CodeableConcept birthState,
-			DateTimeType birthYear) {
+	public BirthRecordIdentifier() {
 		super();
 		CommonUtil.initResource(this);
+	}
+	
+	public BirthRecordIdentifier(String value, CodeableConcept birthState,
+			DateTimeType birthYear) {
+		this();
 		setStatus(BirthRecordIdentifierUtil.status);
 		setCode(BirthRecordIdentifierUtil.code);
 		setValue(new StringType(value));

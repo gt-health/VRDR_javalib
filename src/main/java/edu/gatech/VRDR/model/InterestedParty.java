@@ -10,9 +10,12 @@ import edu.gatech.VRDR.model.util.CommonUtil;
 
 @ResourceDef(name = "Organization", profile = "http://www.hl7.org/fhir/us/StructureDefinition/VRDR-Interested-Party")
 public class InterestedParty extends Organization {
-	public InterestedParty(String identifier, boolean active, CodeableConcept type, String name, Address address) {
+	public InterestedParty() {
 		super();
 		CommonUtil.initResource(this);
+	}
+	public InterestedParty(String identifier, boolean active, CodeableConcept type, String name, Address address) {
+		this();
 		addIdentifier(new Identifier().setValue(identifier));
 		setActive(active);
 		addType(type);

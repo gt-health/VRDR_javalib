@@ -9,10 +9,13 @@ import edu.gatech.VRDR.model.util.DecedentPregnancyUtil;
 
 @ResourceDef(name = "Observation", profile = "http://www.hl7.org/fhir/us/StructureDefinition/VRDR-Decedent-Pregnancy")
 public class DecedentPregnancy extends Observation {
-	public DecedentPregnancy(CodeableConcept value) {
+	public DecedentPregnancy() {
 		CommonUtil.initResource(this);
 		setStatus(DecedentPregnancyUtil.status);
 		setCode(DecedentPregnancyUtil.code);
+	}
+	public DecedentPregnancy(CodeableConcept value) {
+		this();
 		setValue(value);
 	}
 }

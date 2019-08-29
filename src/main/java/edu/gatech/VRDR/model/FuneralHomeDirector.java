@@ -8,9 +8,12 @@ import edu.gatech.VRDR.model.util.CommonUtil;
 
 @ResourceDef(name = "PractitionerRole", profile = "http://www.hl7.org/fhir/us/StructureDefinition/VRDR-Funeral-Home-Director")
 public class FuneralHomeDirector extends PractitionerRole {
-	public FuneralHomeDirector(CodeableConcept code) {
+	public FuneralHomeDirector() {
 		super();
-		addCode(code);
 		CommonUtil.initResource(this);
+	}
+	public FuneralHomeDirector(CodeableConcept code) {
+		this();
+		addCode(code);
 	}
 }

@@ -9,9 +9,12 @@ import edu.gatech.VRDR.model.util.FuneralHomeUtil;
 
 @ResourceDef(name = "Organization", profile = "http://www.hl7.org/fhir/us/StructureDefinition/VRDR-Funeral-Home")
 public class FuneralHome extends Organization {
-	public FuneralHome(String name, Address address) {
+	public FuneralHome() {
 		super();
 		CommonUtil.initResource(this);
+	}
+	public FuneralHome(String name, Address address) {
+		this();
 		addType(FuneralHomeUtil.type);
 		setName(name);
 		addAddress(address);

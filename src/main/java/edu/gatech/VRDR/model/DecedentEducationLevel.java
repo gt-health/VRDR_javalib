@@ -9,6 +9,7 @@ import edu.gatech.VRDR.model.util.DecedentEducationLevelUtil;
 @ResourceDef(name = "Observation", profile = "http://www.hl7.org/fhir/us/StructureDefinition/VRDR-Decedent-Education-Level")
 public class DecedentEducationLevel extends Observation {
 	public DecedentEducationLevel() {
+		super();
 		CommonUtil.initResource(this);
 		setStatus(DecedentEducationLevelUtil.status);
 		setCode(DecedentEducationLevelUtil.code);

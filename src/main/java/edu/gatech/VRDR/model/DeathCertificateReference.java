@@ -9,8 +9,12 @@ import edu.gatech.VRDR.model.util.DeathCertificateReferenceUtil;
 
 @ResourceDef(name = "DocumentReference", profile = "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Certificate-Reference")
 public class DeathCertificateReference extends DocumentReference {
-	public DeathCertificateReference(DocumentReferenceStatus status) {
+	public DeathCertificateReference() {
+		super();
 		CommonUtil.initResource(this);
+	}
+	public DeathCertificateReference(DocumentReferenceStatus status) {
+		this();
 		setStatus(status);
 		setType(DeathCertificateReferenceUtil.type);
 	}

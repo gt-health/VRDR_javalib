@@ -9,10 +9,14 @@ import edu.gatech.VRDR.model.util.DecedentDispositionMethodUtil;
 
 @ResourceDef(name = "Observation", profile = "http://www.hl7.org/fhir/us/vrdr/VRDR-Decedent-Disposition-Method")
 public class DecedentDispositionMethod extends Observation {
-	public DecedentDispositionMethod(CodeableConcept value) {
+	public DecedentDispositionMethod() {
+		super();
 		CommonUtil.initResource(this);
 		setStatus(DecedentDispositionMethodUtil.status);
 		setCode(DecedentDispositionMethodUtil.code);
+	}
+	public DecedentDispositionMethod(CodeableConcept value) {
+		this();
 		setValue(value);
 	}
 }

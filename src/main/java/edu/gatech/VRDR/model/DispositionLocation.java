@@ -8,9 +8,12 @@ import edu.gatech.VRDR.model.util.CommonUtil;
 
 @ResourceDef(name = "Location", profile = "http://www.hl7.org/fhir/us/StructureDefinition/VRDR-Disposition-Location")
 public class DispositionLocation extends Location {
-	public DispositionLocation(Address address) {
+	public DispositionLocation() {
 		super();
 		CommonUtil.initResource(this);
+	}
+	public DispositionLocation(Address address) {
+		this();
 		setAddress(address);
 	}
 }

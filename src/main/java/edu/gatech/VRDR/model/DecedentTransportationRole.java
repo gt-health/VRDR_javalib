@@ -9,11 +9,14 @@ import edu.gatech.VRDR.model.util.DecedentTransportationRoleUtil;
 
 @ResourceDef(name = "Observation", profile = "http://www.hl7.org/fhir/us/StructureDefinition/VRDR-Decedent-Transportation-Role")
 public class DecedentTransportationRole extends Observation {
-	public DecedentTransportationRole(CodeableConcept value) {
+	public DecedentTransportationRole() {
 		super();
 		CommonUtil.initResource(this);
 		setStatus(DecedentTransportationRoleUtil.status);
 		setCode(DecedentTransportationRoleUtil.code);
+	}
+	public DecedentTransportationRole(CodeableConcept value) {
+		this();
 		setValue(value);
 	}
 }

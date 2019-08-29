@@ -10,8 +10,12 @@ import edu.gatech.VRDR.model.util.CommonUtil;
 
 @ResourceDef(name = "Practitioner", profile = "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/@ResourceDef(name=\"Death Certificate Reference\", profile=\"http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Pronouncement-Performer")
 public class DeathPronouncementPerformer extends Practitioner {
-	public DeathPronouncementPerformer(HumanName name, String qualiferIdentifier, CodeableConcept qualifierCode) {
+	public DeathPronouncementPerformer() {
+		super();
 		CommonUtil.initResource(this);
+	}
+	public DeathPronouncementPerformer(HumanName name, String qualiferIdentifier, CodeableConcept qualifierCode) {
+		this();
 		addName(name);
 		PractitionerQualificationComponent qualification = new PractitionerQualificationComponent(qualifierCode)
 				.addIdentifier(new Identifier().setValue(qualiferIdentifier));

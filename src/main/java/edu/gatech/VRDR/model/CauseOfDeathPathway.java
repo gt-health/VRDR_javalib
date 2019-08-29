@@ -9,6 +9,7 @@ import edu.gatech.VRDR.model.util.CommonUtil;
 @ResourceDef(name = "List", profile = "http://www.hl7.org/fhir/us/vrdr/VRDR-Cause-of-Death-Pathway")
 public class CauseOfDeathPathway extends ListResource {
 	public CauseOfDeathPathway() {
+		super();
 		CommonUtil.initResource(this);
 		setStatus(CauseOfDeathPathwayUtil.status);
 		setMode(CauseOfDeathPathwayUtil.mode);

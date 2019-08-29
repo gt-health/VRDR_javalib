@@ -9,12 +9,15 @@ import edu.gatech.VRDR.model.util.DecedentEmploymentHistoryUtil;
 
 @ResourceDef(name = "Observation", profile = "http://www.hl7.org/fhir/us/StructureDefinition/VRDR-Decedent-Employment-History")
 public class DecedentEmploymentHistory extends Observation {
-	public DecedentEmploymentHistory(CodeableConcept militaryServiceValue, CodeableConcept usualIndustryValue,
-			CodeableConcept usualOccupationValue) {
+	public DecedentEmploymentHistory() {
 		super();
 		CommonUtil.initResource(this);
 		setStatus(DecedentEmploymentHistoryUtil.status);
 		setCode(DecedentEmploymentHistoryUtil.code);
+	}
+	public DecedentEmploymentHistory(CodeableConcept militaryServiceValue, CodeableConcept usualIndustryValue,
+			CodeableConcept usualOccupationValue) {
+		this();
 		addComponent().setCode(militaryServiceValue);
 		addComponent().setCode(usualIndustryValue);
 		addComponent().setCode(usualOccupationValue);

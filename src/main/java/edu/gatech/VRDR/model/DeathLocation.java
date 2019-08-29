@@ -9,9 +9,13 @@ import edu.gatech.VRDR.model.util.CommonUtil;
 
 @ResourceDef(name = "Location", profile = "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/@ResourceDef(name=\"Death Certificate Reference\", profile=\"http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Location")
 public class DeathLocation extends Location {
+	public DeathLocation() {
+		super();
+		CommonUtil.initResource(this);
+	}
 	public DeathLocation(String name, String description, CodeableConcept type, Address address,
 			CodeableConcept physicalType) {
-		CommonUtil.initResource(this);
+		this();
 		setName(name);
 		setDescription(description);
 		setType(type);

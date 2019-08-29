@@ -10,9 +10,12 @@ import edu.gatech.VRDR.model.util.CommonUtil;
 
 @ResourceDef(name = "Practitioner", profile = "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Mortician")
 public class Mortician extends Practitioner {
-	public Mortician(HumanName name, String qualificationIdentifier, CodeableConcept qualificationCode) {
+	public Mortician() {
 		super();
 		CommonUtil.initResource(this);
+	}
+	public Mortician(HumanName name, String qualificationIdentifier, CodeableConcept qualificationCode) {
+		this();
 		addName(name);
 		PractitionerQualificationComponent component = new PractitionerQualificationComponent();
 		component.addIdentifier(new Identifier().setValue(qualificationIdentifier));

@@ -9,6 +9,7 @@ import edu.gatech.VRDR.model.util.DecedentFatherUtil;
 @ResourceDef(name = "RelatedPerson", profile = "http://www.hl7.org/fhir/us/vrdr/VRDR-Decedent-Father")
 public class DecedentFather extends RelatedPerson {
 	public DecedentFather() {
+		super();
 		CommonUtil.initResource(this);
 		setRelationship(DecedentFatherUtil.code);
 	}
