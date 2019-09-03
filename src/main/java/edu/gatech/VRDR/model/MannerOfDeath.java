@@ -14,12 +14,12 @@ public class MannerOfDeath extends Observation {
 	public MannerOfDeath() {
 		super();
 		CommonUtil.initResource(this);
+		setStatus(MannerOfDeathUtil.status);
+		setCode(MannerOfDeathUtil.code);
 	}
 
 	public MannerOfDeath(CodeableConcept manner, Decedent decedent, Certifier certifier) {
 		this();
-		setStatus(MannerOfDeathUtil.status);
-		setCode(MannerOfDeathUtil.code);
 		setValue(manner);
 		setSubject(new Reference(decedent));
 		this.addPerformer(new Reference(certifier));
