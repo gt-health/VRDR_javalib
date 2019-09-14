@@ -23,6 +23,7 @@ import org.hl7.fhir.dstu3.model.Reference;
 import org.hl7.fhir.dstu3.model.Resource;
 
 import ca.uhn.fhir.context.FhirContext;
+import edu.gatech.VRDR.context.VRDRFhirContext;
 import edu.gatech.VRDR.model.AutopsyPerformedIndicator;
 import edu.gatech.VRDR.model.BirthRecordIdentifier;
 import edu.gatech.VRDR.model.ConditionContributingToDeath;
@@ -209,7 +210,7 @@ public class AppTest
     	DecedentEmploymentHistory decedentEmploymentHistory = new DecedentEmploymentHistory(yesCode,industryCode,occupationCode);
     	decedentEmploymentHistory.setSubject(decedentReference);
     	contents.add(decedentEmploymentHistory);
-    	
+    	/*
     	DecedentPregnancy decedentPregnancy = new DecedentPregnancy(noCode);
     	decedentPregnancy.setSubject(decedentReference);
     	contents.add(decedentPregnancy);
@@ -257,17 +258,17 @@ public class AppTest
     	CodeableConcept manner = new CodeableConcept().addCoding(new Coding("http://www.hl7.org/fhir/stu3/valueset-MannerTypeVS","7878000","Accident"));
     	MannerOfDeath mannerOfDeath = new MannerOfDeath(manner,decedent,certifier);
     	contents.add(mannerOfDeath);
-    	/*
+    	
     	TobaccoUseContributedToDeath tobaccoUseContributedToDeath = new TobaccoUseContributedToDeath(false);
     	tobaccoUseContributedToDeath.setSubject(decedentReference);
     	contents.add(tobaccoUseContributedToDeath);
     	*/
     	for(Resource resource:contents) {
-    		CommonUtil.addSection(deathCertificate, resource);
+    		CommonUtil.addSectionEntry(deathCertificate, resource);
     		CommonUtil.addBundleEntry(deathCertificateDocument,resource);
     	}
     	
-    	String encoded = FhirContext.forDstu3().newJsonParser().encodeResourceToString(deathCertificateDocument);
+    	String encoded = new VRDRFhirContext().getCtx().newJsonParser().encodeResourceToString(deathCertificateDocument);
     	System.out.println(encoded);
     	assertTrue( true );
     }

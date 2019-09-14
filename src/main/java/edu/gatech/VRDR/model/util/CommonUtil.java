@@ -32,8 +32,12 @@ public class CommonUtil {
 		return deathCertificateDocument;
 	}
 	
-	public static DeathCertificate addSection(DeathCertificate deathCertificate,Resource resource) {
-		deathCertificate.addSection(new SectionComponent().addEntry(new Reference(resource.getId())));
+	public static DeathCertificate addSectionEntry(DeathCertificate deathCertificate,Resource resource) {
+		if(deathCertificate.getSection() != null && !deathCertificate.getSection().isEmpty()) {
+			deathCertificate.addSection(new SectionComponent());
+		}
+		SectionComponent sectionComponent = deathCertificate.getSectionFirstRep();
+		sectionComponent.addEntry(new Reference(resource.getId()));
 		return deathCertificate;
 	}
 }
