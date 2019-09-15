@@ -9,7 +9,7 @@ import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.VRDR.model.util.CertifierUtil;
 import edu.gatech.VRDR.model.util.CommonUtil;
 
-@ResourceDef(name = "Practitioner", profile = "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Certifier")
+@ResourceDef(name = "Practitioner", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Certifier")
 public class Certifier extends Practitioner {
 
 	public Certifier() {
@@ -22,7 +22,7 @@ public class Certifier extends Practitioner {
 				.addCoding(new Coding().setCode(type).setSystem(CertifierUtil.qualificationSystemUrl));
 		PractitionerQualificationComponent component = new PractitionerQualificationComponent(typeCodeableConcept);
 		component.addIdentifier(new Identifier().setValue(identifier));
-		this.addQualification(component);
+		addQualification(component);
 		return component;
 	}
 }

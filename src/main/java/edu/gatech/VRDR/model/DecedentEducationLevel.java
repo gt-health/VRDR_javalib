@@ -6,7 +6,7 @@ import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.VRDR.model.util.CommonUtil;
 import edu.gatech.VRDR.model.util.DecedentEducationLevelUtil;
 
-@ResourceDef(name = "Observation", profile = "http://www.hl7.org/fhir/us/StructureDefinition/VRDR-Decedent-Education-Level")
+@ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/StructureDefinition/VRDR-Decedent-Education-Level")
 public class DecedentEducationLevel extends Observation {
 	public DecedentEducationLevel() {
 		super();

@@ -8,7 +8,7 @@ import org.hl7.fhir.dstu3.model.Practitioner;
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.VRDR.model.util.CommonUtil;
 
-@ResourceDef(name = "Practitioner", profile = "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Mortician")
+@ResourceDef(name = "Practitioner", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Mortician")
 public class Mortician extends Practitioner {
 	public Mortician() {
 		super();
@@ -20,5 +20,6 @@ public class Mortician extends Practitioner {
 		PractitionerQualificationComponent component = new PractitionerQualificationComponent();
 		component.addIdentifier(new Identifier().setValue(qualificationIdentifier));
 		component.setCode(qualificationCode);
+		addQualification(component);
 	}
 }

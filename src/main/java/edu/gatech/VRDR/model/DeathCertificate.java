@@ -13,7 +13,7 @@ import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.VRDR.model.util.CommonUtil;
 import edu.gatech.VRDR.model.util.DeathCertificateUtil;
 
-@ResourceDef(name = "Composition", profile = "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Certificate")
+@ResourceDef(name = "Composition", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Certificate")
 public class DeathCertificate extends Composition {
 	public DeathCertificate() {
 		super();

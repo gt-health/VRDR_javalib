@@ -7,7 +7,7 @@ import org.hl7.fhir.dstu3.model.Location;
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.VRDR.model.util.CommonUtil;
 
-@ResourceDef(name = "Location", profile = "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/@ResourceDef(name=\"Death Certificate Reference\", profile=\"http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Location")
+@ResourceDef(name = "Location", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/@ResourceDef(name=\"Death Certificate Reference\", profile=\"http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Location")
 public class DeathLocation extends Location {
 	public DeathLocation() {
 		super();

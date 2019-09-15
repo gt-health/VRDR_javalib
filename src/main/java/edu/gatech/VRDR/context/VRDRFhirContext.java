@@ -40,72 +40,72 @@ public class VRDRFhirContext {
 
 	public VRDRFhirContext() {
 		ctx = FhirContext.forDstu3();
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Autopsy-Performed-Indicator",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Autopsy-Performed-Indicator",
 				AutopsyPerformedIndicator.class);
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Birth-Record-Identifier",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Birth-Record-Identifier",
 				BirthRecordIdentifier.class);
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Cause-Of-Death-Condition",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Cause-Of-Death-Condition",
 				CauseOfDeathCondition.class);
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Cause-Of-Death-Pathway",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Cause-Of-Death-Pathway",
 				CauseOfDeathPathway.class);
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Certifier",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Certifier",
 				Certifier.class);
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Condition-Contributing-To-Death",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Condition-Contributing-To-Death",
 				ConditionContributingToDeath.class);
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Certificate",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Certificate",
 				DeathCertificate.class);
 		ctx.setDefaultTypeForProfile(
-				"http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Certificate-Document",
+				"http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Certificate-Document",
 				DeathCertificateDocument.class);
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Certificate-Reference",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Certificate-Reference",
 				DeathCertificateReference.class);
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Certification",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Certification",
 				DeathCertification.class);
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Date",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Date",
 				DeathDate.class);
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Location",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Location",
 				DeathLocation.class);
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Pronouncement-Performer",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Pronouncement-Performer",
 				DeathPronouncementPerformer.class);
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent",
 				Decedent.class);
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent-Age",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent-Age",
 				DecedentAge.class);
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent-Disposition-Method",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent-Disposition-Method",
 				DecedentDispositionMethod.class);
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent-Education-Level",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent-Education-Level",
 				DecedentEducationLevel.class);
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent-Employment-History",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent-Employment-History",
 				DecedentEmploymentHistory.class);
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent-Father",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent-Father",
 				DecedentFather.class);
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent-Mother",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent-Mother",
 				DecedentMother.class);
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent-Pregnancy",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent-Pregnancy",
 				DecedentPregnancy.class);
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent-Spouse",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent-Spouse",
 				DecedentSpouse.class);
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent-Transportation-Role",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent-Transportation-Role",
 				DecedentTransportationRole.class);
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Disposition-Location",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Disposition-Location",
 				DispositionLocation.class);
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Examiner-Contacted",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Examiner-Contacted",
 				ExaminerContacted.class);
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Funeral-Home",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Funeral-Home",
 				FuneralHome.class);
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Funeral-Home-Director",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Funeral-Home-Director",
 				FuneralHomeDirector.class);
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Injury-Incident",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Injury-Incident",
 				InjuryIncident.class);
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Injury-Location",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Injury-Location",
 				InjuryLocation.class);
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Interested-Party",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Interested-Party",
 				InterestedParty.class);
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Manner-Of-Death",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Manner-Of-Death",
 				MannerOfDeath.class);
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Mortician",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Mortician",
 				Mortician.class);
-		ctx.setDefaultTypeForProfile("http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Tobacco-Use-Contributed-To-Death",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Tobacco-Use-Contributed-To-Death",
 				TobaccoUseContributedToDeath.class);
 	}
 

@@ -3,6 +3,8 @@ package edu.gatech.VRDR.model.util;
 import java.util.UUID;
 
 import org.hl7.fhir.dstu3.model.Bundle;
+import org.hl7.fhir.dstu3.model.CodeableConcept;
+import org.hl7.fhir.dstu3.model.Coding;
 import org.hl7.fhir.dstu3.model.DomainResource;
 import org.hl7.fhir.dstu3.model.Extension;
 import org.hl7.fhir.dstu3.model.IdType;
@@ -14,6 +16,9 @@ import edu.gatech.VRDR.model.DeathCertificate;
 import edu.gatech.VRDR.model.DeathCertificateDocument;
 
 public class CommonUtil {
+	public static CodeableConcept noCode = new CodeableConcept().addCoding(new Coding("http://terminology.www.hl7.org/CodeSystem/v2-0136","N","No"));
+	public static CodeableConcept yesCode = new CodeableConcept().addCoding(new Coding("http://terminology.www.hl7.org/CodeSystem/v2-0136","Y","Yes"));
+	public static CodeableConcept unknownCode = new CodeableConcept().addCoding(new Coding("http://hl7.org/fhir/v3/NullFlavor","UNK","unknown"));
 	public static Extension getExtension(DomainResource resource, String url) {
 		for (Extension extension : resource.getExtension()) {
 			if (extension.getUrl().equals(url)) {

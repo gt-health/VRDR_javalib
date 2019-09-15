@@ -12,7 +12,7 @@ import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.VRDR.model.util.CommonUtil;
 import edu.gatech.VRDR.model.util.DecedentUtil;
 
-@ResourceDef(name = "Patient", profile = "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent")
+@ResourceDef(name = "Patient", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent")
 public class Decedent extends Patient {
 
 	public Decedent() {

@@ -12,7 +12,7 @@ import edu.gatech.VRDR.model.util.CommonUtil;
 import edu.gatech.VRDR.model.util.DeathDateUtil;
 import edu.gatech.VRDR.model.util.InjuryIncidentUtil;
 
-@ResourceDef(name = "Observation", profile = "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Injury-Incident")
+@ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Injury-Incident")
 public class InjuryIncident extends Observation {
 
 	public InjuryIncident() {
@@ -42,21 +42,20 @@ public class InjuryIncident extends Observation {
 		ObservationComponentComponent component = new ObservationComponentComponent();
 		component.setCode(InjuryIncidentUtil.componentPlaceofInjuryCode);
 		component.setValue(new StringType(placeOfInjury));
-	}
-
-	public void getPlaceOfInjuryComponent(String placeOfInjury) {
-
+		addComponent(component);
 	}
 
 	public void addInjuredAtWorkBooleanComponent(CodeableConcept injuredAtWorkBoolean) {
 		ObservationComponentComponent component = new ObservationComponentComponent();
 		component.setCode(InjuryIncidentUtil.componentInjuryAtWorkCode);
 		component.setValue(injuredAtWorkBoolean);
+		addComponent(component);
 	}
 
 	public void addtransportationRelationshipComponent(CodeableConcept transportationRelationship) {
 		ObservationComponentComponent component = new ObservationComponentComponent();
 		component.setCode(InjuryIncidentUtil.componentInjuryLeadingToDeathVechicleCode);
 		component.setValue(transportationRelationship);
+		addComponent(component);
 	}
 }

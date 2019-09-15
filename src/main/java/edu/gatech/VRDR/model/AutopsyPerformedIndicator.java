@@ -8,7 +8,7 @@ import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.VRDR.model.util.AutopsyPerformedIdentifierUtil;
 import edu.gatech.VRDR.model.util.CommonUtil;
 
-@ResourceDef(name = "Observation", profile = "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Autopsy-Performed-Indicator")
+@ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Autopsy-Performed-Indicator")
 public class AutopsyPerformedIndicator extends Observation {
 
 	public AutopsyPerformedIndicator() {
@@ -18,9 +18,17 @@ public class AutopsyPerformedIndicator extends Observation {
 		setCode(AutopsyPerformedIdentifierUtil.code);
 	}
 
-	public AutopsyPerformedIndicator(CodeableConcept value) {
+	public AutopsyPerformedIndicator(boolean autopsyPerformed,boolean resultsAvailable) {
 		this();
-		addAutopsyResultsAvailableComponent(value);
+		CodeableConcept autopsyPerformedConcept = autopsyPerformed ? CommonUtil.yesCode : CommonUtil.noCode;
+		setValue(autopsyPerformedConcept);
+		CodeableConcept autopsyResultsAvailableConcept = resultsAvailable ? CommonUtil.yesCode : CommonUtil.noCode;
+		addAutopsyResultsAvailableComponent(autopsyResultsAvailableConcept);
+	}
+	
+	public AutopsyPerformedIndicator(CodeableConcept autopsyPerformed,CodeableConcept resultsAvailable) {
+		setValue(autopsyPerformed);
+		addAutopsyResultsAvailableComponent(resultsAvailable);
 	}
 
 	public void setDecedent(Decedent decedent) {
@@ -38,5 +46,4 @@ public class AutopsyPerformedIndicator extends Observation {
 		component.setValue(concept);
 		addComponent(component);
 	}
-
 }

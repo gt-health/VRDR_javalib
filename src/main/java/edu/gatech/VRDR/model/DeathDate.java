@@ -12,7 +12,7 @@ import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.VRDR.model.util.CommonUtil;
 import edu.gatech.VRDR.model.util.DeathDateUtil;
 
-@ResourceDef(name = "Observation", profile = "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Date")
+@ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Date")
 public class DeathDate extends Observation {
 
 	public DeathDate() {
@@ -24,12 +24,12 @@ public class DeathDate extends Observation {
 
 	public DeathDate(Date dateTime) {
 		this();
-		setValue(new DateTimeType(dateTime));
+		setEffective(new DateTimeType(dateTime));
 	}
 
 	public void addPatientLocationExtension(Location location) {
 		Extension extension = new Extension(DeathDateUtil.patientLocationExtensionURL);
-		Reference reference = new Reference(location);
+		Reference reference = new Reference(location.getId());
 		extension.setValue(reference);
 		this.addExtension(extension);
 	}

@@ -7,7 +7,7 @@ import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.VRDR.model.util.CommonUtil;
 import edu.gatech.VRDR.model.util.FuneralHomeUtil;
 
-@ResourceDef(name = "Organization", profile = "http://www.hl7.org/fhir/us/StructureDefinition/VRDR-Funeral-Home")
+@ResourceDef(name = "Organization", profile = "http://hl7.org/fhir/us/StructureDefinition/VRDR-Funeral-Home")
 public class FuneralHome extends Organization {
 	public FuneralHome() {
 		super();

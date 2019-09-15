@@ -5,31 +5,23 @@ import java.util.Date;
 import java.util.List;
 
 import org.hl7.fhir.dstu3.model.Address;
-import org.hl7.fhir.dstu3.model.Address.AddressUse;
-import org.hl7.fhir.dstu3.model.Age;
-import org.hl7.fhir.dstu3.model.Bundle.BundleEntryComponent;
 import org.hl7.fhir.dstu3.model.CodeableConcept;
 import org.hl7.fhir.dstu3.model.Coding;
-import org.hl7.fhir.dstu3.model.Composition.CompositionStatus;
-import org.hl7.fhir.dstu3.model.Composition.SectionComponent;
 import org.hl7.fhir.dstu3.model.DateTimeType;
-import org.hl7.fhir.dstu3.model.Enumerations.AdministrativeGender;
-import org.hl7.fhir.dstu3.model.Enumerations.DocumentReferenceStatus;
-import org.hl7.fhir.dstu3.model.HumanName.NameUse;
 import org.hl7.fhir.dstu3.model.HumanName;
 import org.hl7.fhir.dstu3.model.Identifier;
-import org.hl7.fhir.dstu3.model.ListResource.ListEntryComponent;
 import org.hl7.fhir.dstu3.model.Quantity;
 import org.hl7.fhir.dstu3.model.Reference;
 import org.hl7.fhir.dstu3.model.Resource;
+import org.hl7.fhir.dstu3.model.Address.AddressUse;
+import org.hl7.fhir.dstu3.model.Bundle.BundleEntryComponent;
+import org.hl7.fhir.dstu3.model.Enumerations.DocumentReferenceStatus;
+import org.hl7.fhir.dstu3.model.HumanName.NameUse;
 
-import ca.uhn.fhir.context.FhirContext;
-import edu.gatech.VRDR.context.VRDRFhirContext;
 import edu.gatech.VRDR.model.AutopsyPerformedIndicator;
 import edu.gatech.VRDR.model.BirthRecordIdentifier;
-import edu.gatech.VRDR.model.ConditionContributingToDeath;
-import edu.gatech.VRDR.model.CauseOfDeathPathway;
 import edu.gatech.VRDR.model.Certifier;
+import edu.gatech.VRDR.model.ConditionContributingToDeath;
 import edu.gatech.VRDR.model.DeathCertificate;
 import edu.gatech.VRDR.model.DeathCertificateDocument;
 import edu.gatech.VRDR.model.DeathCertificateReference;
@@ -44,54 +36,12 @@ import edu.gatech.VRDR.model.DecedentEducationLevel;
 import edu.gatech.VRDR.model.DecedentEmploymentHistory;
 import edu.gatech.VRDR.model.DecedentFather;
 import edu.gatech.VRDR.model.DecedentMother;
-import edu.gatech.VRDR.model.DecedentPregnancy;
 import edu.gatech.VRDR.model.DecedentSpouse;
-import edu.gatech.VRDR.model.DecedentTransportationRole;
-import edu.gatech.VRDR.model.DispositionLocation;
-import edu.gatech.VRDR.model.ExaminerContacted;
-import edu.gatech.VRDR.model.FuneralHome;
-import edu.gatech.VRDR.model.FuneralHomeDirector;
-import edu.gatech.VRDR.model.InjuryIncident;
-import edu.gatech.VRDR.model.InjuryLocation;
-import edu.gatech.VRDR.model.InterestedParty;
-import edu.gatech.VRDR.model.MannerOfDeath;
-import edu.gatech.VRDR.model.Mortician;
-import edu.gatech.VRDR.model.TobaccoUseContributedToDeath;
 import edu.gatech.VRDR.model.util.CommonUtil;
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
-
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
-
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-    	//Useful No codeableconcept
+public class BuildDCD {
+	public static DeathCertificateDocument buildExampleDeathCertificateDocument() {
+		//Useful No codeableconcept
     	CodeableConcept noCode = new CodeableConcept().addCoding(new Coding("http://terminology.www.hl7.org/CodeSystem/v2-0136","N","No"));
     	CodeableConcept yesCode = new CodeableConcept().addCoding(new Coding("http://terminology.www.hl7.org/CodeSystem/v2-0136","Y","Yes"));
     	DeathCertificateDocument deathCertificateDocument = new DeathCertificateDocument();
@@ -103,7 +53,6 @@ public class AppTest
     	Address decedentsHome = new Address().addLine("1808 Stroop Hill Road").setCity("Atlanta")
 		.setState("GA").setPostalCode("30303").setCountry("USA").setUse(AddressUse.HOME);
     	Decedent decedent = new Decedent();
-    	decedent.setGender(AdministrativeGender.MALE);
     	decedent.setRace("2106-3", "", "White");
     	decedent.setEthnicity("", "", "");
     	decedent.setBirthSex("M", "Male");
@@ -271,9 +220,6 @@ public class AppTest
     		CommonUtil.addSectionEntry(deathCertificate, resource);
     		CommonUtil.addBundleEntry(deathCertificateDocument,resource);
     	}
-    	
-    	String encoded = new VRDRFhirContext().getCtx().newJsonParser().encodeResourceToString(deathCertificateDocument);
-    	System.out.println(encoded);
-    	assertTrue( true );
-    }
+    	return deathCertificateDocument;
+	}
 }

@@ -8,7 +8,7 @@ import org.hl7.fhir.dstu3.model.Organization;
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.VRDR.model.util.CommonUtil;
 
-@ResourceDef(name = "Organization", profile = "http://www.hl7.org/fhir/us/StructureDefinition/VRDR-Interested-Party")
+@ResourceDef(name = "Organization", profile = "http://hl7.org/fhir/us/StructureDefinition/VRDR-Interested-Party")
 public class InterestedParty extends Organization {
 	public InterestedParty() {
 		super();
