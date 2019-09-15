@@ -18,13 +18,16 @@ public class InjuryIncident extends Observation {
 	public InjuryIncident() {
 		super();
 		CommonUtil.initResource(this);
+		setStatus(InjuryIncidentUtil.status);
+		setCode(InjuryIncidentUtil.code);
 	}
 
 	public InjuryIncident(Decedent decendent, String placeOfInjury, CodeableConcept injuredAtWorkBoolean,
 			CodeableConcept transportationRelationship) {
 		this();
-		setStatus(InjuryIncidentUtil.status);
-		setCode(InjuryIncidentUtil.code);
+		addPlaceOfInjuryComponent(placeOfInjury);
+		addInjuredAtWorkBooleanComponent(injuredAtWorkBoolean);
+		addtransportationRelationshipComponent(transportationRelationship);
 	}
 
 	public void addPatientLocationExtension(Location location) {
