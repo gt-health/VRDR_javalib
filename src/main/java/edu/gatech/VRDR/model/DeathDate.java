@@ -22,9 +22,10 @@ public class DeathDate extends Observation {
 		setStatus(DeathDateUtil.status);
 	}
 
-	public DeathDate(Date dateTime) {
+	public DeathDate(Date effectiveDateTime,Date datePronouncedDead) {
 		this();
-		setEffective(new DateTimeType(dateTime));
+		setEffective(new DateTimeType(effectiveDateTime));
+		addDatePronouncedDead(new DateTimeType(datePronouncedDead));
 	}
 
 	public void addPatientLocationExtension(Location location) {
@@ -40,5 +41,12 @@ public class DeathDate extends Observation {
 
 	public void addEstimatedMethod() {
 		setMethod(DeathDateUtil.method);
+	}
+	
+	public void addDatePronouncedDead(DateTimeType dtType) {
+		ObservationComponentComponent component = new ObservationComponentComponent();
+		component.setCode(DeathDateUtil.componentDatePronouncedDeadCode);
+		component.setValue(dtType);
+		addComponent(component);
 	}
 }

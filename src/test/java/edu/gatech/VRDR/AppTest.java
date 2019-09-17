@@ -182,7 +182,7 @@ public class AppTest
     	deathCertificate.addEvent(deathCertification);
     	contents.add(deathCertification);
     	
-    	DeathDate deathDate = new DeathDate(rightNow);
+    	DeathDate deathDate = new DeathDate(rightNow,rightNow);
     	deathDate.setSubject(decedentReference);
     	contents.add(deathDate);
     	
