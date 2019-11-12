@@ -1,5 +1,8 @@
 package edu.gatech.VRDR.model;
 
+import java.util.Date;
+
+import org.hl7.fhir.dstu3.model.DateTimeType;
 import org.hl7.fhir.dstu3.model.Procedure;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
@@ -15,6 +18,11 @@ public class DeathCertification extends Procedure {
 		setStatus(ProcedureStatus.COMPLETED);
 		setCategory(DeathCertificationUtil.categoryFixedValue);
 		setCode(DeathCertificationUtil.codeFixedValue);
+	}
+	
+	public DeathCertification(Date performed) {
+		this();
+		this.setPerformed(new DateTimeType(performed));
 	}
 
 }

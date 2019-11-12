@@ -1,5 +1,6 @@
 package edu.gatech.VRDR.model;
 
+import org.hl7.fhir.dstu3.model.Attachment;
 import org.hl7.fhir.dstu3.model.DocumentReference;
 import org.hl7.fhir.dstu3.model.Enumerations.DocumentReferenceStatus;
 
@@ -17,5 +18,13 @@ public class DeathCertificateReference extends DocumentReference {
 		this();
 		setStatus(status);
 		setType(DeathCertificateReferenceUtil.type);
+	}
+	
+	public void addDeathCertificateURL(String urlString) {
+		DocumentReferenceContentComponent drcc = new DocumentReferenceContentComponent();
+		Attachment attachment = new Attachment();
+		attachment.setUrl(urlString);
+		drcc.setAttachment(attachment);
+		this.addContent(drcc);
 	}
 }

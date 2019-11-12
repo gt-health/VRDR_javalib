@@ -11,5 +11,5 @@ public class DeathCertificateUtil {
 			.addCoding(new Coding().setCode("64297-5").setSystem("http://loinc.org"));
 	public static final Composition.CompositionAttestationMode attesterMode = Composition.CompositionAttestationMode.LEGAL;
 	public static final CodeableConcept eventCodeFixedValue = new CodeableConcept()
-			.addCoding(new Coding().setCode("103693007").setSystem("http://snomed.info/sct"));
+			.addCoding(new Coding().setCode("308646001").setSystem("http://snomed.info/sct").setDisplay("Death certification (procedure)"));
 }
