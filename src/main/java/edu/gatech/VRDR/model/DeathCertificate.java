@@ -22,6 +22,11 @@ public class DeathCertificate extends Composition {
 		setStatus(DeathCertificateUtil.status);
 		setDate(new Date());
 	}
+	
+	public DeathCertificate(DeathCertification resource) {
+		this();
+		addEvent(resource);
+	}
 
 	private CompositionAttesterComponent addAttesterCommon() {
 		CompositionAttesterComponent component = new CompositionAttesterComponent();

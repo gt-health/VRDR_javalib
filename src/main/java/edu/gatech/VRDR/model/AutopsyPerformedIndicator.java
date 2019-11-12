@@ -17,17 +17,26 @@ public class AutopsyPerformedIndicator extends Observation {
 		setStatus(AutopsyPerformedIdentifierUtil.status);
 		setCode(AutopsyPerformedIdentifierUtil.code);
 	}
-
-	public AutopsyPerformedIndicator(boolean autopsyPerformed,boolean resultsAvailable) {
+	
+	public AutopsyPerformedIndicator(boolean autopsyPerformed) {
 		this();
 		CodeableConcept autopsyPerformedConcept = autopsyPerformed ? CommonUtil.yesCode : CommonUtil.noCode;
 		setValue(autopsyPerformedConcept);
+	}
+
+	public AutopsyPerformedIndicator(boolean autopsyPerformed,boolean resultsAvailable) {
+		this(autopsyPerformed);
 		CodeableConcept autopsyResultsAvailableConcept = resultsAvailable ? CommonUtil.yesCode : CommonUtil.noCode;
 		addAutopsyResultsAvailableComponent(autopsyResultsAvailableConcept);
 	}
 	
-	public AutopsyPerformedIndicator(CodeableConcept autopsyPerformed,CodeableConcept resultsAvailable) {
+	public AutopsyPerformedIndicator(CodeableConcept autopsyPerformed) {
+		this();
 		setValue(autopsyPerformed);
+	}
+	
+	public AutopsyPerformedIndicator(CodeableConcept autopsyPerformed,CodeableConcept resultsAvailable) {
+		this(autopsyPerformed);
 		addAutopsyResultsAvailableComponent(resultsAvailable);
 	}
 

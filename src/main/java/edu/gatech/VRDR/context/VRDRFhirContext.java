@@ -27,7 +27,7 @@ import edu.gatech.VRDR.model.DecedentTransportationRole;
 import edu.gatech.VRDR.model.DispositionLocation;
 import edu.gatech.VRDR.model.ExaminerContacted;
 import edu.gatech.VRDR.model.FuneralHome;
-import edu.gatech.VRDR.model.FuneralHomeDirector;
+import edu.gatech.VRDR.model.FuneralServiceLicensee;
 import edu.gatech.VRDR.model.InjuryIncident;
 import edu.gatech.VRDR.model.InjuryLocation;
 import edu.gatech.VRDR.model.InterestedParty;
@@ -93,8 +93,8 @@ public class VRDRFhirContext {
 				ExaminerContacted.class);
 		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Funeral-Home",
 				FuneralHome.class);
-		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Funeral-Home-Director",
-				FuneralHomeDirector.class);
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR_FuneralServiceLicensee",
+				FuneralServiceLicensee.class);
 		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Injury-Incident",
 				InjuryIncident.class);
 		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Injury-Location",

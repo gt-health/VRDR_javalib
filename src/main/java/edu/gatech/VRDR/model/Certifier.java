@@ -18,9 +18,8 @@ public class Certifier extends Practitioner {
 	}
 
 	public PractitionerQualificationComponent addQualification(String identifier, String type) {
-		CodeableConcept typeCodeableConcept = new CodeableConcept()
-				.addCoding(new Coding().setCode(type).setSystem(CertifierUtil.qualificationSystemUrl));
-		PractitionerQualificationComponent component = new PractitionerQualificationComponent(typeCodeableConcept);
+		CodeableConcept identifierTypeCodeableConcept = CommonUtil.findConceptFromCollectionUsingSimpleString(type, CommonUtil.deathReportingIdentifierTypeCodes);
+		PractitionerQualificationComponent component = new PractitionerQualificationComponent(identifierTypeCodeableConcept);
 		component.addIdentifier(new Identifier().setValue(identifier));
 		addQualification(component);
 		return component;

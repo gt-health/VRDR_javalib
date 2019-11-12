@@ -19,4 +19,31 @@ public class DecedentDispositionMethod extends Observation {
 		this();
 		setValue(value);
 	}
+	
+	public DecedentDispositionMethod(String code) {
+		this();
+		setValue(code);
+	}
+	
+	public DecedentDispositionMethod(String code, String display) {
+		this();
+		setValue(code,display);
+	}
+	
+	public void setValue(String code) {
+		CodeableConcept concept = CommonUtil.findConceptFromCollectionUsingSimpleString(code, DecedentDispositionMethodUtil.valueCodesetList);
+		if(concept != null) {
+			setValue(concept);
+		}
+	}
+	
+	public void setValue(String code, String display) {
+		CodeableConcept concept = CommonUtil.findConceptFromCollectionUsingSimpleString(code, DecedentDispositionMethodUtil.valueCodesetList);
+		if(concept == null) {
+			concept = CommonUtil.findConceptFromCollectionUsingSimpleString(display, DecedentDispositionMethodUtil.valueCodesetList);
+		}
+		if(concept != null) {
+			setValue(concept);
+		}
+	}
 }

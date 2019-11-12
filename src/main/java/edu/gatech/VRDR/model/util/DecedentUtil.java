@@ -5,7 +5,7 @@ import org.hl7.fhir.dstu3.model.Coding;
 
 public class DecedentUtil {
 	public static final String raceExtensionURL = "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race";
-	public static final String raceSystem = "urn:oid:2.16.840.1.113883.6.238";
+	public static final String raceSystem = "urn:oid:2.16.840.1.114222.4.11.876";
 	public static final String ethnicityExtensionURL = "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity";
 	public static final String ethnicitySystem = "urn:oid:2.16.840.1.113883.6.238";
 	public static final String birthSexExtensionURL = "http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex";
