@@ -4,7 +4,7 @@
 
   <groupId>edu.gatech</groupId>
   <artifactId>VRDR</artifactId>
-  <version>v0.1.0-STUBallot1-REVISED</version>
+  <version>v0.1.0-STUBallot1-REVISED.1</version>
   <packaging>jar</packaging>
 
   <name>VRDR</name>
@@ -14,7 +14,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
   	<maven.compiler.target>1.8</maven.compiler.target>
-    <fhir.version>3.8.0</fhir.version>
+    <fhir.version>4.1.0</fhir.version>
   </properties>
 
   <dependencies>
@@ -42,6 +42,16 @@
     <dependency>
     	<groupId>ca.uhn.hapi.fhir</groupId>
     	<artifactId>hapi-fhir-structures-dstu3</artifactId>
+    	<version>${fhir.version}</version>
+    </dependency>
+    <dependency>
+    	<groupId>ca.uhn.hapi.fhir</groupId>
+    	<artifactId>hapi-fhir-validation</artifactId>
+    	<version>${fhir.version}</version>
+    </dependency>
+    <dependency>
+    	<groupId>ca.uhn.hapi.fhir</groupId>
+    	<artifactId>hapi-fhir-validation-resources-dstu3</artifactId>
     	<version>${fhir.version}</version>
     </dependency>
   </dependencies>

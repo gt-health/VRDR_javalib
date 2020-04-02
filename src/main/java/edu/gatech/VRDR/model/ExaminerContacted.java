@@ -11,12 +11,12 @@ import edu.gatech.VRDR.model.util.ExaminerContactedUtil;
 public class ExaminerContacted extends Observation {
 	public ExaminerContacted() {
 		super();
+		setStatus(ExaminerContactedUtil.status);
+		setCode(ExaminerContactedUtil.code);
 		CommonUtil.initResource(this);
 	}
 	public ExaminerContacted(boolean value) {
 		this();
-		setStatus(ExaminerContactedUtil.status);
-		setCode(ExaminerContactedUtil.code);
 		setValue(new BooleanType(value));
 	}
 }

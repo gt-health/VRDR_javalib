@@ -9,7 +9,6 @@ public class BundleofBundlesTest {
 	public void testBundleOfBundles() {
 		Bundle outerBundle = new Bundle();
 		DeathCertificateDocument deathRecordDocument = BuildDCD.buildExampleDeathCertificateDocument();
-		outerBundle.addEntry(new BundleEntryComponent().setResource(deathRecordDocument));
-		
+		outerBundle.addEntry(new BundleEntryComponent().setResource(deathRecordDocument));		
 	}
 }

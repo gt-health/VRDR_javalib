@@ -7,7 +7,6 @@ import org.hl7.fhir.dstu3.model.Observation;
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.VRDR.model.util.CommonUtil;
 import edu.gatech.VRDR.model.util.DecedentPregnancyUtil;
-import edu.gatech.VRDR.model.util.TobaccoUseContributedToDeathUtil;
 
 @ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/StructureDefinition/VRDR-Decedent-Pregnancy")
 public class DecedentPregnancy extends Observation {

@@ -3,7 +3,6 @@ package edu.gatech.VRDR.model;
 import org.hl7.fhir.dstu3.model.CodeableConcept;
 import org.hl7.fhir.dstu3.model.DateTimeType;
 import org.hl7.fhir.dstu3.model.Observation;
-import org.hl7.fhir.dstu3.model.Reference;
 import org.hl7.fhir.dstu3.model.StringType;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;

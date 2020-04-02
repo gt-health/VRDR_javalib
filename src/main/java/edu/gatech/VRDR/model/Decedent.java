@@ -145,4 +145,5 @@ public class Decedent extends Patient {
 		addIdentifier(identifier);
 		return identifier;
 	}
+	//TODO: Add handler for informant mapping
 }

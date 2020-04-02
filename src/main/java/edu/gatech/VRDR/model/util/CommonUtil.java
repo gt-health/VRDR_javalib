@@ -8,18 +8,18 @@ import java.util.UUID;
 import org.hl7.fhir.dstu3.model.Bundle;
 import org.hl7.fhir.dstu3.model.CodeableConcept;
 import org.hl7.fhir.dstu3.model.Coding;
+import org.hl7.fhir.dstu3.model.Composition.SectionComponent;
 import org.hl7.fhir.dstu3.model.DomainResource;
 import org.hl7.fhir.dstu3.model.Extension;
 import org.hl7.fhir.dstu3.model.IdType;
 import org.hl7.fhir.dstu3.model.Reference;
 import org.hl7.fhir.dstu3.model.Resource;
-import org.hl7.fhir.dstu3.model.Composition.SectionComponent;
 
 import edu.gatech.VRDR.model.DeathCertificate;
 import edu.gatech.VRDR.model.DeathCertificateDocument;
 
 public class CommonUtil {
-	public static String basicBooleanHL7System = "http://terminology.www.hl7.org/CodeSystem/v2-0136";
+	public static String basicBooleanHL7System = "http://hl7.org/CodeSystem/v2-0136";
 	public static String nullFlavorHL7System = "http://hl7.org/fhir/v3/NullFlavor";
 	public static CodeableConcept noCode = new CodeableConcept().addCoding(new Coding(basicBooleanHL7System,"N","No"));
 	public static CodeableConcept yesCode = new CodeableConcept().addCoding(new Coding(basicBooleanHL7System,"Y","Yes"));

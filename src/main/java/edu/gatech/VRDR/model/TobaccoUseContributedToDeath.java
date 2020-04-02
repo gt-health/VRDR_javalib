@@ -1,8 +1,6 @@
 package edu.gatech.VRDR.model;
 
-import org.hl7.fhir.dstu3.model.BooleanType;
 import org.hl7.fhir.dstu3.model.CodeableConcept;
-import org.hl7.fhir.dstu3.model.Coding;
 import org.hl7.fhir.dstu3.model.Observation;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
