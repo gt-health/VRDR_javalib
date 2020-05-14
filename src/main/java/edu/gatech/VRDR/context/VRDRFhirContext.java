@@ -39,7 +39,7 @@ public class VRDRFhirContext {
 	FhirContext ctx;
 
 	public VRDRFhirContext() {
-		ctx = FhirContext.forDstu3();
+		ctx = FhirContext.forR4();
 		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Autopsy-Performed-Indicator",
 				AutopsyPerformedIndicator.class);
 		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Birth-Record-Identifier",

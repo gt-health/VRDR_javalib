@@ -1,8 +1,8 @@
 package edu.gatech.VRDR.model;
 
-import org.hl7.fhir.dstu3.model.Address;
-import org.hl7.fhir.dstu3.model.CodeableConcept;
-import org.hl7.fhir.dstu3.model.Location;
+import org.hl7.fhir.r4.model.Address;
+import org.hl7.fhir.r4.model.CodeableConcept;
+import org.hl7.fhir.r4.model.Location;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.VRDR.model.util.CommonUtil;
@@ -18,7 +18,7 @@ public class DeathLocation extends Location {
 		this();
 		setName(name);
 		setDescription(description);
-		setType(type);
+		addType(type);
 		setAddress(address);
 		setPhysicalType(physicalType);
 	}

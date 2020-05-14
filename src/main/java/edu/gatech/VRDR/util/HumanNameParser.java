@@ -3,7 +3,7 @@ package edu.gatech.VRDR.util;
 import java.util.Arrays;
 import java.util.StringJoiner;
 
-import org.hl7.fhir.dstu3.model.HumanName;
+import org.hl7.fhir.r4.model.HumanName;
 
 public class HumanNameParser {
 	private static final String[] prefixList = {"Mr.", "Mrs.", "Ms.", "Dr.", "Adm", "Capt", "Chief", "Gen", "Gov", "Hon", "Maj", "Prof", "Rabbi", "Rev", "Sister"};
