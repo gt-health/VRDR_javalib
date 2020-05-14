@@ -22,6 +22,7 @@ import org.hl7.fhir.dstu3.model.Procedure.ProcedurePerformerComponent;
 import org.hl7.fhir.dstu3.model.Quantity;
 import org.hl7.fhir.dstu3.model.Reference;
 import org.hl7.fhir.dstu3.model.Resource;
+import org.hl7.fhir.dstu3.model.StringType;
 
 import edu.gatech.VRDR.model.AutopsyPerformedIndicator;
 import edu.gatech.VRDR.model.BirthRecordIdentifier;
@@ -132,7 +133,7 @@ public class BuildDCD {
     	decedentSpouse.setPatient(decedentReference);
     	contents.add(decedentSpouse);
     	//AutopsyPerformedIndicator: first bool is autopsyPerformed, 2nd is resultsAvailable
-    	AutopsyPerformedIndicator autopsyPerformedIndicator = new AutopsyPerformedIndicator(true,true);
+    	AutopsyPerformedIndicator autopsyPerformedIndicator = new AutopsyPerformedIndicator(false,false);
     	autopsyPerformedIndicator.setSubject(decedentReference);
     	contents.add(autopsyPerformedIndicator);
     	//CauseOfDeathCondition
@@ -241,7 +242,6 @@ public class BuildDCD {
     	injuryLocation.setType(new CodeableConcept().addCoding(new Coding().setCode("HOSP").setSystem("http://hl7.org/fhir/ValueSet/v3-ServiceDeliveryLocationRoleType")));
     	injuryLocation.setPhysicalType(new CodeableConcept().addCoding(new Coding().setCode("ro").setSystem("http://hl7.org/fhir/ValueSet/location-physical-type")));
     	injuryLocation.setAddress(decedentsHome);
-    	deathCertificate.setSubject(decedentReference);
     	contents.add(injuryLocation);
     	//InterestedParty
     	CodeableConcept organizationType = new CodeableConcept().addCoding(new Coding("http://hl7.org/fhir/ValueSet/organization-type","dept","Hospital Department"));

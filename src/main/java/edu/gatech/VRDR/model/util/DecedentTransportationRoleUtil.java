@@ -8,6 +8,6 @@ import org.hl7.fhir.dstu3.model.Observation.ObservationStatus;
 public class DecedentTransportationRoleUtil {
 	public static final Observation.ObservationStatus status = ObservationStatus.FINAL;
 	public static final CodeableConcept code = new CodeableConcept()
-			.addCoding(new Coding().setSystem("http://loinc.org").setCode("69442-2")
-					.setDisplay("Timing of recent pregnancy in relation to death"));
+			.addCoding(new Coding().setSystem("http://loinc.org").setCode("69451-3")
+					.setDisplay("Transportation role of decedent"));
 }
