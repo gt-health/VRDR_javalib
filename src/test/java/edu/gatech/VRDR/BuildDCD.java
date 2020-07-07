@@ -77,13 +77,13 @@ public class BuildDCD {
     	List<Resource> contents = new ArrayList<Resource>();
     	contents.add(deathCertificate);
     	//Decedent
+    	Decedent decedent = new Decedent();
     	Address decedentsHome = new Address().addLine("1808 Stroop Hill Road").setCity("Atlanta")
 		.setState("GA").setPostalCode("30303").setCountry("USA").setUse(AddressUse.HOME);
     	Extension withinCityLimits = new Extension();
 		withinCityLimits.setUrl(DecedentUtil.addressWithinCityLimitsIndicatorExtensionURL);
 		withinCityLimits.setValue(new BooleanType(true));
 		decedentsHome.addExtension(withinCityLimits);
-    	Decedent decedent = new Decedent();
     	decedent.setGender(AdministrativeGender.MALE);
     	decedent.setRace("2106-3", "", "White");
     	decedent.setEthnicity("", "", "");
@@ -138,7 +138,7 @@ public class BuildDCD {
     	contents.add(autopsyPerformedIndicator);
     	//CauseOfDeathCondition
     	CauseOfDeathCondition causeOfDeathCondition = new CauseOfDeathCondition();
-    	causeOfDeathCondition.setSubject(decedentReference);
+    	causeOfDeathCondition.setDecedent(decedent);
     	causeOfDeathCondition.setAsserter(certifierReference);
     	causeOfDeathCondition.setCode(new CodeableConcept().addCoding(new Coding("http://snomed.info/sct","42343007","Congestive heart failure (disorder)")));
     	//ConditionContributingToDeath

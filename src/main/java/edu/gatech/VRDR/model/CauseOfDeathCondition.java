@@ -1,5 +1,6 @@
 package edu.gatech.VRDR.model;
 
+import org.hl7.fhir.instance.model.api.IIdType;
 import org.hl7.fhir.r4.model.Condition;
 import org.hl7.fhir.r4.model.Reference;
 

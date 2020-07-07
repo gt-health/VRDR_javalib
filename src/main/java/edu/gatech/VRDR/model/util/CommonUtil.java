@@ -44,6 +44,10 @@ public class CommonUtil {
 	}
 
 	public static void initResource(Resource resource) {
+		setUUID(resource);
+	}
+	
+	public static void setUUID(Resource resource) {
 		resource.setId(new IdType(UUID.randomUUID().toString()));
 	}
 	

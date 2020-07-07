@@ -21,7 +21,7 @@ public class MannerOfDeath extends Observation {
 	public MannerOfDeath(CodeableConcept manner, Decedent decedent, Certifier certifier) {
 		this();
 		setValue(manner);
-		setSubject(new Reference(decedent));
-		this.addPerformer(new Reference(certifier));
+		setSubject(new Reference(decedent.getId()));
+		this.addPerformer(new Reference(certifier.getId()));
 	}
 }
