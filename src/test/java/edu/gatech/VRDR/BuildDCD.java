@@ -41,8 +41,9 @@ import edu.gatech.VRDR.model.Decedent;
 import edu.gatech.VRDR.model.DecedentAge;
 import edu.gatech.VRDR.model.DecedentDispositionMethod;
 import edu.gatech.VRDR.model.DecedentEducationLevel;
-import edu.gatech.VRDR.model.DecedentEmploymentHistory;
+import edu.gatech.VRDR.model.DecedentUsualWork;
 import edu.gatech.VRDR.model.DecedentFather;
+import edu.gatech.VRDR.model.DecedentMilitaryService;
 import edu.gatech.VRDR.model.DecedentMother;
 import edu.gatech.VRDR.model.DecedentPregnancy;
 import edu.gatech.VRDR.model.DecedentSpouse;
@@ -194,13 +195,16 @@ public class BuildDCD {
     	decedentDispostionMethod.setSubject(decedentReference);
     	decedentDispostionMethod.addPerformer(certifierReference);
     	contents.add(decedentDispostionMethod);
-    	//DecedentEmploymentHistory
+    	//DecedentUsualWork
     	CodeableConcept industryCode = new CodeableConcept().addCoding(new Coding("http://loinc.org","21844-6",""));
-    	CodeableConcept occupationCode = new CodeableConcept().addCoding(new Coding("http://loinc.org","21847-9",""));
-    	DecedentEmploymentHistory decedentEmploymentHistory = new DecedentEmploymentHistory(yesCode,industryCode,occupationCode);
-    	
-    	decedentEmploymentHistory.setSubject(decedentReference);
-    	contents.add(decedentEmploymentHistory);
+    	Integer occupationYears = new Integer(15);
+    	DecedentUsualWork decedentUsualWork = new DecedentUsualWork(industryCode,occupationYears);
+    	decedentUsualWork.setSubject(decedentReference);
+    	contents.add(decedentUsualWork);
+    	//DecedentMilitaryService 
+    	DecedentMilitaryService decedentMilitaryService = new DecedentMilitaryService(yesCode);
+    	decedentMilitaryService.setSubject(decedentReference);
+    	contents.add(decedentUsualWork);
     	//DecedentPregnancy
     	DecedentPregnancy decedentPregnancy = new DecedentPregnancy("No");
     	decedentPregnancy.setSubject(decedentReference);

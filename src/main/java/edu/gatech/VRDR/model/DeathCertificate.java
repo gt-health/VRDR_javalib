@@ -56,7 +56,7 @@ public class DeathCertificate extends Composition {
 	public void addEvent(DeathCertification resource) {
 		CompositionEventComponent component = new CompositionEventComponent();
 		component.addCode(DeathCertificateUtil.eventCodeFixedValue);
-		component.addDetail(new Reference(resource));
+		component.addDetail(new Reference(resource.getId()));
 		addEvent(component);
 	}
 }

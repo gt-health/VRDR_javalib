@@ -5,14 +5,12 @@ import org.hl7.fhir.r4.model.Coding;
 import org.hl7.fhir.r4.model.Observation;
 import org.hl7.fhir.r4.model.Observation.ObservationStatus;
 
-public class DecedentEmploymentHistoryUtil {
+public class DecedentUsualWorkUtil {
 	public static final Observation.ObservationStatus status = ObservationStatus.FINAL;
 	public static final CodeableConcept code = new CodeableConcept()
-			.addCoding(new Coding().setSystem("http://loinc.org").setCode("74165-2"));
-	public static final CodeableConcept componentMilitaryServiceCode = new CodeableConcept()
-			.addCoding(new Coding().setSystem("http://loinc.org").setCode("55280-2"));
+			.addCoding(new Coding().setSystem("http://loinc.org").setCode("21843-8").setDisplay("History of Usual occupation"));
 	public static final CodeableConcept componentUsualIndustryCode = new CodeableConcept()
 			.addCoding(new Coding().setSystem("http://loinc.org").setCode("21844-6"));
-	public static final CodeableConcept componentUsualOccupationCode = new CodeableConcept()
+	public static final CodeableConcept componentUsualOccupationDuraction= new CodeableConcept()
 			.addCoding(new Coding().setSystem("http://loinc.org").setCode("21847-9"));
 }

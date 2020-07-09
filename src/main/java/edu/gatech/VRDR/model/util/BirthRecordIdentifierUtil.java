@@ -7,11 +7,11 @@ import org.hl7.fhir.r4.model.Observation.ObservationStatus;
 
 public class BirthRecordIdentifierUtil {
 	public static final CodeableConcept code = new CodeableConcept()
-			.addCoding(new Coding("urn:oid:2.16.840.1.113883.6.290", "BR", ""));
+			.addCoding(new Coding("http://hl7.org/fhir/v2/0203", "BR", ""));
 	public static final CodeableConcept componentBirthStateCode = new CodeableConcept()
-			.addCoding(new Coding("urn:oid:2.16.840.1.113883.6.1", "21842-0", ""));
-	public static final String componentBirthStateValueCodeableConceptSystem = "ISO 3166-1";
+			.addCoding(new Coding("http://loinc.org", "21842-0", ""));
+	public static final String componentBirthStateValueCodeableConceptSystem = "urn:iso:std:iso:3166:-2";
 	public static final CodeableConcept componentBirthYearCode = new CodeableConcept()
-			.addCoding(new Coding("urn:oid:2.16.840.1.113883.6.290", "21112-8", ""));
+			.addCoding(new Coding("http://loinc.org", "80904-6", "Birth Year"));
 	public static final ObservationStatus status = Observation.ObservationStatus.FINAL;
 }

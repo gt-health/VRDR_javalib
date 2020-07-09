@@ -18,7 +18,7 @@ import edu.gatech.VRDR.model.Decedent;
 import edu.gatech.VRDR.model.DecedentAge;
 import edu.gatech.VRDR.model.DecedentDispositionMethod;
 import edu.gatech.VRDR.model.DecedentEducationLevel;
-import edu.gatech.VRDR.model.DecedentEmploymentHistory;
+import edu.gatech.VRDR.model.DecedentUsualWork;
 import edu.gatech.VRDR.model.DecedentFather;
 import edu.gatech.VRDR.model.DecedentMother;
 import edu.gatech.VRDR.model.DecedentPregnancy;
@@ -75,8 +75,8 @@ public class VRDRFhirContext {
 				DecedentDispositionMethod.class);
 		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent-Education-Level",
 				DecedentEducationLevel.class);
-		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent-Employment-History",
-				DecedentEmploymentHistory.class);
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent-Usual-Work",
+				DecedentUsualWork.class);
 		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent-Father",
 				DecedentFather.class);
 		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent-Mother",

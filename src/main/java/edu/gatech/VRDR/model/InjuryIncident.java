@@ -32,7 +32,7 @@ public class InjuryIncident extends Observation {
 
 	public void addPatientLocationExtension(Location location) {
 		Extension extension = new Extension(DeathDateUtil.patientLocationExtensionURL);
-		Reference reference = new Reference(location);
+		Reference reference = new Reference(location.getId());
 		extension.setValue(reference);
 		this.addExtension(extension);
 	}
