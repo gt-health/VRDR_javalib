@@ -5,7 +5,7 @@ import org.hl7.fhir.r4.model.Coding;
 import org.hl7.fhir.r4.model.Observation;
 import org.hl7.fhir.r4.model.Observation.ObservationStatus;
 
-public class AutopsyPerformedIdentifierUtil {
+public class AutopsyPerformedIndicatorUtil {
 	public static final CodeableConcept code = new CodeableConcept()
 			.addCoding(new Coding("http://loinc.org", "85699-7", "Autopsy was performed"));
 	public static final CodeableConcept componentAutopsyResultsAvailableCode = new CodeableConcept()
