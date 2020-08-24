@@ -44,14 +44,20 @@ public class Decedent extends Patient {
 
 	public Extension addRace(String ombCategory, String detailed, String text) {
 		Extension extension = new Extension(DecedentUtil.raceExtensionURL);
-		Extension ombCategoryExt = new Extension("ombCategory",
-				new Coding().setCode(ombCategory).setSystem(DecedentUtil.raceSystem));
-		Extension detailedExt = new Extension("detailed",
-				new Coding().setCode(ombCategory).setSystem(DecedentUtil.raceSystem));
-		Extension textExt = new Extension("text", new StringType(text));
-		extension.addExtension(ombCategoryExt);
-		extension.addExtension(detailedExt);
-		extension.addExtension(textExt);
+		if(!ombCategory.isEmpty()) {
+			Extension ombCategoryExt = new Extension("ombCategory",
+					new Coding().setCode(ombCategory).setSystem(DecedentUtil.raceSystem));
+			extension.addExtension(ombCategoryExt);
+		}
+		if(!detailed.isEmpty()) {
+			Extension detailedExt = new Extension("detailed",
+					new Coding().setCode(ombCategory).setSystem(DecedentUtil.raceSystem));
+			extension.addExtension(detailedExt);
+		}
+		if(!text.isEmpty()) {
+			Extension textExt = new Extension("text", new StringType(text));
+			extension.addExtension(textExt);
+		}
 		this.addExtension(extension);
 		return extension;
 	}
@@ -81,14 +87,20 @@ public class Decedent extends Patient {
 
 	public Extension addEthnicity(String ombCategory, String detailed, String text) {
 		Extension extension = new Extension(DecedentUtil.ethnicityExtensionURL);
-		Extension ombCategoryExt = new Extension("ombCategory",
-				new Coding().setCode(ombCategory).setSystem(DecedentUtil.ethnicitySystem));
-		Extension detailedExt = new Extension("detailed",
-				new Coding().setCode(ombCategory).setSystem(DecedentUtil.ethnicitySystem));
-		Extension textExt = new Extension("text", new StringType(text));
-		extension.addExtension(ombCategoryExt);
-		extension.addExtension(detailedExt);
-		extension.addExtension(textExt);
+		if(!ombCategory.isEmpty()) {
+			Extension ombCategoryExt = new Extension("ombCategory",
+					new Coding().setCode(ombCategory).setSystem(DecedentUtil.ethnicitySystem));
+			extension.addExtension(ombCategoryExt);
+		}
+		if(!detailed.isEmpty()) {
+			Extension detailedExt = new Extension("detailed",
+					new Coding().setCode(ombCategory).setSystem(DecedentUtil.ethnicitySystem));
+			extension.addExtension(detailedExt);
+		}
+		if(!text.isEmpty()) {
+			Extension textExt = new Extension("text", new StringType(text));
+			extension.addExtension(textExt);
+		}
 		this.addExtension(extension);
 		return extension;
 	}

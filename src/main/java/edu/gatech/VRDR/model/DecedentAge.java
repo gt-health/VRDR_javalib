@@ -6,7 +6,7 @@ import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.VRDR.model.util.CommonUtil;
 import edu.gatech.VRDR.model.util.DecedentAgeUtil;
 
-@ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/vrdr/decedentAge")
+@ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-DECEDENT-AGE")
 public class DecedentAge extends Observation {
 	public DecedentAge() {
 		CommonUtil.initResource(this);
