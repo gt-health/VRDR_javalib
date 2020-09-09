@@ -7,6 +7,6 @@ import org.hl7.fhir.r4.model.Observation.ObservationStatus;
 public class DecedentAgeUtil {
 	public static final ObservationStatus status = ObservationStatus.FINAL;
 	public static final CodeableConcept code = new CodeableConcept()
-			.addCoding(new Coding("http://loinc.org", "30525-0", "AGE"));
+			.addCoding(new Coding("http://loinc.org", "30525-0", "Age"));
 	
 }
