@@ -1,7 +1,7 @@
 package edu.gatech.VRDR.model.util;
 
-import org.hl7.fhir.dstu3.model.CodeableConcept;
-import org.hl7.fhir.dstu3.model.Coding;
+import org.hl7.fhir.r4.model.CodeableConcept;
+import org.hl7.fhir.r4.model.Coding;
 
 public class DecedentFatherUtil {
 	public static final CodeableConcept code = new CodeableConcept()

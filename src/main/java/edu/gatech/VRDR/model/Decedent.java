@@ -1,12 +1,12 @@
 package edu.gatech.VRDR.model;
 
-import org.hl7.fhir.dstu3.model.Address;
-import org.hl7.fhir.dstu3.model.CodeableConcept;
-import org.hl7.fhir.dstu3.model.Coding;
-import org.hl7.fhir.dstu3.model.Extension;
-import org.hl7.fhir.dstu3.model.Identifier;
-import org.hl7.fhir.dstu3.model.Patient;
-import org.hl7.fhir.dstu3.model.StringType;
+import org.hl7.fhir.r4.model.Address;
+import org.hl7.fhir.r4.model.CodeableConcept;
+import org.hl7.fhir.r4.model.Coding;
+import org.hl7.fhir.r4.model.Extension;
+import org.hl7.fhir.r4.model.Identifier;
+import org.hl7.fhir.r4.model.Patient;
+import org.hl7.fhir.r4.model.StringType;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.VRDR.model.util.CommonUtil;
@@ -44,14 +44,20 @@ public class Decedent extends Patient {
 
 	public Extension addRace(String ombCategory, String detailed, String text) {
 		Extension extension = new Extension(DecedentUtil.raceExtensionURL);
-		Extension ombCategoryExt = new Extension("ombCategory",
-				new Coding().setCode(ombCategory).setSystem(DecedentUtil.raceSystem));
-		Extension detailedExt = new Extension("detailed",
-				new Coding().setCode(ombCategory).setSystem(DecedentUtil.raceSystem));
-		Extension textExt = new Extension("text", new StringType(text));
-		extension.addExtension(ombCategoryExt);
-		extension.addExtension(detailedExt);
-		extension.addExtension(textExt);
+		if(!ombCategory.isEmpty()) {
+			Extension ombCategoryExt = new Extension("ombCategory",
+					new Coding().setCode(ombCategory).setSystem(DecedentUtil.raceSystem));
+			extension.addExtension(ombCategoryExt);
+		}
+		if(!detailed.isEmpty()) {
+			Extension detailedExt = new Extension("detailed",
+					new Coding().setCode(ombCategory).setSystem(DecedentUtil.raceSystem));
+			extension.addExtension(detailedExt);
+		}
+		if(!text.isEmpty()) {
+			Extension textExt = new Extension("text", new StringType(text));
+			extension.addExtension(textExt);
+		}
 		this.addExtension(extension);
 		return extension;
 	}
@@ -81,14 +87,20 @@ public class Decedent extends Patient {
 
 	public Extension addEthnicity(String ombCategory, String detailed, String text) {
 		Extension extension = new Extension(DecedentUtil.ethnicityExtensionURL);
-		Extension ombCategoryExt = new Extension("ombCategory",
-				new Coding().setCode(ombCategory).setSystem(DecedentUtil.ethnicitySystem));
-		Extension detailedExt = new Extension("detailed",
-				new Coding().setCode(ombCategory).setSystem(DecedentUtil.ethnicitySystem));
-		Extension textExt = new Extension("text", new StringType(text));
-		extension.addExtension(ombCategoryExt);
-		extension.addExtension(detailedExt);
-		extension.addExtension(textExt);
+		if(!ombCategory.isEmpty()) {
+			Extension ombCategoryExt = new Extension("ombCategory",
+					new Coding().setCode(ombCategory).setSystem(DecedentUtil.ethnicitySystem));
+			extension.addExtension(ombCategoryExt);
+		}
+		if(!detailed.isEmpty()) {
+			Extension detailedExt = new Extension("detailed",
+					new Coding().setCode(ombCategory).setSystem(DecedentUtil.ethnicitySystem));
+			extension.addExtension(detailedExt);
+		}
+		if(!text.isEmpty()) {
+			Extension textExt = new Extension("text", new StringType(text));
+			extension.addExtension(textExt);
+		}
 		this.addExtension(extension);
 		return extension;
 	}

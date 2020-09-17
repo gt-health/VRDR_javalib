@@ -2,12 +2,12 @@ package edu.gatech.VRDR.model;
 
 import java.util.Date;
 
-import org.hl7.fhir.dstu3.model.Composition;
-import org.hl7.fhir.dstu3.model.Organization;
-import org.hl7.fhir.dstu3.model.Patient;
-import org.hl7.fhir.dstu3.model.Practitioner;
-import org.hl7.fhir.dstu3.model.Reference;
-import org.hl7.fhir.dstu3.model.Resource;
+import org.hl7.fhir.r4.model.Composition;
+import org.hl7.fhir.r4.model.Organization;
+import org.hl7.fhir.r4.model.Patient;
+import org.hl7.fhir.r4.model.Practitioner;
+import org.hl7.fhir.r4.model.Reference;
+import org.hl7.fhir.r4.model.Resource;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.VRDR.model.util.CommonUtil;
@@ -30,7 +30,7 @@ public class DeathCertificate extends Composition {
 
 	private CompositionAttesterComponent addAttesterCommon() {
 		CompositionAttesterComponent component = new CompositionAttesterComponent();
-		component.addMode(DeathCertificateUtil.attesterMode);
+		component.setMode(CompositionAttestationMode.LEGAL);
 		return component;
 	}
 
@@ -56,7 +56,7 @@ public class DeathCertificate extends Composition {
 	public void addEvent(DeathCertification resource) {
 		CompositionEventComponent component = new CompositionEventComponent();
 		component.addCode(DeathCertificateUtil.eventCodeFixedValue);
-		component.addDetail(new Reference(resource));
+		component.addDetail(new Reference(resource.getId()));
 		addEvent(component);
 	}
 }

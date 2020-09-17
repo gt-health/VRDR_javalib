@@ -1,6 +1,6 @@
 package edu.gatech.VRDR.validation;
 
-import org.hl7.fhir.dstu3.model.Patient;
+import org.hl7.fhir.r4.model.Patient;
 
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.validation.FhirValidator;

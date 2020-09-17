@@ -1,11 +1,11 @@
 package edu.gatech.VRDR.model;
 
-import org.hl7.fhir.dstu3.model.CodeableConcept;
-import org.hl7.fhir.dstu3.model.Extension;
-import org.hl7.fhir.dstu3.model.Location;
-import org.hl7.fhir.dstu3.model.Observation;
-import org.hl7.fhir.dstu3.model.Reference;
-import org.hl7.fhir.dstu3.model.StringType;
+import org.hl7.fhir.r4.model.CodeableConcept;
+import org.hl7.fhir.r4.model.Extension;
+import org.hl7.fhir.r4.model.Location;
+import org.hl7.fhir.r4.model.Observation;
+import org.hl7.fhir.r4.model.Reference;
+import org.hl7.fhir.r4.model.StringType;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.VRDR.model.util.CommonUtil;
@@ -32,7 +32,7 @@ public class InjuryIncident extends Observation {
 
 	public void addPatientLocationExtension(Location location) {
 		Extension extension = new Extension(DeathDateUtil.patientLocationExtensionURL);
-		Reference reference = new Reference(location);
+		Reference reference = new Reference(location.getId());
 		extension.setValue(reference);
 		this.addExtension(extension);
 	}

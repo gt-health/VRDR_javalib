@@ -1,8 +1,8 @@
 package edu.gatech.VRDR.model.util;
 
-import org.hl7.fhir.dstu3.model.CodeableConcept;
-import org.hl7.fhir.dstu3.model.Coding;
-import org.hl7.fhir.dstu3.model.Observation.ObservationStatus;
+import org.hl7.fhir.r4.model.CodeableConcept;
+import org.hl7.fhir.r4.model.Coding;
+import org.hl7.fhir.r4.model.Observation.ObservationStatus;
 
 public class InjuryIncidentUtil {
 	public static final ObservationStatus status = ObservationStatus.FINAL;

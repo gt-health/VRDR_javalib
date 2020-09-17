@@ -4,25 +4,25 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.hl7.fhir.dstu3.model.Address;
-import org.hl7.fhir.dstu3.model.BooleanType;
-import org.hl7.fhir.dstu3.model.Address.AddressUse;
-import org.hl7.fhir.dstu3.model.Bundle.BundleEntryComponent;
-import org.hl7.fhir.dstu3.model.CodeableConcept;
-import org.hl7.fhir.dstu3.model.Coding;
-import org.hl7.fhir.dstu3.model.DateTimeType;
-import org.hl7.fhir.dstu3.model.Extension;
-import org.hl7.fhir.dstu3.model.Enumerations.AdministrativeGender;
-import org.hl7.fhir.dstu3.model.Enumerations.DocumentReferenceStatus;
-import org.hl7.fhir.dstu3.model.HumanName;
-import org.hl7.fhir.dstu3.model.HumanName.NameUse;
-import org.hl7.fhir.dstu3.model.Identifier;
-import org.hl7.fhir.dstu3.model.ListResource.ListEntryComponent;
-import org.hl7.fhir.dstu3.model.Procedure.ProcedurePerformerComponent;
-import org.hl7.fhir.dstu3.model.Quantity;
-import org.hl7.fhir.dstu3.model.Reference;
-import org.hl7.fhir.dstu3.model.Resource;
-import org.hl7.fhir.dstu3.model.StringType;
+import org.hl7.fhir.r4.model.Address;
+import org.hl7.fhir.r4.model.BooleanType;
+import org.hl7.fhir.r4.model.Address.AddressUse;
+import org.hl7.fhir.r4.model.Bundle.BundleEntryComponent;
+import org.hl7.fhir.r4.model.CodeableConcept;
+import org.hl7.fhir.r4.model.Coding;
+import org.hl7.fhir.r4.model.DateTimeType;
+import org.hl7.fhir.r4.model.Extension;
+import org.hl7.fhir.r4.model.Enumerations.AdministrativeGender;
+import org.hl7.fhir.r4.model.Enumerations.DocumentReferenceStatus;
+import org.hl7.fhir.r4.model.HumanName;
+import org.hl7.fhir.r4.model.HumanName.NameUse;
+import org.hl7.fhir.r4.model.Identifier;
+import org.hl7.fhir.r4.model.ListResource.ListEntryComponent;
+import org.hl7.fhir.r4.model.Procedure.ProcedurePerformerComponent;
+import org.hl7.fhir.r4.model.Quantity;
+import org.hl7.fhir.r4.model.Reference;
+import org.hl7.fhir.r4.model.Resource;
+import org.hl7.fhir.r4.model.StringType;
 
 import edu.gatech.VRDR.model.AutopsyPerformedIndicator;
 import edu.gatech.VRDR.model.BirthRecordIdentifier;
@@ -41,8 +41,9 @@ import edu.gatech.VRDR.model.Decedent;
 import edu.gatech.VRDR.model.DecedentAge;
 import edu.gatech.VRDR.model.DecedentDispositionMethod;
 import edu.gatech.VRDR.model.DecedentEducationLevel;
-import edu.gatech.VRDR.model.DecedentEmploymentHistory;
+import edu.gatech.VRDR.model.DecedentUsualWork;
 import edu.gatech.VRDR.model.DecedentFather;
+import edu.gatech.VRDR.model.DecedentMilitaryService;
 import edu.gatech.VRDR.model.DecedentMother;
 import edu.gatech.VRDR.model.DecedentPregnancy;
 import edu.gatech.VRDR.model.DecedentSpouse;
@@ -77,13 +78,13 @@ public class BuildDCD {
     	List<Resource> contents = new ArrayList<Resource>();
     	contents.add(deathCertificate);
     	//Decedent
+    	Decedent decedent = new Decedent();
     	Address decedentsHome = new Address().addLine("1808 Stroop Hill Road").setCity("Atlanta")
 		.setState("GA").setPostalCode("30303").setCountry("USA").setUse(AddressUse.HOME);
     	Extension withinCityLimits = new Extension();
 		withinCityLimits.setUrl(DecedentUtil.addressWithinCityLimitsIndicatorExtensionURL);
 		withinCityLimits.setValue(new BooleanType(true));
 		decedentsHome.addExtension(withinCityLimits);
-    	Decedent decedent = new Decedent();
     	decedent.setGender(AdministrativeGender.MALE);
     	decedent.setRace("2106-3", "", "White");
     	decedent.setEthnicity("", "", "");
@@ -138,7 +139,7 @@ public class BuildDCD {
     	contents.add(autopsyPerformedIndicator);
     	//CauseOfDeathCondition
     	CauseOfDeathCondition causeOfDeathCondition = new CauseOfDeathCondition();
-    	causeOfDeathCondition.setSubject(decedentReference);
+    	causeOfDeathCondition.setDecedent(decedent);
     	causeOfDeathCondition.setAsserter(certifierReference);
     	causeOfDeathCondition.setCode(new CodeableConcept().addCoding(new Coding("http://snomed.info/sct","42343007","Congestive heart failure (disorder)")));
     	//ConditionContributingToDeath
@@ -157,7 +158,7 @@ public class BuildDCD {
     	//DeathCertificateReference: use if you have an attachment you can link as a file reference to the death certificate
     	DeathCertificateReference deathCertificateReference = new DeathCertificateReference(DocumentReferenceStatus.CURRENT);
     	deathCertificateReference.setSubject(decedentReference);
-    	deathCertificateReference.setIndexed(rightNow);
+    	deathCertificateReference.setDate(rightNow);
     	deathCertificateReference.addAuthor(certifierReference);
     	deathCertificateReference.addDeathCertificateURL("https://www.examplemecfilestore.com/some/filepath/to/thisdocument.pdf");
     	contents.add(deathCertificateReference);
@@ -165,10 +166,7 @@ public class BuildDCD {
     	DeathCertification deathCertification = new DeathCertification();
     	deathCertification.setPerformed(new DateTimeType(rightNow));
 		CodeableConcept certifierTypeCode = new CodeableConcept().addCoding(new Coding("http://snomed.info/sct","440051000124108","Medical Examiner"));
-		ProcedurePerformerComponent procedurePerformerComponent = new ProcedurePerformerComponent();
-		procedurePerformerComponent.setRole(certifierTypeCode);
-		procedurePerformerComponent.setActor(certifierReference);
-		deathCertification.addPerformer(procedurePerformerComponent);
+		deathCertification.addPerformer(certifier, certifierTypeCode);
     	deathCertificate.addEvent(deathCertification);
     	contents.add(deathCertification);
     	//DeathDate
@@ -197,13 +195,16 @@ public class BuildDCD {
     	decedentDispostionMethod.setSubject(decedentReference);
     	decedentDispostionMethod.addPerformer(certifierReference);
     	contents.add(decedentDispostionMethod);
-    	//DecedentEmploymentHistory
+    	//DecedentUsualWork
     	CodeableConcept industryCode = new CodeableConcept().addCoding(new Coding("http://loinc.org","21844-6",""));
-    	CodeableConcept occupationCode = new CodeableConcept().addCoding(new Coding("http://loinc.org","21847-9",""));
-    	DecedentEmploymentHistory decedentEmploymentHistory = new DecedentEmploymentHistory(yesCode,industryCode,occupationCode);
-    	
-    	decedentEmploymentHistory.setSubject(decedentReference);
-    	contents.add(decedentEmploymentHistory);
+    	Integer occupationYears = new Integer(15);
+    	DecedentUsualWork decedentUsualWork = new DecedentUsualWork(industryCode,occupationYears);
+    	decedentUsualWork.setSubject(decedentReference);
+    	contents.add(decedentUsualWork);
+    	//DecedentMilitaryService 
+    	DecedentMilitaryService decedentMilitaryService = new DecedentMilitaryService(yesCode);
+    	decedentMilitaryService.setSubject(decedentReference);
+    	contents.add(decedentUsualWork);
     	//DecedentPregnancy
     	DecedentPregnancy decedentPregnancy = new DecedentPregnancy("No");
     	decedentPregnancy.setSubject(decedentReference);
@@ -239,7 +240,7 @@ public class BuildDCD {
     	InjuryLocation injuryLocation = new InjuryLocation();
     	injuryLocation.setName("Hospital");
     	injuryLocation.setDescription("Gracie Hospital");
-    	injuryLocation.setType(new CodeableConcept().addCoding(new Coding().setCode("HOSP").setSystem("http://hl7.org/fhir/ValueSet/v3-ServiceDeliveryLocationRoleType")));
+    	injuryLocation.addType(new CodeableConcept().addCoding(new Coding().setCode("HOSP").setSystem("http://hl7.org/fhir/ValueSet/v3-ServiceDeliveryLocationRoleType")));
     	injuryLocation.setPhysicalType(new CodeableConcept().addCoding(new Coding().setCode("ro").setSystem("http://hl7.org/fhir/ValueSet/location-physical-type")));
     	injuryLocation.setAddress(decedentsHome);
     	contents.add(injuryLocation);

@@ -1,8 +1,8 @@
 package edu.gatech.VRDR.model;
 
-import org.hl7.fhir.dstu3.model.CodeableConcept;
-import org.hl7.fhir.dstu3.model.Observation;
-import org.hl7.fhir.dstu3.model.Reference;
+import org.hl7.fhir.r4.model.CodeableConcept;
+import org.hl7.fhir.r4.model.Observation;
+import org.hl7.fhir.r4.model.Reference;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.VRDR.model.util.CommonUtil;
@@ -21,7 +21,7 @@ public class MannerOfDeath extends Observation {
 	public MannerOfDeath(CodeableConcept manner, Decedent decedent, Certifier certifier) {
 		this();
 		setValue(manner);
-		setSubject(new Reference(decedent));
-		this.addPerformer(new Reference(certifier));
+		setSubject(new Reference(decedent.getId()));
+		this.addPerformer(new Reference(certifier.getId()));
 	}
 }
