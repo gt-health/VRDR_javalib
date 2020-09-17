@@ -94,7 +94,7 @@ public class Decedent extends Patient {
 		}
 		if(!detailed.isEmpty()) {
 			Extension detailedExt = new Extension("detailed",
-					new Coding().setCode(ombCategory).setSystem(DecedentUtil.ethnicitySystem));
+					new Coding().setCode(detailed).setSystem(DecedentUtil.ethnicitySystem));
 			extension.addExtension(detailedExt);
 		}
 		if(!text.isEmpty()) {
