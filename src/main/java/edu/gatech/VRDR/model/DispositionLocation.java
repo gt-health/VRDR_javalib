@@ -6,7 +6,7 @@ import org.hl7.fhir.r4.model.Location;
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.VRDR.model.util.CommonUtil;
 
-@ResourceDef(name = "Location", profile = "http://hl7.org/fhir/us/StructureDefinition/VRDR-Disposition-Location")
+@ResourceDef(name = "Location", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Disposition-Location")
 public class DispositionLocation extends Location {
 	public DispositionLocation() {
 		super();
