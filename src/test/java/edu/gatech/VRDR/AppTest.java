@@ -1,7 +1,7 @@
 package edu.gatech.VRDR;
 
-import edu.gatech.VRDR.context.VRDRFhirContext;
-import edu.gatech.VRDR.model.DeathCertificateDocument;
+import edu.gatech.chai.VRDR.context.VRDRFhirContext;
+import edu.gatech.chai.VRDR.model.DeathCertificateDocument;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;

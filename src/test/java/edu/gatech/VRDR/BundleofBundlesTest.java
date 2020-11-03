@@ -3,7 +3,7 @@ package edu.gatech.VRDR;
 import org.hl7.fhir.r4.model.Bundle;
 import org.hl7.fhir.r4.model.Bundle.BundleEntryComponent;
 
-import edu.gatech.VRDR.model.DeathCertificateDocument;
+import edu.gatech.chai.VRDR.model.DeathCertificateDocument;
 
 public class BundleofBundlesTest {
 	public void testBundleOfBundles() {

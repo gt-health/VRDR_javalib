@@ -5,61 +5,59 @@ import java.util.Date;
 import java.util.List;
 
 import org.hl7.fhir.r4.model.Address;
-import org.hl7.fhir.r4.model.BooleanType;
 import org.hl7.fhir.r4.model.Address.AddressUse;
+import org.hl7.fhir.r4.model.BooleanType;
 import org.hl7.fhir.r4.model.Bundle.BundleEntryComponent;
 import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.Coding;
 import org.hl7.fhir.r4.model.DateTimeType;
-import org.hl7.fhir.r4.model.Extension;
 import org.hl7.fhir.r4.model.Enumerations.AdministrativeGender;
 import org.hl7.fhir.r4.model.Enumerations.DocumentReferenceStatus;
+import org.hl7.fhir.r4.model.Extension;
 import org.hl7.fhir.r4.model.HumanName;
 import org.hl7.fhir.r4.model.HumanName.NameUse;
 import org.hl7.fhir.r4.model.Identifier;
 import org.hl7.fhir.r4.model.ListResource.ListEntryComponent;
-import org.hl7.fhir.r4.model.Procedure.ProcedurePerformerComponent;
 import org.hl7.fhir.r4.model.Quantity;
 import org.hl7.fhir.r4.model.Reference;
 import org.hl7.fhir.r4.model.Resource;
-import org.hl7.fhir.r4.model.StringType;
 
-import edu.gatech.VRDR.model.AutopsyPerformedIndicator;
-import edu.gatech.VRDR.model.BirthRecordIdentifier;
-import edu.gatech.VRDR.model.CauseOfDeathCondition;
-import edu.gatech.VRDR.model.CauseOfDeathPathway;
-import edu.gatech.VRDR.model.Certifier;
-import edu.gatech.VRDR.model.ConditionContributingToDeath;
-import edu.gatech.VRDR.model.DeathCertificate;
-import edu.gatech.VRDR.model.DeathCertificateDocument;
-import edu.gatech.VRDR.model.DeathCertificateReference;
-import edu.gatech.VRDR.model.DeathCertification;
-import edu.gatech.VRDR.model.DeathDate;
-import edu.gatech.VRDR.model.DeathLocation;
-import edu.gatech.VRDR.model.DeathPronouncementPerformer;
-import edu.gatech.VRDR.model.Decedent;
-import edu.gatech.VRDR.model.DecedentAge;
-import edu.gatech.VRDR.model.DecedentDispositionMethod;
-import edu.gatech.VRDR.model.DecedentEducationLevel;
-import edu.gatech.VRDR.model.DecedentUsualWork;
-import edu.gatech.VRDR.model.DecedentFather;
-import edu.gatech.VRDR.model.DecedentMilitaryService;
-import edu.gatech.VRDR.model.DecedentMother;
-import edu.gatech.VRDR.model.DecedentPregnancy;
-import edu.gatech.VRDR.model.DecedentSpouse;
-import edu.gatech.VRDR.model.DecedentTransportationRole;
-import edu.gatech.VRDR.model.DispositionLocation;
-import edu.gatech.VRDR.model.ExaminerContacted;
-import edu.gatech.VRDR.model.FuneralHome;
-import edu.gatech.VRDR.model.FuneralServiceLicensee;
-import edu.gatech.VRDR.model.InjuryIncident;
-import edu.gatech.VRDR.model.InjuryLocation;
-import edu.gatech.VRDR.model.InterestedParty;
-import edu.gatech.VRDR.model.MannerOfDeath;
-import edu.gatech.VRDR.model.Mortician;
-import edu.gatech.VRDR.model.TobaccoUseContributedToDeath;
-import edu.gatech.VRDR.model.util.CommonUtil;
-import edu.gatech.VRDR.model.util.DecedentUtil;
+import edu.gatech.chai.VRDR.model.AutopsyPerformedIndicator;
+import edu.gatech.chai.VRDR.model.BirthRecordIdentifier;
+import edu.gatech.chai.VRDR.model.CauseOfDeathCondition;
+import edu.gatech.chai.VRDR.model.CauseOfDeathPathway;
+import edu.gatech.chai.VRDR.model.Certifier;
+import edu.gatech.chai.VRDR.model.ConditionContributingToDeath;
+import edu.gatech.chai.VRDR.model.DeathCertificate;
+import edu.gatech.chai.VRDR.model.DeathCertificateDocument;
+import edu.gatech.chai.VRDR.model.DeathCertificateReference;
+import edu.gatech.chai.VRDR.model.DeathCertification;
+import edu.gatech.chai.VRDR.model.DeathDate;
+import edu.gatech.chai.VRDR.model.DeathLocation;
+import edu.gatech.chai.VRDR.model.DeathPronouncementPerformer;
+import edu.gatech.chai.VRDR.model.Decedent;
+import edu.gatech.chai.VRDR.model.DecedentAge;
+import edu.gatech.chai.VRDR.model.DecedentDispositionMethod;
+import edu.gatech.chai.VRDR.model.DecedentEducationLevel;
+import edu.gatech.chai.VRDR.model.DecedentFather;
+import edu.gatech.chai.VRDR.model.DecedentMilitaryService;
+import edu.gatech.chai.VRDR.model.DecedentMother;
+import edu.gatech.chai.VRDR.model.DecedentPregnancy;
+import edu.gatech.chai.VRDR.model.DecedentSpouse;
+import edu.gatech.chai.VRDR.model.DecedentTransportationRole;
+import edu.gatech.chai.VRDR.model.DecedentUsualWork;
+import edu.gatech.chai.VRDR.model.DispositionLocation;
+import edu.gatech.chai.VRDR.model.ExaminerContacted;
+import edu.gatech.chai.VRDR.model.FuneralHome;
+import edu.gatech.chai.VRDR.model.FuneralServiceLicensee;
+import edu.gatech.chai.VRDR.model.InjuryIncident;
+import edu.gatech.chai.VRDR.model.InjuryLocation;
+import edu.gatech.chai.VRDR.model.InterestedParty;
+import edu.gatech.chai.VRDR.model.MannerOfDeath;
+import edu.gatech.chai.VRDR.model.Mortician;
+import edu.gatech.chai.VRDR.model.TobaccoUseContributedToDeath;
+import edu.gatech.chai.VRDR.model.util.CommonUtil;
+import edu.gatech.chai.VRDR.model.util.DecedentUtil;
 
 public class BuildDCD {
 	public static DeathCertificateDocument buildExampleDeathCertificateDocument() {
@@ -101,7 +99,7 @@ public class BuildDCD {
     	certifier.addName(new HumanName().setFamily("Baden").addGiven("Michael").setUse(NameUse.OFFICIAL));
     	certifier.addAddress(new Address().addLine("256 Mount Olive Road").setCity("Atlata")
     			.setState("GA").setPostalCode("30303").setCountry("USA").setUse(AddressUse.WORK));
-    	certifier.addQualification("12345","National provider identifier","MD");
+    	certifier.addQualification("12345","Medical Examiner/Coroner");
     	Date rightNow = new Date();
     	deathCertificate.addAttester(certifier,rightNow);
     	Reference certifierReference = new Reference(certifier.getId());
@@ -196,9 +194,10 @@ public class BuildDCD {
     	decedentDispostionMethod.addPerformer(certifierReference);
     	contents.add(decedentDispostionMethod);
     	//DecedentUsualWork
-    	CodeableConcept industryCode = new CodeableConcept().addCoding(new Coding("http://loinc.org","21844-6",""));
+    	CodeableConcept occupationCode = new CodeableConcept().addCoding(new Coding("urn:oid:2.16.840.1.114222.4.5.314","1330","Agricultural engineers"));
+    	CodeableConcept industryCode = new CodeableConcept().addCoding(new Coding("urn:oid:2.16.840.1.114222.4.5.315","2180","Agricultural chemical manufacturing"));
     	Integer occupationYears = new Integer(15);
-    	DecedentUsualWork decedentUsualWork = new DecedentUsualWork(industryCode,occupationYears);
+    	DecedentUsualWork decedentUsualWork = new DecedentUsualWork(occupationCode,industryCode,occupationYears);
     	decedentUsualWork.setSubject(decedentReference);
     	contents.add(decedentUsualWork);
     	//DecedentMilitaryService 
@@ -234,7 +233,7 @@ public class BuildDCD {
     	funeralServiceLicensee.setOrganization(new Reference(funeralHome.getId()));
     	contents.add(funeralServiceLicensee);
     	//InjuryIncident
-    	InjuryIncident injuryIncident = new InjuryIncident(decedent, "Head", noCode, noCode);
+    	InjuryIncident injuryIncident = new InjuryIncident(decedent, "Home", "No", "No");
     	contents.add(injuryIncident);
     	//InjuryLocation
     	InjuryLocation injuryLocation = new InjuryLocation();
