@@ -6,7 +6,6 @@ import org.hl7.fhir.r4.model.Observation;
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.VRDR.model.util.CommonUtil;
 import edu.gatech.chai.VRDR.model.util.DecedentTransportationRoleUtil;
-import edu.gatech.chai.VRDR.model.util.TobaccoUseContributedToDeathUtil;
 
 @ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent-Transportation-Role")
 public class DecedentTransportationRole extends Observation {
@@ -27,7 +26,7 @@ public class DecedentTransportationRole extends Observation {
 	}
 	
 	public void setValue(String code) {
-		CodeableConcept concept = CommonUtil.findConceptFromCollectionUsingSimpleString(code, TobaccoUseContributedToDeathUtil.valueCodesetList);
+		CodeableConcept concept = CommonUtil.findConceptFromCollectionUsingSimpleString(code, DecedentTransportationRoleUtil.valueCodesetList);
 		if(concept != null) {
 			setValue(concept);
 		}

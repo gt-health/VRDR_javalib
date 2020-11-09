@@ -26,6 +26,13 @@ public class MannerOfDeath extends Observation {
 		this.addPerformer(new Reference(certifier.getId()));
 	}
 	
+	public MannerOfDeath(String manner, Decedent decedent, Certifier certifier) {
+		this();
+		setValue(manner);
+		setSubject(new Reference(decedent.getId()));
+		this.addPerformer(new Reference(certifier.getId()));
+	}
+	
 	public void setValue(String code) {
 		CodeableConcept concept = CommonUtil.findConceptFromCollectionUsingSimpleString(code, MannerOfDeathUtil.valueCodesetList);
 		if(concept != null) {

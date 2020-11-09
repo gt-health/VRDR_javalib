@@ -59,4 +59,5 @@ public class DeathCertificate extends Composition {
 		component.addDetail(new Reference(resource.getId()));
 		addEvent(component);
 	}
+	
 }
