@@ -11,6 +11,7 @@ import edu.gatech.chai.VRDR.model.util.DecedentPregnancyUtil;
 @ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent-Pregnancy")
 public class DecedentPregnancy extends Observation {
 	public DecedentPregnancy() {
+		super();
 		CommonUtil.initResource(this);
 		setStatus(DecedentPregnancyUtil.status);
 		setCode(DecedentPregnancyUtil.code);

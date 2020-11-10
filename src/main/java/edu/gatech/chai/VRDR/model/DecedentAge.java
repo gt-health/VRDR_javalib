@@ -9,6 +9,7 @@ import edu.gatech.chai.VRDR.model.util.DecedentAgeUtil;
 @ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent-Age")
 public class DecedentAge extends Observation {
 	public DecedentAge() {
+		super();
 		CommonUtil.initResource(this);
 		setStatus(DecedentAgeUtil.status);
 		setCode(DecedentAgeUtil.code);

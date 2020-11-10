@@ -16,6 +16,7 @@ import edu.gatech.chai.VRDR.model.util.DecedentUtil;
 public class Decedent extends Patient {
 
 	public Decedent() {
+		super();
 		CommonUtil.initResource(this);
 	}
 

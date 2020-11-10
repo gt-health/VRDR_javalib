@@ -24,14 +24,14 @@
                 }]
             },
             "subject": {
-                "reference": "8abd8768-f97f-4f76-b59a-6d1e42186fd5"
+                "reference": "Patient/8abd8768-f97f-4f76-b59a-6d1e42186fd5"
             },
             "date": "2020-11-09T14:34:20-05:00",
             "attester": [{
                 "mode": "legal",
                 "time": "2020-11-10T14:34:20-05:00",
                 "party": {
-                    "reference": "62234754-e590-4e08-b809-13da4b933f79"
+                    "reference": "Practitioner/62234754-e590-4e08-b809-13da4b933f79"
                 }
             }],
             "event": [{
@@ -43,58 +43,58 @@
                     }]
                 }],
                 "detail": [{
-                    "reference": "f40d82e3-9777-41f6-94a1-d6a9b88117d7"
+                    "reference": "Procedure/f40d82e3-9777-41f6-94a1-d6a9b88117d7"
                 }]
             }],
             "section": [{
                 "entry": [{
-                    "reference": "8abd8768-f97f-4f76-b59a-6d1e42186fd5"
+                    "reference": "Patient/8abd8768-f97f-4f76-b59a-6d1e42186fd5"
                 }, {
-                    "reference": "62234754-e590-4e08-b809-13da4b933f79"
+                    "reference": "Practitioner/62234754-e590-4e08-b809-13da4b933f79"
                 }, {
-                    "reference": "96ac52a6-d994-4204-8413-58b6d3856ea5"
+                    "reference": "Observation/96ac52a6-d994-4204-8413-58b6d3856ea5"
                 }, {
-                    "reference": "5a4f18a6-0476-4988-8324-1754c644d85d"
+                    "reference": "RelatedPerson/5a4f18a6-0476-4988-8324-1754c644d85d"
                 }, {
-                    "reference": "a0ac94bc-9248-48b8-9a98-ded8c56bce11"
+                    "reference": "RelatedPerson/a0ac94bc-9248-48b8-9a98-ded8c56bce11"
                 }, {
-                    "reference": "22d49384-0705-4468-89ab-c1054c786d81"
+                    "reference": "RelatedPerson/22d49384-0705-4468-89ab-c1054c786d81"
                 }, {
-                    "reference": "ee16b0bc-95a9-45fb-b91a-6c8160eafdcb"
+                    "reference": "Observation/ee16b0bc-95a9-45fb-b91a-6c8160eafdcb"
                 }, {
-                    "reference": "4749a3eb-f7a0-4971-a28c-e30054b85adf"
+                    "reference": "Condition/4749a3eb-f7a0-4971-a28c-e30054b85adf"
                 }, {
-                    "reference": "f40d82e3-9777-41f6-94a1-d6a9b88117d7"
+                    "reference": "Procedure/f40d82e3-9777-41f6-94a1-d6a9b88117d7"
                 }, {
-                    "reference": "1f658780-ccfe-4139-a042-fef76c0c7790"
+                    "reference": "Observation/1f658780-ccfe-4139-a042-fef76c0c7790"
                 }, {
-                    "reference": "48d431cc-ad9b-4ced-9cb2-d1a5b5be2a84"
+                    "reference": "Location/48d431cc-ad9b-4ced-9cb2-d1a5b5be2a84"
                 }, {
-                    "reference": "44912ec1-8685-47d9-ab9c-80fa5f1f572e"
+                    "reference": "Practitioner/44912ec1-8685-47d9-ab9c-80fa5f1f572e"
                 }, {
-                    "reference": "8b27c71a-b6aa-4ad0-8f40-e0fa2a2db6ca"
+                    "reference": "Observation/8b27c71a-b6aa-4ad0-8f40-e0fa2a2db6ca"
                 }, {
-                    "reference": "81a3015d-19b9-42b8-b6ae-a97acebfb472"
+                    "reference": "Observation/81a3015d-19b9-42b8-b6ae-a97acebfb472"
                 }, {
-                    "reference": "c5589102-5f9e-4364-bdd9-24123e200e94"
+                    "reference": "Observation/c5589102-5f9e-4364-bdd9-24123e200e94"
                 }, {
-                    "reference": "df72f504-fe0c-4d42-92a5-d7cec3754bd2"
+                    "reference": "Location/df72f504-fe0c-4d42-92a5-d7cec3754bd2"
                 }, {
-                    "reference": "3f574bcf-38cc-4238-883e-33bc4801ccdd"
+                    "reference": "Observation/3f574bcf-38cc-4238-883e-33bc4801ccdd"
                 }, {
-                    "reference": "093ab18c-8646-4dab-8df9-caa65462669d"
+                    "reference": "Organization/093ab18c-8646-4dab-8df9-caa65462669d"
                 }, {
-                    "reference": "c95094e3-ff60-4756-b0ee-21f572e7aa66"
+                    "reference": "Practitioner/c95094e3-ff60-4756-b0ee-21f572e7aa66"
                 }, {
-                    "reference": "ed116a75-36f2-42cb-88b9-b4f1145e1902"
+                    "reference": "PractitionerRole/ed116a75-36f2-42cb-88b9-b4f1145e1902"
                 }, {
-                    "reference": "22124500-cb95-4d88-82c6-a3ceb176762f"
+                    "reference": "Observation/22124500-cb95-4d88-82c6-a3ceb176762f"
                 }, {
-                    "reference": "ad74b944-f0eb-45f9-8015-4121fa114ba1"
+                    "reference": "Location/ad74b944-f0eb-45f9-8015-4121fa114ba1"
                 }, {
-                    "reference": "bf1afd1d-70ee-41be-b18d-cf62a793e64a"
+                    "reference": "Organization/bf1afd1d-70ee-41be-b18d-cf62a793e64a"
                 }, {
-                    "reference": "a33e80d8-d34b-456d-b377-6909c20f4a96"
+                    "reference": "Observation/a33e80d8-d34b-456d-b377-6909c20f4a96"
                 }]
             }]
         }
@@ -213,7 +213,7 @@
                 }]
             },
             "subject": {
-                "reference": "8abd8768-f97f-4f76-b59a-6d1e42186fd5"
+                "reference": "Patient/8abd8768-f97f-4f76-b59a-6d1e42186fd5"
             },
             "valueString": "June 3rd 1935",
             "component": [{
@@ -258,7 +258,7 @@
                 }]
             },
             "subject": {
-                "reference": "8abd8768-f97f-4f76-b59a-6d1e42186fd5"
+                "reference": "Patient/8abd8768-f97f-4f76-b59a-6d1e42186fd5"
             },
             "valueCodeableConcept": {
                 "coding": [{
@@ -277,7 +277,7 @@
                 "profile": ["http://hl7.org/fhir/us/vrdr/VRDR-Decedent-Father"]
             },
             "patient": {
-                "reference": "8abd8768-f97f-4f76-b59a-6d1e42186fd5"
+                "reference": "Patient/8abd8768-f97f-4f76-b59a-6d1e42186fd5"
             },
             "relationship": [{
                 "coding": [{
@@ -300,7 +300,7 @@
                 "profile": ["http://hl7.org/fhir/us/vrdr/VRDR-Decedent-Mother"]
             },
             "patient": {
-                "reference": "8abd8768-f97f-4f76-b59a-6d1e42186fd5"
+                "reference": "Patient/8abd8768-f97f-4f76-b59a-6d1e42186fd5"
             },
             "relationship": [{
                 "coding": [{
@@ -323,7 +323,7 @@
                 "profile": ["http://hl7.org/fhir/us/vrdr/VRDR-Decedent-Spouse"]
             },
             "patient": {
-                "reference": "8abd8768-f97f-4f76-b59a-6d1e42186fd5"
+                "reference": "Patient/8abd8768-f97f-4f76-b59a-6d1e42186fd5"
             },
             "relationship": [{
                 "coding": [{
@@ -345,8 +345,16 @@
             "meta": {
                 "profile": ["http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Autopsy-Performed-Indicator"]
             },
+            "status": "final",
+            "code": {
+                "coding": [{
+                    "system": "http://loinc.org",
+                    "code": "85699-7",
+                    "display": "Autopsy was performed"
+                }]
+            },
             "subject": {
-                "reference": "8abd8768-f97f-4f76-b59a-6d1e42186fd5"
+                "reference": "Patient/8abd8768-f97f-4f76-b59a-6d1e42186fd5"
             },
             "valueCodeableConcept": {
                 "coding": [{
@@ -388,10 +396,10 @@
                 }]
             },
             "subject": {
-                "reference": "8abd8768-f97f-4f76-b59a-6d1e42186fd5"
+                "reference": "Patient/8abd8768-f97f-4f76-b59a-6d1e42186fd5"
             },
             "asserter": {
-                "reference": "62234754-e590-4e08-b809-13da4b933f79"
+                "reference": "Practitioner/62234754-e590-4e08-b809-13da4b933f79"
             }
         }
     }, {
@@ -403,7 +411,7 @@
             "status": "current",
             "mode": "snapshot",
             "source": {
-                "reference": "62234754-e590-4e08-b809-13da4b933f79"
+                "reference": "Practitioner/62234754-e590-4e08-b809-13da4b933f79"
             },
             "orderedBy": {
                 "coding": [{
@@ -433,11 +441,11 @@
                 }]
             },
             "subject": {
-                "reference": "8abd8768-f97f-4f76-b59a-6d1e42186fd5"
+                "reference": "Patient/8abd8768-f97f-4f76-b59a-6d1e42186fd5"
             },
             "date": "2020-11-10T14:34:20.358-05:00",
             "author": [{
-                "reference": "62234754-e590-4e08-b809-13da4b933f79"
+                "reference": "Practitioner/62234754-e590-4e08-b809-13da4b933f79"
             }],
             "content": [{
                 "attachment": {
@@ -478,7 +486,7 @@
                     }]
                 },
                 "actor": {
-                    "reference": "62234754-e590-4e08-b809-13da4b933f79"
+                    "reference": "Practitioner/62234754-e590-4e08-b809-13da4b933f79"
                 }
             }]
         }
@@ -493,7 +501,7 @@
             "extension": [{
                 "url": "http://hl7.org/fhir/us/vrdr/StructureDefinition/Observation-Location",
                 "valueReference": {
-                    "reference": "48d431cc-ad9b-4ced-9cb2-d1a5b5be2a84"
+                    "reference": "Location/48d431cc-ad9b-4ced-9cb2-d1a5b5be2a84"
                 }
             }],
             "status": "final",
@@ -505,7 +513,7 @@
                 }]
             },
             "subject": {
-                "reference": "8abd8768-f97f-4f76-b59a-6d1e42186fd5"
+                "reference": "Patient/8abd8768-f97f-4f76-b59a-6d1e42186fd5"
             },
             "effectiveDateTime": "2020-11-10T14:34:20-05:00",
             "component": [{
@@ -613,10 +621,10 @@
                 }]
             },
             "subject": {
-                "reference": "8abd8768-f97f-4f76-b59a-6d1e42186fd5"
+                "reference": "Patient/8abd8768-f97f-4f76-b59a-6d1e42186fd5"
             },
             "performer": [{
-                "reference": "62234754-e590-4e08-b809-13da4b933f79"
+                "reference": "Practitioner/62234754-e590-4e08-b809-13da4b933f79"
             }],
             "valueCodeableConcept": {
                 "coding": [{
@@ -641,7 +649,7 @@
                 }]
             },
             "subject": {
-                "reference": "8abd8768-f97f-4f76-b59a-6d1e42186fd5"
+                "reference": "Patient/8abd8768-f97f-4f76-b59a-6d1e42186fd5"
             },
             "valueCodeableConcept": {
                 "coding": [{
@@ -694,7 +702,7 @@
                 }]
             },
             "subject": {
-                "reference": "8abd8768-f97f-4f76-b59a-6d1e42186fd5"
+                "reference": "Patient/8abd8768-f97f-4f76-b59a-6d1e42186fd5"
             },
             "valueCodeableConcept": {
                 "coding": [{
@@ -749,7 +757,7 @@
                 }]
             },
             "subject": {
-                "reference": "8abd8768-f97f-4f76-b59a-6d1e42186fd5"
+                "reference": "Patient/8abd8768-f97f-4f76-b59a-6d1e42186fd5"
             }
         }
     }, {
@@ -769,7 +777,7 @@
                 }]
             },
             "subject": {
-                "reference": "8abd8768-f97f-4f76-b59a-6d1e42186fd5"
+                "reference": "Patient/8abd8768-f97f-4f76-b59a-6d1e42186fd5"
             },
             "valueCodeableConcept": {
                 "coding": [{
@@ -813,7 +821,7 @@
                 }]
             },
             "subject": {
-                "reference": "8abd8768-f97f-4f76-b59a-6d1e42186fd5"
+                "reference": "Patient/8abd8768-f97f-4f76-b59a-6d1e42186fd5"
             },
             "valueBoolean": true
         }
@@ -876,10 +884,10 @@
                 "profile": ["http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR_FuneralServiceLicensee"]
             },
             "practitioner": {
-                "reference": "c95094e3-ff60-4756-b0ee-21f572e7aa66"
+                "reference": "Practitioner/c95094e3-ff60-4756-b0ee-21f572e7aa66"
             },
             "organization": {
-                "reference": "093ab18c-8646-4dab-8df9-caa65462669d"
+                "reference": "Organization/093ab18c-8646-4dab-8df9-caa65462669d"
             },
             "code": [{
                 "coding": [{
@@ -1031,10 +1039,10 @@
                 }]
             },
             "subject": {
-                "reference": "8abd8768-f97f-4f76-b59a-6d1e42186fd5"
+                "reference": "Patient/8abd8768-f97f-4f76-b59a-6d1e42186fd5"
             },
             "performer": [{
-                "reference": "62234754-e590-4e08-b809-13da4b933f79"
+                "reference": "Practitioner/62234754-e590-4e08-b809-13da4b933f79"
             }],
             "valueCodeableConcept": {
                 "coding": [{
@@ -1060,7 +1068,7 @@
                 }]
             },
             "subject": {
-                "reference": "8abd8768-f97f-4f76-b59a-6d1e42186fd5"
+                "reference": "Patient/8abd8768-f97f-4f76-b59a-6d1e42186fd5"
             },
             "valueCodeableConcept": {
                 "coding": [{

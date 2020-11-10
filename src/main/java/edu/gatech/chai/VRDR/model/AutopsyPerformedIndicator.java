@@ -40,10 +40,15 @@ public class AutopsyPerformedIndicator extends Observation {
 		addAutopsyResultsAvailableComponent(resultsAvailable);
 	}
 	
-	public AutopsyPerformedIndicator(String autopsyPerformed,String resultsAvailable) {
+	public AutopsyPerformedIndicator(String autopsyPerformed) {
+		this();
 		CodeableConcept autopsyPerformedConcept = CommonUtil.findConceptFromCollectionUsingSimpleString(autopsyPerformed, AutopsyPerformedIndicatorUtil.booleanSet);
-		CodeableConcept autopsyResultsAvailableConcept = CommonUtil.findConceptFromCollectionUsingSimpleString(resultsAvailable, AutopsyPerformedIndicatorUtil.booleanSet);
 		setValue(autopsyPerformedConcept);
+	}
+	
+	public AutopsyPerformedIndicator(String autopsyPerformed,String resultsAvailable) {
+		this(autopsyPerformed);
+		CodeableConcept autopsyResultsAvailableConcept = CommonUtil.findConceptFromCollectionUsingSimpleString(resultsAvailable, AutopsyPerformedIndicatorUtil.booleanSet);
 		addAutopsyResultsAvailableComponent(autopsyResultsAvailableConcept);
 	}
 
