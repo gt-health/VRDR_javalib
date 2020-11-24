@@ -114,6 +114,7 @@ public class BuildDCD {
     	CodeableConcept gaState = new CodeableConcept().addCoding(new Coding("","32","Georgia"));
     	DateTimeType birthYear = new DateTimeType("1935-01-01");
     	BirthRecordIdentifier birthRecordIdentifier = new BirthRecordIdentifier("June 3rd 1935",gaState,birthYear);
+		initResourceForTesting(birthRecordIdentifier);
     	birthRecordIdentifier.setSubject(decedentReference);
     	contents.add(birthRecordIdentifier);
     	//DecedentEducationLevel
@@ -151,6 +152,7 @@ public class BuildDCD {
     	causeOfDeathCondition.setDecedent(decedent);
     	causeOfDeathCondition.setAsserter(certifierReference);
     	causeOfDeathCondition.setCode(new CodeableConcept().addCoding(new Coding("http://snomed.info/sct","42343007","Congestive heart failure (disorder)")));
+    	contents.add(causeOfDeathCondition);
     	//ConditionContributingToDeath
     	ConditionContributingToDeath conditionContributingToDeath = new ConditionContributingToDeath();
     	initResourceForTesting(conditionContributingToDeath);
@@ -160,12 +162,13 @@ public class BuildDCD {
     	contents.add(conditionContributingToDeath);
     	//CauseOfDeathPathway: this defines the cause of death pathway, it's a chain BEGINNING with the CauseOfDeathCondition
     	CauseOfDeathPathway causeOfDeathPathway = new CauseOfDeathPathway();
-    	initResourceForTesting(conditionContributingToDeath);
+    	initResourceForTesting(causeOfDeathPathway);
     	causeOfDeathPathway.setSource(certifierReference);
     	causeOfDeathPathway.addEntry(new ListEntryComponent().setItem(new Reference(causeOfDeathCondition.getId())));
     	contents.add(causeOfDeathPathway);
     	//DeathCertificateReference: use if you have an attachment you can link as a file reference to the death certificate
     	DeathCertificateReference deathCertificateReference = new DeathCertificateReference(DocumentReferenceStatus.CURRENT);
+		initResourceForTesting(deathCertificateReference);
     	deathCertificateReference.setSubject(decedentReference);
     	deathCertificateReference.setDate(rightNow);
     	deathCertificateReference.addAuthor(certifierReference);
@@ -200,6 +203,7 @@ public class BuildDCD {
     	contents.add(deathPronouncementPerformer);
     	//DecedentAge
     	DecedentAge decedentAge = new DecedentAge();
+		initResourceForTesting(decedentAge);
     	decedentAge.setValue(new Quantity(79).setUnit("a"));
     	contents.add(decedentAge);
     	//DecedentDispositionMethod
@@ -214,7 +218,7 @@ public class BuildDCD {
     	Integer occupationYears = new Integer(15);
     	DecedentUsualWork decedentUsualWork = new DecedentUsualWork(occupationCode,industryCode,occupationYears);
     	decedentUsualWork.setSubject(decedentReference);
-    	initResourceForTesting(decedentDispostionMethod);
+    	initResourceForTesting(decedentUsualWork);
     	contents.add(decedentUsualWork);
     	//DecedentMilitaryService 
     	DecedentMilitaryService decedentMilitaryService = new DecedentMilitaryService(yesCode);
@@ -275,7 +279,7 @@ public class BuildDCD {
     	contents.add(interestedParty);
     	//MannerOfDeath
     	MannerOfDeath mannerOfDeath = new MannerOfDeath("Accidental death",decedent,certifier);
-    	initResourceForTesting(interestedParty);
+    	initResourceForTesting(mannerOfDeath);
     	contents.add(mannerOfDeath);
     	//TobaccoUseContributedToDeath
     	TobaccoUseContributedToDeath tobaccoUseContributedToDeath = new TobaccoUseContributedToDeath("Yes");
