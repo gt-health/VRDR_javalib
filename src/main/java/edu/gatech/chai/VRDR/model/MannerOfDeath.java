@@ -41,9 +41,9 @@ public class MannerOfDeath extends Observation {
 	}
 	
 	public void setValue(String code, String display) {
-		CodeableConcept concept = CommonUtil.findConceptFromCollectionUsingSimpleString(code, DecedentDispositionMethodUtil.valueCodesetList);
+		CodeableConcept concept = CommonUtil.findConceptFromCollectionUsingSimpleString(code, MannerOfDeathUtil.valueCodesetList);
 		if(concept == null) {
-			concept = CommonUtil.findConceptFromCollectionUsingSimpleString(display, DecedentDispositionMethodUtil.valueCodesetList);
+			concept = CommonUtil.findConceptFromCollectionUsingSimpleString(display, MannerOfDeathUtil.valueCodesetList);
 		}
 		if(concept != null) {
 			setValue(concept);

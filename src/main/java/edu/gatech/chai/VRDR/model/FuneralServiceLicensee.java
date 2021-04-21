@@ -6,7 +6,7 @@ import org.hl7.fhir.r4.model.PractitionerRole;
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.VRDR.model.util.CommonUtil;
 
-@ResourceDef(name = "PractitionerRole", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR_FuneralServiceLicensee")
+@ResourceDef(name = "PractitionerRole", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Funeral-Service-Licensee")
 public class FuneralServiceLicensee extends PractitionerRole {
 	public FuneralServiceLicensee() {
 		super();

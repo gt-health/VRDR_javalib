@@ -46,7 +46,7 @@ public class VRDRFhirContext {
 				BirthRecordIdentifier.class);
 		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Cause-Of-Death-Condition",
 				CauseOfDeathCondition.class);
-		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Cause-Of-Death-Pathway",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Cause-of-Death-Pathway",
 				CauseOfDeathPathway.class);
 		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Certifier",
 				Certifier.class);
@@ -101,7 +101,7 @@ public class VRDRFhirContext {
 				InjuryLocation.class);
 		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Interested-Party",
 				InterestedParty.class);
-		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Manner-Of-Death",
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Manner-of-Death",
 				MannerOfDeath.class);
 		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Mortician",
 				Mortician.class);

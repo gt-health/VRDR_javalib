@@ -14,5 +14,5 @@ public class DecedentUtil {
 	public static final String addressWithinCityLimitsIndicatorExtensionURL = "http://hl7.org/fhir/us/vrdr/StructureDefinition/Within-City-Limits-Indicator";
 	public static final CodeableConcept identifierTypeFixedValue = new CodeableConcept()
 			.addCoding(new Coding().setCode("SB").setDisplay("Social Beneficiary Identifier"));
-	public static final String identifierSystem = "urn:oid:2.16.840.1.113883.4.1";
+	public static final String identifierSystem = "http://hl7.org/fhir/sid/us-ssn";
 }

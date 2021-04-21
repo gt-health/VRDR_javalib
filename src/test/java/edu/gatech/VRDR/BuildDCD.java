@@ -19,9 +19,11 @@ import org.hl7.fhir.r4.model.HumanName;
 import org.hl7.fhir.r4.model.HumanName.NameUse;
 import org.hl7.fhir.r4.model.Identifier;
 import org.hl7.fhir.r4.model.ListResource.ListEntryComponent;
+import org.hl7.fhir.r4.model.MessageHeader;
 import org.hl7.fhir.r4.model.Quantity;
 import org.hl7.fhir.r4.model.Reference;
 import org.hl7.fhir.r4.model.Resource;
+import org.hl7.fhir.r4.model.UriType;
 
 import edu.gatech.chai.VRDR.model.AutopsyPerformedIndicator;
 import edu.gatech.chai.VRDR.model.BirthRecordIdentifier;
@@ -62,11 +64,6 @@ import edu.gatech.chai.VRDR.model.util.DecedentUtil;
 
 public class BuildDCD {
 	public static DeathCertificateDocument buildExampleDeathCertificateDocument() {
-		//Useful Yes/No codeableconcept
-    	//Normally, these would live in util/CommonUtil but,
-    	//Demonstrated here in case you need to create your own custom codes
-    	CodeableConcept noCode = new CodeableConcept().addCoding(new Coding("http://terminology.www.hl7.org/CodeSystem/v2-0136","N","No"));
-    	CodeableConcept yesCode = new CodeableConcept().addCoding(new Coding("http://terminology.www.hl7.org/CodeSystem/v2-0136","Y","Yes"));
     	//DeathCertificateDocument contains the top-level item that represents the entire bundle
     	DeathCertificateDocument deathCertificateDocument = new DeathCertificateDocument();
     	initResourceForTesting(deathCertificateDocument);
@@ -92,27 +89,26 @@ public class BuildDCD {
     	decedent.setBirthSex("M", "Male");
     	decedent.setBirthPlace(decedentsHome);
     	decedent.addIdentifier("1AN2BN3DE45");
-    	decedent.addName(new HumanName().setFamily("Cleaveland").addGiven("Grover").setUse(NameUse.OFFICIAL));
-    	decedent.setMaritalStatus(new CodeableConcept().addCoding(new Coding().setCode("S").setSystem("http://hl7.org/fhir/v3/MaritalStatus")));
+    	decedent.addName(new HumanName().setFamily("Wright").addGiven("Vivien Lee").setUse(NameUse.OFFICIAL));
     	Reference decedentReference = new Reference(decedent.getId());
     	deathCertificate.setSubject(decedentReference);
     	contents.add(decedent);
     	//Certifier
     	Certifier certifier = new Certifier();
     	initResourceForTesting(certifier);
-    	certifier.addName(new HumanName().setFamily("Baden").addGiven("Michael").setUse(NameUse.OFFICIAL));
-    	certifier.addAddress(new Address().addLine("256 Mount Olive Road").setCity("Atlata")
-    			.setState("GA").setPostalCode("30303").setCountry("USA").setUse(AddressUse.WORK));
+    	certifier.addName(new HumanName().setFamily("Black").addGiven("Jim").setUse(NameUse.OFFICIAL));
+    	certifier.addAddress(new Address().addLine("44 South Street").setCity("Bird in Hand")
+    			.setState("PA").setPostalCode("30303").setCountry("USA").setUse(AddressUse.WORK));
     	certifier.addQualification("12345","Medical Examiner/Coroner");
     	Calendar myCalendar = Calendar.getInstance();
-    	myCalendar.set(2020, 10, 10);
-    	Date rightNow = myCalendar.getTime();
-    	deathCertificate.addAttester(certifier,rightNow);
+    	myCalendar.set(2021, 2, 11);
+    	Date today = myCalendar.getTime();
+    	deathCertificate.addAttester(certifier,today);
     	Reference certifierReference = new Reference(certifier.getId());
     	contents.add(certifier);
     	
     	CodeableConcept gaState = new CodeableConcept().addCoding(new Coding("","32","Georgia"));
-    	DateTimeType birthYear = new DateTimeType("1935-01-01");
+    	DateTimeType birthYear = new DateTimeType("1935");
     	BirthRecordIdentifier birthRecordIdentifier = new BirthRecordIdentifier("June 3rd 1935",gaState,birthYear);
     	birthRecordIdentifier.setSubject(decedentReference);
     	contents.add(birthRecordIdentifier);
@@ -167,19 +163,19 @@ public class BuildDCD {
     	//DeathCertificateReference: use if you have an attachment you can link as a file reference to the death certificate
     	DeathCertificateReference deathCertificateReference = new DeathCertificateReference(DocumentReferenceStatus.CURRENT);
     	deathCertificateReference.setSubject(decedentReference);
-    	deathCertificateReference.setDate(rightNow);
+    	deathCertificateReference.setDate(today);
     	deathCertificateReference.addAuthor(certifierReference);
     	deathCertificateReference.addDeathCertificateURL("https://www.examplemecfilestore.com/some/filepath/to/thisdocument.pdf");
     	contents.add(deathCertificateReference);
     	//DeathCertification: represent the event of certification
     	DeathCertification deathCertification = new DeathCertification();
     	initResourceForTesting(deathCertification);
-    	deathCertification.setPerformed(new DateTimeType(rightNow));
+    	deathCertification.setPerformed(new DateTimeType(today));
 		deathCertification.addPerformer(certifier, "Medical Examiner/Coroner");
     	deathCertificate.addEvent(deathCertification);
     	contents.add(deathCertification);
     	//DeathDate
-    	DeathDate deathDate = new DeathDate(rightNow,rightNow);
+    	DeathDate deathDate = new DeathDate(today,today);
     	initResourceForTesting(deathDate);
     	deathDate.setSubject(decedentReference);
     	contents.add(deathDate);
@@ -217,7 +213,7 @@ public class BuildDCD {
     	initResourceForTesting(decedentDispostionMethod);
     	contents.add(decedentUsualWork);
     	//DecedentMilitaryService 
-    	DecedentMilitaryService decedentMilitaryService = new DecedentMilitaryService(yesCode);
+    	DecedentMilitaryService decedentMilitaryService = new DecedentMilitaryService(CommonUtil.yesCode);
     	decedentMilitaryService.setSubject(decedentReference);
     	initResourceForTesting(decedentMilitaryService);
     	contents.add(decedentUsualWork);

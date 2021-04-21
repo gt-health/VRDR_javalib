@@ -18,7 +18,12 @@ public class ExaminerContacted extends Observation {
 	}
 	public ExaminerContacted(boolean value) {
 		this();
-		setValue(new BooleanType(value));
+		if(value) {
+			setValue(CommonUtil.yesCode);
+		}
+		else {
+			setValue(CommonUtil.noCode);
+		}
 	}
 	
 	public ExaminerContacted(CodeableConcept code) {

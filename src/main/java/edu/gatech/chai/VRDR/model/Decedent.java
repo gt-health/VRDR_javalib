@@ -1,6 +1,7 @@
 package edu.gatech.chai.VRDR.model;
 
 import org.hl7.fhir.r4.model.Address;
+import org.hl7.fhir.r4.model.CodeType;
 import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.Coding;
 import org.hl7.fhir.r4.model.Extension;
@@ -110,22 +111,27 @@ public class Decedent extends Patient {
 		return CommonUtil.getExtension(this, DecedentUtil.birthSexExtensionURL);
 	}
 
-	public Extension setBirthSex(String value, String display) {
+	public Extension setBirthSex(String value) {
 		Extension extension = getBirthSex();
 		if (extension != null) {
-			CodeableConcept birthSexConcept = new CodeableConcept()
-					.addCoding(new Coding(DecedentUtil.birthSexValueSetURL, value, ""));
-			extension.setValue(birthSexConcept);
+			CodeType birthSexCode = new CodeType(value);
+			extension.setValue(birthSexCode);
 			return extension;
 		}
-		return addBirthSex(value, display);
+		return addBirthSex(value);
+	}
+	public Extension setBirthSex(String value, String display) {
+		return setBirthSex(value);
 	}
 
 	public Extension addBirthSex(String value, String display) {
+		return addBirthSex(value);
+	}
+	
+	public Extension addBirthSex(String value) {
 		Extension extension = new Extension(DecedentUtil.birthSexExtensionURL);
-		CodeableConcept birthSexConcept = new CodeableConcept()
-				.addCoding(new Coding(DecedentUtil.birthSexValueSetURL, value, ""));
-		extension.setValue(birthSexConcept);
+		CodeType birthSexCode = new CodeType(value);
+		extension.setValue(birthSexCode);
 		this.addExtension(extension);
 		return extension;
 	}

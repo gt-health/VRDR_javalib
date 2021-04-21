@@ -3,11 +3,14 @@ package edu.gatech.VRDR;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.List;
 
 import ca.uhn.fhir.context.ConfigurationException;
 import ca.uhn.fhir.parser.DataFormatException;
 import edu.gatech.chai.VRDR.context.VRDRFhirContext;
+import edu.gatech.chai.VRDR.model.CauseOfDeathPathway;
 import edu.gatech.chai.VRDR.model.DeathCertificateDocument;
+import edu.gatech.chai.VRDR.model.MannerOfDeath;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -63,5 +66,14 @@ public class AppTest
     	String encoded = context.getCtx().newJsonParser().encodeResourceToString(deathCertificateDocument);
     	System.out.println(encoded);
     	assertTrue( true );
+    }
+    
+    public void testGetResourceFromDocument() {
+    	DeathCertificateDocument deathCertificateDocument = BuildDCD.buildExampleDeathCertificateDocument();
+    	List<MannerOfDeath> mannerOfDeathList = deathCertificateDocument.getMannerOfDeath();
+    	for(MannerOfDeath manner:mannerOfDeathList) {
+    		String jsonForm = context.getCtx().newJsonParser().encodeResourceToString(manner);
+    		System.out.println(jsonForm);
+    	}
     }
 }
