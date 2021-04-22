@@ -53,7 +53,12 @@ public class DeathCertificateDocument extends Bundle {
 		List<Resource> resources = getRecords(CauseOfDeathCondition.class);
 		return castListOfRecords(resources);
 	}
-	
+
+	public List<ConditionContributingToDeath> getConditionContributingToDeath(){
+		List<Resource> resources = getRecords(ConditionContributingToDeath.class);
+		return castListOfRecords(resources);
+	}
+
 	public List<CauseOfDeathPathway> getCauseOfDeathPathway(){
 		List<Resource> resources = getRecords(CauseOfDeathPathway.class);
 		return castListOfRecords(resources);
