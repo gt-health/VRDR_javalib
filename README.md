@@ -1,5 +1,5 @@
 # VRDR_javalib
-Java library implementation of the VRDR fhir standard http://hl7.org/fhir/us/vrdr/2019May/
+Java library implementation of the VRDR fhir standard http://hl7.org/fhir/us/vrdr/
 # Info
 This project uses the hapi-fhir java libraries extensively to create it's representation. It is recommended to have a strong understanding of the resource extension section of the hapi-fhir library before diving into the code. Info can be found here. https://hapifhir.io/hapi-fhir/docs/model/custom_structures.html
 
