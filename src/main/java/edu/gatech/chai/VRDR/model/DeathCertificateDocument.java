@@ -169,8 +169,13 @@ public class DeathCertificateDocument extends Bundle {
 		return castListOfRecords(resources);
 	}
 	
-	public List<InjuryLocation> getInjuryIncident(){
+	public List<InjuryIncident> getInjuryIncident(){
 		List<Resource> resources = getRecords(InjuryIncident.class);
+		return castListOfRecords(resources);
+	}
+	
+	public List<InjuryLocation> getInjuryLocation(){
+		List<Resource> resources = getRecords(InjuryLocation.class);
 		return castListOfRecords(resources);
 	}
 	
