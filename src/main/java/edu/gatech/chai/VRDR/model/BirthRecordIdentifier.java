@@ -78,4 +78,9 @@ public class BirthRecordIdentifier extends Observation {
 		birthYearComponent.setValue(birthYear);
 		addComponent(birthYearComponent);
 	}
+	
+	public BirthRecordIdentifier setDataAbsentReason(String dataAbsentReason) {
+		this.setDataAbsentReason(CommonUtil.findConceptFromCollectionUsingSimpleString(dataAbsentReason, CommonUtil.dataAbsentReasonConceptSet));
+		return this;
+	}
 }

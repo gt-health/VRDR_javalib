@@ -18,6 +18,7 @@ import org.hl7.fhir.r4.model.Extension;
 import org.hl7.fhir.r4.model.HumanName;
 import org.hl7.fhir.r4.model.HumanName.NameUse;
 import org.hl7.fhir.r4.model.Identifier;
+import org.hl7.fhir.r4.model.IntegerType;
 import org.hl7.fhir.r4.model.ListResource.ListEntryComponent;
 import org.hl7.fhir.r4.model.MessageHeader;
 import org.hl7.fhir.r4.model.Quantity;
@@ -148,6 +149,8 @@ public class BuildDCD {
     	causeOfDeathCondition.setDecedent(decedent);
     	causeOfDeathCondition.setAsserter(certifierReference);
     	causeOfDeathCondition.setCode(new CodeableConcept().addCoding(new Coding("http://snomed.info/sct","42343007","Congestive heart failure (disorder)")));
+    	causeOfDeathCondition.setClinicalStatus("active");
+    	causeOfDeathCondition.setVerificationStatus("confirmed");
     	contents.add(causeOfDeathCondition);
     	//ConditionContributingToDeath
     	ConditionContributingToDeath conditionContributingToDeath = new ConditionContributingToDeath();
@@ -187,7 +190,8 @@ public class BuildDCD {
     	CodeableConcept physicalLocationType = new CodeableConcept().addCoding(new Coding("http://hl7.org/fhir/location-physical-type","HOSP","Hospital"));
     	Address hospitalAddress = new Address().addLine("80 Jesse Hill Jr Dr SE").setCity("Atlanta")
     			.setState("GA").setPostalCode("30303").setCountry("USA").setUse(AddressUse.WORK);
-    	DeathLocation deathLocation = new DeathLocation("Grady Hospital", "Grady Hospital of Atlanta",deathLocationType,hospitalAddress,physicalLocationType);
+    	//GA = FIPS (52) 2 letter state code for jurisdicitional id
+    	DeathLocation deathLocation = new DeathLocation("Grady Hospital", "GA", "Grady Hospital of Atlanta",deathLocationType,hospitalAddress,physicalLocationType);
     	initResourceForTesting(deathLocation);
     	contents.add(deathLocation);
     	deathDate.addPatientLocationExtension(deathLocation);
@@ -292,5 +296,33 @@ public class BuildDCD {
 	
 	private static void initResourceForTesting(Resource resource) {
 		CommonUtil.setUUID(resource);
+	}
+	//Example demonstrating how to give a partial birthdate extension component
+	public static Decedent buildDecedentWithBirthDateAbsentReason() {
+		Decedent decedent = new Decedent();
+    	initResourceForTesting(decedent);
+    	Address decedentsHome = new Address().addLine("1808 Stroop Hill Road").setCity("Atlanta")
+		.setState("GA").setPostalCode("30303").setCountry("USA").setUse(AddressUse.HOME);
+    	Extension withinCityLimits = new Extension();
+		withinCityLimits.setUrl(DecedentUtil.addressWithinCityLimitsIndicatorExtensionURL);
+		withinCityLimits.setValue(new BooleanType(true));
+		decedentsHome.addExtension(withinCityLimits);
+    	decedent.setGender(AdministrativeGender.MALE);
+    	decedent.setRace("2106-3", "", "White");
+    	decedent.setEthnicity("", "", "");
+    	decedent.setBirthSex("M", "Male");
+    	decedent.setBirthPlace(decedentsHome);
+    	decedent.addIdentifier("1AN2BN3DE45");
+    	decedent.addName(new HumanName().setFamily("Wright").addGiven("Vivien Lee").setUse(NameUse.OFFICIAL));
+    	//Adding partial where the specific date of birth is unknown, but the year is known
+    	decedent.addPartialBirthDateExtension(new IntegerType(1960), "", null, "unknown", null, "unknown");
+    	return decedent;
+	}
+	//Example demonstrating how to give a partial death date extension component
+	public static DeathDate buildDeathWithPartialDateAbsentReason() {
+		DeathDate deathDate = new DeathDate();
+    	//Adding partial where the year is 2019 and month is June, but the day is unknown.
+		deathDate.addPartialDateExtension(new IntegerType(2019), "", new IntegerType(6), "", null, "unknown");
+		return deathDate;
 	}
 }
