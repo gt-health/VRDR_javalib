@@ -1,6 +1,6 @@
 package edu.gatech.VRDR;
 
-import edu.gatech.VRDR.validation.VRDRValidator;
+import edu.gatech.chai.VRDR.validation.VRDRValidator;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
