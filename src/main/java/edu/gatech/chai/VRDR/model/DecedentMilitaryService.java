@@ -19,6 +19,7 @@ public class DecedentMilitaryService extends Observation {
 		setStatus(DecedentMilitaryServiceUtil.status);
 		setCode(DecedentMilitaryServiceUtil.code);
 	}
+	
 	public DecedentMilitaryService(CodeableConcept yesNoUnknownCode) {
 		this();
 		this.setValue(yesNoUnknownCode);
