@@ -29,6 +29,7 @@ public class DeathLocation extends Location {
 	public DeathLocation addJurisdictionIdExtension(String jurisdicitionId) {
 		Extension extension = new Extension(DeathLocationUtil.locationJurisdictionIdExtension);
 		extension.setValue(CommonUtil.findConceptFromCollectionUsingSimpleString(jurisdicitionId, CommonUtil.locationJurisdictionalConceptSet));
+		this.addExtension(extension);
 		return this;
 	}
 }

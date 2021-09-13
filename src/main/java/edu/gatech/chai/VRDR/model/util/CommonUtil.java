@@ -24,13 +24,13 @@ import edu.gatech.chai.VRDR.model.DeathCertificateDocument;
 
 public class CommonUtil {
 	public static String basicBooleanHL7System = "http://hl7.org/CodeSystem/v2-0136";
-	public static String yesNoNASystemOID = "2.16.840.1.113883.12.136";
-	public static String nullFlavorSystemOID = "2.16.840.1.113883.5.1008";
+	public static String yesNoNASystemOID = "urn:oid:2.16.840.1.113883.12.136";
+	public static String nullFlavorSystemOID = "urn:oid:2.16.840.1.113883.5.1008";
 	public static String nullFlavorHL7System = "http://hl7.org/fhir/v3/NullFlavor";
 	public static String snomedSystemUrl = "http://snomed.info/sct";
 	public static String loincSystemUrl = "http://loinc.org";
 	public static String withinCityLimitsIndicatorUrl = "http://hl7.org/fhir/us/vrdr/StructureDefinition/Within-City-Limits-Indicator";
-	public static String locationJurisdictionUrl = "FIPS 5-2 (State)";
+	public static String locationJurisdictionUrl = "2.16.840.1.113883.6.92";
 	public static String dataAbsentReasonUrl = "http://terminology.hl7.org/CodeSystem/data-absent-reason";
 	public static final String partialDatePartAbsentReasonURL = "http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Partial-date-part-absent-reason";
 	public static final String partialDateDateYearURL = "date-year";
@@ -128,7 +128,7 @@ public class CommonUtil {
 			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionUrl,"33", "New Hampshire")),
 			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionUrl,"34", "New Jersey")),
 			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionUrl,"35", "New Mexico")),
-			new CodeableConcept().addCoding(new Coding("2.16.840.1.113883.6.245","9755772", "New York City")), //Unique codesystem just for New York City
+			new CodeableConcept().addCoding(new Coding("urn:oid:2.16.840.1.113883.6.245","9755772", "New York City")), //Unique codesystem just for New York City
 			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionUrl,"36", "New York")), //Unique codesystem just for New York City
 			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionUrl,"37", "North Carolina")),
 			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionUrl,"38", "North Dekota")),
