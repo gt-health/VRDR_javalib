@@ -192,6 +192,7 @@ public class BuildDCD {
     			.setState("GA").setPostalCode("30303").setCountry("USA").setUse(AddressUse.WORK);
     	//GA = FIPS (52) 2 letter state code for jurisdicitional id
     	DeathLocation deathLocation = new DeathLocation("Grady Hospital", "GA", "Grady Hospital of Atlanta",deathLocationType,hospitalAddress,physicalLocationType);
+    	deathLocation.addJurisdictionIdExtension("Georgia");
     	initResourceForTesting(deathLocation);
     	contents.add(deathLocation);
     	deathDate.addPatientLocationExtension(deathLocation);
