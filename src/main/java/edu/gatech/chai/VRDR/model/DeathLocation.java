@@ -26,6 +26,18 @@ public class DeathLocation extends Location {
 		setPhysicalType(physicalType);
 	}
 	
+	public DeathLocation(String name, String jurisdicitionId, String description, String type, Address address,
+			CodeableConcept physicalType) {
+		this();
+		CodeableConcept typeCC = CommonUtil.findConceptFromCollectionUsingSimpleString(type, DeathLocationUtil.placeOfDeathTypeSet);
+		setName(name);
+		addJurisdictionIdExtension(jurisdicitionId);
+		setDescription(description);
+		addType(typeCC);
+		setAddress(address);
+		setPhysicalType(physicalType);
+	}
+	
 	public DeathLocation addJurisdictionIdExtension(String jurisdicitionId) {
 		Extension extension = new Extension(DeathLocationUtil.locationJurisdictionIdExtension);
 		extension.setValue(CommonUtil.findConceptFromCollectionUsingSimpleString(jurisdicitionId, CommonUtil.locationJurisdictionalConceptSet));
