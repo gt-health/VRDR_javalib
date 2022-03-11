@@ -85,8 +85,8 @@ public class BuildDCD {
 		withinCityLimits.setValue(new BooleanType(true));
 		decedentsHome.addExtension(withinCityLimits);
     	decedent.setGender(AdministrativeGender.MALE);
-    	decedent.setRace("2106-3", "", "White");
-    	decedent.setEthnicity("", "", "");
+    	decedent.addRace("White"); //Refer to Decedent fhir profile, or DecedentUtil.java for complete list of races
+    	decedent.addEthnicity("HispanicCuban"); //Refer to Decedent fhir profile, or DecedentUtil.java for complete list of ethnicities
     	decedent.setBirthSex("M", "Male");
     	decedent.setBirthPlace(decedentsHome);
     	decedent.addIdentifier("1AN2BN3DE45");
@@ -110,7 +110,7 @@ public class BuildDCD {
     	
     	CodeableConcept gaState = new CodeableConcept().addCoding(new Coding("","32","Georgia"));
     	DateTimeType birthYear = new DateTimeType("1935");
-    	BirthRecordIdentifier birthRecordIdentifier = new BirthRecordIdentifier("June 3rd 1935",gaState,birthYear);
+    	BirthRecordIdentifier birthRecordIdentifier = new BirthRecordIdentifier("June 3rd 1935",decedent,gaState,birthYear);
 		initResourceForTesting(birthRecordIdentifier);
     	birthRecordIdentifier.setSubject(decedentReference);
     	contents.add(birthRecordIdentifier);
@@ -147,16 +147,15 @@ public class BuildDCD {
     	CauseOfDeathCondition causeOfDeathCondition = new CauseOfDeathCondition();
     	initResourceForTesting(causeOfDeathCondition);
     	causeOfDeathCondition.setDecedent(decedent);
-    	causeOfDeathCondition.setAsserter(certifierReference);
+    	causeOfDeathCondition.setAsserter(certifier);
     	causeOfDeathCondition.setCode(new CodeableConcept().addCoding(new Coding("http://snomed.info/sct","42343007","Congestive heart failure (disorder)")));
-    	causeOfDeathCondition.setClinicalStatus("active");
-    	causeOfDeathCondition.setVerificationStatus("confirmed");
+    	causeOfDeathCondition.createInterval("10 minutes");
     	contents.add(causeOfDeathCondition);
     	//ConditionContributingToDeath
     	ConditionContributingToDeath conditionContributingToDeath = new ConditionContributingToDeath();
     	initResourceForTesting(conditionContributingToDeath);
-    	conditionContributingToDeath.setSubject(decedentReference);
-    	conditionContributingToDeath.setAsserter(certifierReference);
+    	conditionContributingToDeath.setDecedent(decedent);
+    	conditionContributingToDeath.setAsserter(certifier);
     	conditionContributingToDeath.setCode(new CodeableConcept().addCoding(new Coding("http://snomed.info/sct","241006","Epilepsia partialis continua")));
     	contents.add(conditionContributingToDeath);
     	//CauseOfDeathPathway: this defines the cause of death pathway, it's a chain BEGINNING with the CauseOfDeathCondition
@@ -187,12 +186,9 @@ public class BuildDCD {
     	contents.add(deathDate);
     	//DeathLocation
     	CodeableConcept deathLocationType = new CodeableConcept().addCoding(new Coding("http://hl7.org/fhir/v3/RoleCode","wi","Wing"));
-    	CodeableConcept physicalLocationType = new CodeableConcept().addCoding(new Coding("http://hl7.org/fhir/location-physical-type","HOSP","Hospital"));
     	Address hospitalAddress = new Address().addLine("80 Jesse Hill Jr Dr SE").setCity("Atlanta")
     			.setState("GA").setPostalCode("30303").setCountry("USA").setUse(AddressUse.WORK);
-    	//GA = FIPS (52) 2 letter state code for jurisdicitional id
-    	DeathLocation deathLocation = new DeathLocation("Grady Hospital", "GA", "Grady Hospital of Atlanta",deathLocationType,hospitalAddress,physicalLocationType);
-    	deathLocation.addJurisdictionIdExtension("Georgia");
+    	DeathLocation deathLocation = new DeathLocation("Grady Hospital","Grady Hospital of Atlanta",deathLocationType,hospitalAddress);
     	initResourceForTesting(deathLocation);
     	contents.add(deathLocation);
     	deathDate.addPatientLocationExtension(deathLocation);
@@ -309,8 +305,8 @@ public class BuildDCD {
 		withinCityLimits.setValue(new BooleanType(true));
 		decedentsHome.addExtension(withinCityLimits);
     	decedent.setGender(AdministrativeGender.MALE);
-    	decedent.setRace("2106-3", "", "White");
-    	decedent.setEthnicity("", "", "");
+    	decedent.addRace("White"); //Refer to Decedent fhir profile, or DecedentUtil.java for complete list of races
+    	decedent.addEthnicity("HispanicCuban"); //Refer to Decedent fhir profile, or DecedentUtil.java for complete list of ethnicities
     	decedent.setBirthSex("M", "Male");
     	decedent.setBirthPlace(decedentsHome);
     	decedent.addIdentifier("1AN2BN3DE45");

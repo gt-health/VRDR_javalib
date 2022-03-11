@@ -15,33 +15,21 @@ public class DeathLocation extends Location {
 		super();
 		CommonUtil.initResource(this);
 	}
-	public DeathLocation(String name, String jurisdicitionId, String description, CodeableConcept type, Address address,
-			CodeableConcept physicalType) {
+	public DeathLocation(String name, String description, CodeableConcept type, Address address) {
 		this();
 		setName(name);
-		addJurisdictionIdExtension(jurisdicitionId);
 		setDescription(description);
 		addType(type);
 		setAddress(address);
-		setPhysicalType(physicalType);
 	}
 	
-	public DeathLocation(String name, String jurisdicitionId, String description, String type, Address address,
-			CodeableConcept physicalType) {
+	public DeathLocation(String name, String description, String type, Address address) {
 		this();
 		CodeableConcept typeCC = CommonUtil.findConceptFromCollectionUsingSimpleString(type, DeathLocationUtil.placeOfDeathTypeSet);
 		setName(name);
-		addJurisdictionIdExtension(jurisdicitionId);
 		setDescription(description);
 		addType(typeCC);
 		setAddress(address);
-		setPhysicalType(physicalType);
 	}
 	
-	public DeathLocation addJurisdictionIdExtension(String jurisdicitionId) {
-		Extension extension = new Extension(DeathLocationUtil.locationJurisdictionIdExtension);
-		extension.setValue(CommonUtil.findConceptFromCollectionUsingSimpleString(jurisdicitionId, CommonUtil.locationJurisdictionalConceptSet));
-		this.addExtension(extension);
-		return this;
-	}
 }

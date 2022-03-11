@@ -16,6 +16,7 @@ import org.hl7.fhir.r4.model.Composition.SectionComponent;
 import org.hl7.fhir.r4.model.DomainResource;
 import org.hl7.fhir.r4.model.Extension;
 import org.hl7.fhir.r4.model.IdType;
+import org.hl7.fhir.r4.model.PositiveIntType;
 import org.hl7.fhir.r4.model.Reference;
 import org.hl7.fhir.r4.model.Resource;
 
@@ -23,15 +24,17 @@ import edu.gatech.chai.VRDR.model.DeathCertificate;
 import edu.gatech.chai.VRDR.model.DeathCertificateDocument;
 
 public class CommonUtil {
-	public static String basicBooleanHL7System = "http://hl7.org/CodeSystem/v2-0136";
-	public static String yesNoNASystemOID = "urn:oid:2.16.840.1.113883.12.136";
-	public static String nullFlavorSystemOID = "urn:oid:2.16.840.1.113883.5.1008";
-	public static String nullFlavorHL7System = "http://hl7.org/fhir/v3/NullFlavor";
-	public static String snomedSystemUrl = "http://snomed.info/sct";
-	public static String loincSystemUrl = "http://loinc.org";
-	public static String withinCityLimitsIndicatorUrl = "http://hl7.org/fhir/us/vrdr/StructureDefinition/Within-City-Limits-Indicator";
-	public static String locationJurisdictionOID = "urn:oid:2.16.840.1.113883.6.92";
-	public static String dataAbsentReasonUrl = "http://terminology.hl7.org/CodeSystem/data-absent-reason";
+	public static final String basicBooleanHL7System = "http://hl7.org/CodeSystem/v2-0136";
+	public static final String yesNoNASystemOID = "urn:oid:2.16.840.1.113883.12.136";
+	public static final String nullFlavorSystemOID = "urn:oid:2.16.840.1.113883.5.1008";
+	public static final String nullFlavorHL7System = "http://hl7.org/fhir/v3/NullFlavor";
+	public static final String snomedSystemUrl = "http://snomed.info/sct";
+	public static final String loincSystemUrl = "http://loinc.org";
+	
+	public static final String locationJurisdictionOID = "urn:oid:2.16.840.1.113883.6.92";
+	public static final String dataAbsentReasonUrl = "http://terminology.hl7.org/CodeSystem/data-absent-reason";
+	public static final String unitsOfMeasureUrl = "http://terminology.hl7.org/CodeSystem/data-absent-reason";
+	public static final String missingValueReasonUrl = "http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-missing-value-reason-cs";
 	public static final String partialDatePartAbsentReasonURL = "http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Partial-date-part-absent-reason";
 	public static final String partialDateDateYearURL = "date-year";
 	public static final String partialDateDateYearAbsentReasonURL = "year-absent-reason";
@@ -45,7 +48,7 @@ public class CommonUtil {
 	public static CodeableConcept otherCode = new CodeableConcept().addCoding(new Coding(nullFlavorHL7System,"OTH","other"));
 	public static CodeableConcept notApplicableCode = new CodeableConcept().addCoding(new Coding(nullFlavorHL7System,"NA","not applicable"));
 	public static CodeableConcept notAskedCode = new CodeableConcept().addCoding(new Coding(nullFlavorHL7System,"NASK","not asked"));
-	public static String deathReportingIdentifierTypeSystem = "urn:oid:2.16.840.1.114222.4.11.7382";
+	public static final String deathReportingIdentifierTypeSystem = "urn:oid:2.16.840.1.114222.4.11.7382";
 	public static CodeableConcept deathCertificateIdCode = new CodeableConcept().addCoding(new Coding(deathReportingIdentifierTypeSystem,"DC","Death Certificate Id"));
 	public static CodeableConcept deathCertificateFileNumberCode = new CodeableConcept().addCoding(new Coding(deathReportingIdentifierTypeSystem,"DCFN","Death Certificate File Number"));
 	public static CodeableConcept deathCertificateLicenseNumberCode = new CodeableConcept().addCoding(new Coding(deathReportingIdentifierTypeSystem,"LN","Death Certificate License Number"));
@@ -153,6 +156,17 @@ public class CommonUtil {
 			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"54", "West Virginia")),
 			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"55", "Wisconsin")),
 			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"56", "Wyoming"))));
+	public static final HashSet<CodeableConcept> ucumUnitsConceptSet = new HashSet<>(Arrays.asList(
+			new CodeableConcept().addCoding(new Coding(CommonUtil.unitsOfMeasureUrl,"min","Minutes")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.unitsOfMeasureUrl,"d","Days")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.unitsOfMeasureUrl,"h", "Hours")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.unitsOfMeasureUrl,"mo", "Months")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.unitsOfMeasureUrl,"a", "Years"))));
+	public static final HashSet<CodeableConcept> missingValueConceptSet = new HashSet<>(Arrays.asList(
+			new CodeableConcept().addCoding(new Coding(CommonUtil.missingValueReasonUrl,"R","Refused")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.missingValueReasonUrl,"S","Sought, but unknown")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.missingValueReasonUrl,"C", "Not obtainable"))));
+	
 	public static Extension getExtension(DomainResource resource, String url) {
 		for (Extension extension : resource.getExtension()) {
 			if (extension.getUrl().equals(url)) {
@@ -201,18 +215,5 @@ public class CommonUtil {
 			}
 		}
 		return null;
-	}
-	
-	public static Address addCityLimitsIndicator(CodeableConcept indicator,Address address) {
-		Extension extension = new Extension();
-		extension.setUrl(withinCityLimitsIndicatorUrl);
-		extension.setValue(indicator);
-		address.addExtension(extension);
-		return address;
-	}
-	
-	public static Address addCityLimitsIndicator(String indicator,Address address) {
-		CodeableConcept ccIndicator = findConceptFromCollectionUsingSimpleString(indicator, yesNoUnknownSet);
-		return addCityLimitsIndicator(ccIndicator, address);
 	}
 }

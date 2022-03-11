@@ -3,6 +3,7 @@ package edu.gatech.chai.VRDR.model;
 import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.DateTimeType;
 import org.hl7.fhir.r4.model.Observation;
+import org.hl7.fhir.r4.model.Reference;
 import org.hl7.fhir.r4.model.StringType;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
@@ -17,17 +18,22 @@ public class BirthRecordIdentifier extends Observation {
 		CommonUtil.initResource(this);
 	}
 	
-	public BirthRecordIdentifier(String value, CodeableConcept birthState,
+	public BirthRecordIdentifier(String value, Decedent decedent, CodeableConcept birthJurisdiction,
 			DateTimeType birthYear) {
 		this();
 		setStatus(BirthRecordIdentifierUtil.status);
 		setCode(BirthRecordIdentifierUtil.code);
+		setDecedent(decedent);
 		setValue(new StringType(value));
-		addBirthState(birthState);
+		addBirthState(birthJurisdiction);
 		addBirthYear(birthYear);
 	}
 
-	public CodeableConcept getBirthState() {
+	public void setDecedent(Decedent decedent) {
+		Reference reference = new Reference(decedent);
+		this.setSubject(reference);
+	}
+	public CodeableConcept getBirthJurisdiction() {
 		for (ObservationComponentComponent component : getComponent()) {
 			if (component.getCode().equalsShallow(BirthRecordIdentifierUtil.componentBirthStateCode)) {
 				return component.getValueCodeableConcept();
@@ -36,7 +42,7 @@ public class BirthRecordIdentifier extends Observation {
 		return null;
 	}
 
-	public void setBirthState(CodeableConcept birthState) {
+	public void setBirthJurisdiction(CodeableConcept birthState) {
 		for (ObservationComponentComponent component : getComponent()) {
 			if (component.getCode().equalsShallow(BirthRecordIdentifierUtil.componentBirthStateCode)) {
 				component.setValue(birthState);

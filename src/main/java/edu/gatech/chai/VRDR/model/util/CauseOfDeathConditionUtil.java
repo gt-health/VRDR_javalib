@@ -28,5 +28,6 @@ public class CauseOfDeathConditionUtil {
 			new CodeableConcept().addCoding(new Coding(categorySystemUrl,"problem-list-item","Problem List Item")),
 			new CodeableConcept().addCoding(new Coding(categorySystemUrl,"encounter-diagnosis","Encounter Diagnosis")),
 			new CodeableConcept().addCoding(new Coding(categorySystemUrl,"health-concern","Health Concern"))));*/
-	public static final CodeableConcept causeOfDeathConditionCategory = new CodeableConcept().addCoding(new Coding(CommonUtil.snomedSystemUrl, "16100001", "Death Diagnosis"));
+	public static final CodeableConcept code = new CodeableConcept().addCoding(new Coding(CommonUtil.loincSystemUrl, "69453-9", "Cause of death [US Standard Certificate of Death]"));
+	public static final CodeableConcept intervalComponentCode = new CodeableConcept().addCoding(new Coding(CommonUtil.loincSystemUrl, "69440-6", "Disease onset to death interval"));
 }

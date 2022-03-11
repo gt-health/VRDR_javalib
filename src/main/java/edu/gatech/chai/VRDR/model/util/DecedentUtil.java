@@ -2,6 +2,7 @@ package edu.gatech.chai.VRDR.model.util;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.hl7.fhir.r4.model.CodeableConcept;
@@ -10,9 +11,9 @@ import org.hl7.fhir.r4.model.Coding;
 import ca.uhn.fhir.model.primitive.CodeDt;
 
 public class DecedentUtil {
-	public static final String raceExtensionURL = "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race";
+	public static final String raceExtensionURL = "http://hl7.org/fhir/us/vrdr/StructureDefinition/NVSS-Race";
 	public static final String raceSystem = "urn:oid:2.16.840.1.113883.6.238";
-	public static final String ethnicityExtensionURL = "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity";
+	public static final String ethnicityExtensionURL = "http://hl7.org/fhir/us/vrdr/StructureDefinition/NVSS-Ethnicity";
 	public static final String ethnicitySystem = "urn:oid:2.16.840.1.113883.6.238";
 	public static final String birthSexExtensionURL = "http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex";
 	public static final String birthSexValueSetURL = "http://hl7.org/fhir/us/core/ValueSet/us-core-birthsex";
@@ -33,6 +34,13 @@ public class DecedentUtil {
 			new CodeableConcept().addCoding(new Coding(maritalStatusURL,"D","Divorced")),
 			new CodeableConcept().addCoding(new Coding(maritalStatusURL,"S","Single")),
 			new CodeableConcept().addCoding(new Coding(maritalStatusURL,"U","Unknown"))));
+	
+	public static final List<String> raceNVSSUrlSet = Arrays.asList("White", "BlackOrAfricanAmerican",
+		"AmericanIndianOrAlaskaNative", "AsianIndian", "Chinese", "Filipino", "Japanese", "Korean", "Vietnamese",
+		"OtherAsian", "NativeHawaiian", "GuamanianOrChamorro", "Samoan","OtherPacificIslander","OtherRace",
+		"AmericanIndianOrAlaskaNativeLiteral","OtherAsianLiteral","OtherPacificIslanderLiteral","OtherRaceLiteral");
+	public static final List<String> ethnicityNVSSUrlSet = Arrays.asList("HispanicMexican", "HispanicPuertoRican",
+			"HispanicOther", "HispanicCuban", "HispanicLiteral");
 	
 	public static Set<CodeDt> genderCodesetList = new HashSet<CodeDt>(Arrays.asList(
 			genderValueMale,genderValueFemale,genderValueUnknown));

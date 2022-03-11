@@ -1,26 +1,45 @@
 package edu.gatech.chai.VRDR.model;
 
+import java.util.List;
+
 import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.Condition;
+import org.hl7.fhir.r4.model.Observation;
+import org.hl7.fhir.r4.model.Quantity;
 import org.hl7.fhir.r4.model.Reference;
+import org.hl7.fhir.r4.model.StringType;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.VRDR.model.util.CauseOfDeathConditionUtil;
 import edu.gatech.chai.VRDR.model.util.CommonUtil;
 
-@ResourceDef(name = "Condition", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Cause-Of-Death-Condition")
-public class CauseOfDeathCondition extends Condition {
+//NOTE: While the resource name is "CauseOfDeathCondition", it actually derived from Observation
+@ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Cause-Of-Death-Condition")
+public class CauseOfDeathCondition extends Observation {
 	public CauseOfDeathCondition() {
 		super();
 		CommonUtil.initResource(this);
-		this.addCategory(CauseOfDeathConditionUtil.causeOfDeathConditionCategory);
+		this.setCode(CauseOfDeathConditionUtil.code);
 	}
 	
-	public CauseOfDeathCondition(Decedent decedent) {
+	public CauseOfDeathCondition(Decedent decedent, Certifier certifier, String value, Quantity interval) {
 		super();
 		CommonUtil.initResource(this);
-		this.addCategory(CauseOfDeathConditionUtil.causeOfDeathConditionCategory);
+		this.setCode(CauseOfDeathConditionUtil.code);
 		setDecedent(decedent);
+		setPerformer(certifier);
+		setValue(value);
+		createInterval(interval);
+	}
+	
+	public CauseOfDeathCondition(Decedent decedent, Certifier certifier, String value, String interval) {
+		super();
+		CommonUtil.initResource(this);
+		this.setCode(CauseOfDeathConditionUtil.code);
+		setDecedent(decedent);
+		setPerformer(certifier);
+		setValue(value);
+		createInterval(interval);
 	}
 	
 	public void setDecedent(Decedent decedent) {
@@ -38,32 +57,54 @@ public class CauseOfDeathCondition extends Condition {
 	
 	public void setCertifier(Certifier certifier) {
 		Reference reference = new Reference(certifier.getId());
-		this.asserter = reference;
+		this.performer.add(reference);
 	}
 	public void setAsserter(Certifier certifier) {
 		setCertifier(certifier);
 	}
-	
-	public Reference getCertifier() {
-		return asserter;
+	public void setPerformer(Certifier certifier) {
+		setCertifier(certifier);
 	}
 	
-	public Condition setClinicalStatus(String clinicalStatus) {
-		CodeableConcept clinicalStatusCC = CommonUtil.findConceptFromCollectionUsingSimpleString(clinicalStatus, CauseOfDeathConditionUtil.conditionClinicalStatusSet);
-		this.setClinicalStatus(clinicalStatusCC);
-		return this;
+	public List<Reference> getCertifiers(int index) {
+		return performer;
 	}
 	
-	public Condition setVerificationStatus(String verificationStatus) {
-		CodeableConcept verificationStatusCC = CommonUtil.findConceptFromCollectionUsingSimpleString(verificationStatus, CauseOfDeathConditionUtil.verificationStatusSet);
-		this.setVerificationStatus(verificationStatusCC);
-		return this;
+	public List<Reference> getAsserters(int index) {
+		return performer;
 	}
 	
-	/*public Condition setCategory(String category) {
-		CodeableConcept categoryCC = CommonUtil.findConceptFromCollectionUsingSimpleString(category, CauseOfDeathConditionUtil.categorySet);
-		this.setVerificationStatus(categoryCC);
-		return this;
-	}*/
+	public List<Reference> getPerformers(int index) {
+		return performer;
+	}
+	
+	public Reference getCertifier(int index) {
+		return performer.get(index);
+	}
+	
+	public void setValue(StringType value) {
+		if((value.getValue().length() > 120)) {
+			throw new IllegalArgumentException("CauseOfDeathCondition value "+value.getValue()+" is too long, must be 120 characters or less.");
+		}
+		this.setValue(value);
+	}
+	
+	public void setValue(String value) {
+		setValue(new StringType(value));
+	}
+	
+	public void createInterval(Quantity quantity) {
+		ObservationComponentComponent component = new ObservationComponentComponent();
+		component.setCode(CauseOfDeathConditionUtil.intervalComponentCode);
+		component.setValue(quantity);
+		
+	}
+	
+	public void createInterval(String string) {
+		ObservationComponentComponent component = new ObservationComponentComponent();
+		component.setCode(CauseOfDeathConditionUtil.intervalComponentCode);
+		component.setValue(new StringType(string));
+		
+	}
 	
 }
