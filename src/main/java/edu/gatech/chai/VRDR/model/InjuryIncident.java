@@ -59,7 +59,7 @@ public class InjuryIncident extends Observation {
 	}
 
 	public void addTransportationEventIndicatorComponent(String transportationRelationship) {
-		CodeableConcept transportationEventIndicatorCode = CommonUtil.findConceptFromCollectionUsingSimpleString(transportationRelationship, CommonUtil.yesNoNASet);
+		CodeableConcept transportationEventIndicatorCode = CommonUtil.findConceptFromCollectionUsingSimpleString(transportationRelationship, CommonUtil.yesNoUnknownSet);
 		addTransportationEventIndicatorComponent(transportationEventIndicatorCode);
 	}
 

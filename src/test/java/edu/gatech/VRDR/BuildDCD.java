@@ -18,6 +18,7 @@ import org.hl7.fhir.r4.model.Extension;
 import org.hl7.fhir.r4.model.HumanName;
 import org.hl7.fhir.r4.model.HumanName.NameUse;
 import org.hl7.fhir.r4.model.Identifier;
+import org.hl7.fhir.r4.model.IntegerType;
 import org.hl7.fhir.r4.model.ListResource.ListEntryComponent;
 import org.hl7.fhir.r4.model.MessageHeader;
 import org.hl7.fhir.r4.model.Quantity;
@@ -84,8 +85,8 @@ public class BuildDCD {
 		withinCityLimits.setValue(new BooleanType(true));
 		decedentsHome.addExtension(withinCityLimits);
     	decedent.setGender(AdministrativeGender.MALE);
-    	decedent.setRace("2106-3", "", "White");
-    	decedent.setEthnicity("", "", "");
+    	decedent.addRace("White"); //Refer to Decedent fhir profile, or DecedentUtil.java for complete list of races
+    	decedent.addEthnicity("HispanicCuban"); //Refer to Decedent fhir profile, or DecedentUtil.java for complete list of ethnicities
     	decedent.setBirthSex("M", "Male");
     	decedent.setBirthPlace(decedentsHome);
     	decedent.addIdentifier("1AN2BN3DE45");
@@ -109,7 +110,7 @@ public class BuildDCD {
     	
     	CodeableConcept gaState = new CodeableConcept().addCoding(new Coding("","32","Georgia"));
     	DateTimeType birthYear = new DateTimeType("1935");
-    	BirthRecordIdentifier birthRecordIdentifier = new BirthRecordIdentifier("June 3rd 1935",gaState,birthYear);
+    	BirthRecordIdentifier birthRecordIdentifier = new BirthRecordIdentifier("June 3rd 1935",decedent,gaState,birthYear);
 		initResourceForTesting(birthRecordIdentifier);
     	birthRecordIdentifier.setSubject(decedentReference);
     	contents.add(birthRecordIdentifier);
@@ -146,14 +147,15 @@ public class BuildDCD {
     	CauseOfDeathCondition causeOfDeathCondition = new CauseOfDeathCondition();
     	initResourceForTesting(causeOfDeathCondition);
     	causeOfDeathCondition.setDecedent(decedent);
-    	causeOfDeathCondition.setAsserter(certifierReference);
+    	causeOfDeathCondition.setAsserter(certifier);
     	causeOfDeathCondition.setCode(new CodeableConcept().addCoding(new Coding("http://snomed.info/sct","42343007","Congestive heart failure (disorder)")));
+    	causeOfDeathCondition.createInterval("10 minutes");
     	contents.add(causeOfDeathCondition);
     	//ConditionContributingToDeath
     	ConditionContributingToDeath conditionContributingToDeath = new ConditionContributingToDeath();
     	initResourceForTesting(conditionContributingToDeath);
-    	conditionContributingToDeath.setSubject(decedentReference);
-    	conditionContributingToDeath.setAsserter(certifierReference);
+    	conditionContributingToDeath.setDecedent(decedent);
+    	conditionContributingToDeath.setAsserter(certifier);
     	conditionContributingToDeath.setCode(new CodeableConcept().addCoding(new Coding("http://snomed.info/sct","241006","Epilepsia partialis continua")));
     	contents.add(conditionContributingToDeath);
     	//CauseOfDeathPathway: this defines the cause of death pathway, it's a chain BEGINNING with the CauseOfDeathCondition
@@ -184,10 +186,9 @@ public class BuildDCD {
     	contents.add(deathDate);
     	//DeathLocation
     	CodeableConcept deathLocationType = new CodeableConcept().addCoding(new Coding("http://hl7.org/fhir/v3/RoleCode","wi","Wing"));
-    	CodeableConcept physicalLocationType = new CodeableConcept().addCoding(new Coding("http://hl7.org/fhir/location-physical-type","HOSP","Hospital"));
     	Address hospitalAddress = new Address().addLine("80 Jesse Hill Jr Dr SE").setCity("Atlanta")
     			.setState("GA").setPostalCode("30303").setCountry("USA").setUse(AddressUse.WORK);
-    	DeathLocation deathLocation = new DeathLocation("Grady Hospital", "Grady Hospital of Atlanta",deathLocationType,hospitalAddress,physicalLocationType);
+    	DeathLocation deathLocation = new DeathLocation("Grady Hospital","Grady Hospital of Atlanta",deathLocationType,hospitalAddress);
     	initResourceForTesting(deathLocation);
     	contents.add(deathLocation);
     	deathDate.addPatientLocationExtension(deathLocation);
@@ -292,5 +293,33 @@ public class BuildDCD {
 	
 	private static void initResourceForTesting(Resource resource) {
 		CommonUtil.setUUID(resource);
+	}
+	//Example demonstrating how to give a partial birthdate extension component
+	public static Decedent buildDecedentWithBirthDateAbsentReason() {
+		Decedent decedent = new Decedent();
+    	initResourceForTesting(decedent);
+    	Address decedentsHome = new Address().addLine("1808 Stroop Hill Road").setCity("Atlanta")
+		.setState("GA").setPostalCode("30303").setCountry("USA").setUse(AddressUse.HOME);
+    	Extension withinCityLimits = new Extension();
+		withinCityLimits.setUrl(DecedentUtil.addressWithinCityLimitsIndicatorExtensionURL);
+		withinCityLimits.setValue(new BooleanType(true));
+		decedentsHome.addExtension(withinCityLimits);
+    	decedent.setGender(AdministrativeGender.MALE);
+    	decedent.addRace("White"); //Refer to Decedent fhir profile, or DecedentUtil.java for complete list of races
+    	decedent.addEthnicity("HispanicCuban"); //Refer to Decedent fhir profile, or DecedentUtil.java for complete list of ethnicities
+    	decedent.setBirthSex("M", "Male");
+    	decedent.setBirthPlace(decedentsHome);
+    	decedent.addIdentifier("1AN2BN3DE45");
+    	decedent.addName(new HumanName().setFamily("Wright").addGiven("Vivien Lee").setUse(NameUse.OFFICIAL));
+    	//Adding partial where the specific date of birth is unknown, but the year is known
+    	decedent.addPartialBirthDateExtension(new IntegerType(1960), "", null, "unknown", null, "unknown");
+    	return decedent;
+	}
+	//Example demonstrating how to give a partial death date extension component
+	public static DeathDate buildDeathWithPartialDateAbsentReason() {
+		DeathDate deathDate = new DeathDate();
+    	//Adding partial where the year is 2019 and month is June, but the day is unknown.
+		deathDate.addPartialDateExtension(new IntegerType(2019), "", new IntegerType(6), "", null, "unknown");
+		return deathDate;
 	}
 }

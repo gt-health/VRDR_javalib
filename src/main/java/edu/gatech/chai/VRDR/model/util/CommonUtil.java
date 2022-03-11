@@ -7,13 +7,16 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
 
+import org.hl7.fhir.r4.model.Address;
 import org.hl7.fhir.r4.model.Bundle;
+import org.hl7.fhir.r4.model.CodeType;
 import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.Coding;
 import org.hl7.fhir.r4.model.Composition.SectionComponent;
 import org.hl7.fhir.r4.model.DomainResource;
 import org.hl7.fhir.r4.model.Extension;
 import org.hl7.fhir.r4.model.IdType;
+import org.hl7.fhir.r4.model.PositiveIntType;
 import org.hl7.fhir.r4.model.Reference;
 import org.hl7.fhir.r4.model.Resource;
 
@@ -21,17 +24,31 @@ import edu.gatech.chai.VRDR.model.DeathCertificate;
 import edu.gatech.chai.VRDR.model.DeathCertificateDocument;
 
 public class CommonUtil {
-	public static String basicBooleanHL7System = "http://hl7.org/CodeSystem/v2-0136";
-	public static String nullFlavorHL7System = "http://hl7.org/fhir/v3/NullFlavor";
-	public static String snomedSystemUrl = "http://snomed.info/sct";
-	public static String loincSystemUrl = "http://loinc.org";
-	public static CodeableConcept noCode = new CodeableConcept().addCoding(new Coding(basicBooleanHL7System,"N","No"));
-	public static CodeableConcept yesCode = new CodeableConcept().addCoding(new Coding(basicBooleanHL7System,"Y","Yes"));
-	public static CodeableConcept unknownCode = new CodeableConcept().addCoding(new Coding(nullFlavorHL7System,"UNK","unknown"));
+	public static final String basicBooleanHL7System = "http://hl7.org/CodeSystem/v2-0136";
+	public static final String yesNoNASystemOID = "urn:oid:2.16.840.1.113883.12.136";
+	public static final String nullFlavorSystemOID = "urn:oid:2.16.840.1.113883.5.1008";
+	public static final String nullFlavorHL7System = "http://hl7.org/fhir/v3/NullFlavor";
+	public static final String snomedSystemUrl = "http://snomed.info/sct";
+	public static final String loincSystemUrl = "http://loinc.org";
+	
+	public static final String locationJurisdictionOID = "urn:oid:2.16.840.1.113883.6.92";
+	public static final String dataAbsentReasonUrl = "http://terminology.hl7.org/CodeSystem/data-absent-reason";
+	public static final String unitsOfMeasureUrl = "http://terminology.hl7.org/CodeSystem/data-absent-reason";
+	public static final String missingValueReasonUrl = "http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-missing-value-reason-cs";
+	public static final String partialDatePartAbsentReasonURL = "http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Partial-date-part-absent-reason";
+	public static final String partialDateDateYearURL = "date-year";
+	public static final String partialDateDateYearAbsentReasonURL = "year-absent-reason";
+	public static final String partialDateDateMonthURL = "date-month";
+	public static final String partialDateDateMonthAbsentReasonURL = "month-absent-reason";
+	public static final String partialDateDateDayURL = "date-day";
+	public static final String partialDateDateDayAbsentReasonURL = "day-absent-reason";
+	public static CodeableConcept noCode = new CodeableConcept().addCoding(new Coding(yesNoNASystemOID,"N","No"));
+	public static CodeableConcept yesCode = new CodeableConcept().addCoding(new Coding(yesNoNASystemOID,"Y","Yes"));
+	public static CodeableConcept unknownCode = new CodeableConcept().addCoding(new Coding(nullFlavorSystemOID,"UNK","unknown"));
 	public static CodeableConcept otherCode = new CodeableConcept().addCoding(new Coding(nullFlavorHL7System,"OTH","other"));
 	public static CodeableConcept notApplicableCode = new CodeableConcept().addCoding(new Coding(nullFlavorHL7System,"NA","not applicable"));
 	public static CodeableConcept notAskedCode = new CodeableConcept().addCoding(new Coding(nullFlavorHL7System,"NASK","not asked"));
-	public static String deathReportingIdentifierTypeSystem = "urn:oid:2.16.840.1.114222.4.11.7382";
+	public static final String deathReportingIdentifierTypeSystem = "urn:oid:2.16.840.1.114222.4.11.7382";
 	public static CodeableConcept deathCertificateIdCode = new CodeableConcept().addCoding(new Coding(deathReportingIdentifierTypeSystem,"DC","Death Certificate Id"));
 	public static CodeableConcept deathCertificateFileNumberCode = new CodeableConcept().addCoding(new Coding(deathReportingIdentifierTypeSystem,"DCFN","Death Certificate File Number"));
 	public static CodeableConcept deathCertificateLicenseNumberCode = new CodeableConcept().addCoding(new Coding(deathReportingIdentifierTypeSystem,"LN","Death Certificate License Number"));
@@ -43,9 +60,112 @@ public class CommonUtil {
 	public static final HashSet<CodeableConcept> certifierTypeSet = new HashSet<>(Arrays.asList(
 			new CodeableConcept().addCoding(new Coding(CommonUtil.snomedSystemUrl,"455381000124109","Medical Examiner/Coroner")),
 			new CodeableConcept().addCoding(new Coding(CommonUtil.snomedSystemUrl,"434641000124105","Physician certifed and pronounced death certificate")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.snomedSystemUrl,"434651000124107","Physician certified death certificate"))));
+			new CodeableConcept().addCoding(new Coding(CommonUtil.snomedSystemUrl,"434651000124107","Physician certified death certificate")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.nullFlavorHL7System,"OTH","Other"))
+			));
 	public static final HashSet<CodeableConcept> yesNoUnknownSet = new HashSet<>(Arrays.asList(yesCode,noCode,unknownCode));
 	public static final HashSet<CodeableConcept> yesNoNASet = new HashSet<>(Arrays.asList(yesCode,noCode,notApplicableCode));
+	public static final HashSet<CodeType> dataAbsentReasonCodeSet = new HashSet<>(Arrays.asList(
+			new CodeType("unknown"),
+			new CodeType("asked-unknown"),
+			new CodeType("not-asked"),
+			new CodeType("asked-declined"),
+			new CodeType("masked"),
+			new CodeType("not-applicable"),
+			new CodeType("unsupported"),
+			new CodeType("as-text"),
+			new CodeType("error"),
+			new CodeType("not-a-number"),
+			new CodeType("negative-infinity"),
+			new CodeType("positive-infinity"),
+			new CodeType("not-performed"),
+			new CodeType("not-permitted")));
+	public static final HashSet<CodeableConcept> dataAbsentReasonConceptSet = new HashSet<>(Arrays.asList(
+			new CodeableConcept().addCoding(new Coding(CommonUtil.dataAbsentReasonUrl,"unknown","Unknown")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.dataAbsentReasonUrl,"asked-unknown","Asked But Unknown")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.dataAbsentReasonUrl,"not-asked", "Not Asked")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.dataAbsentReasonUrl,"asked-declined", "Asked By Declined")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.dataAbsentReasonUrl,"masked", "Masked")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.dataAbsentReasonUrl,"not-applicable", "Not Applicable")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.dataAbsentReasonUrl,"unsupported", "Unsuppported")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.dataAbsentReasonUrl,"as-text", "As Text")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.dataAbsentReasonUrl,"error", "Error")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.dataAbsentReasonUrl,"not-a-number", "Not a Number (NaN)")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.dataAbsentReasonUrl,"negative-infinity", "Negative infinifty (NINF)")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.dataAbsentReasonUrl,"positive-infinity", "Positive Inifinity (PINF)")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.dataAbsentReasonUrl,"not-performed", "Not Performed")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.dataAbsentReasonUrl,"not-permitted", "Not Permitted"))));
+	public static final HashSet<CodeableConcept> locationJurisdictionalConceptSet = new HashSet<>(Arrays.asList(
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"01","Alabama")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"02","Alaska")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"05", "Arkansas")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"60", "American Samoa")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID, "04", "Arizona")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"06", "California")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"08", "Colorado")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"09", "Connecticut")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"10", "Delaware")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"11", "District of Columbia")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"64", "Federated States of Micronesia")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"12", "Florida")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"13", "Georgia")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"66", "Guam")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"15", "Hawaii")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"84", "Howland Island")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"16", "Idaho")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"17", "Illinois")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"18", "Indiana")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"19", "Iowa")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"20", "Kansas")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"21", "Kentucky")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"22", "Louisiana")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"23", "Maine")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"24", "Maryland")),	
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"25", "Massachusetts")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"26", "Michigan")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"27", "Minnesota")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"28", "Mississippi")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"29", "Missouri")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"MP", "Northern Mariana Islands")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"30", "Montana")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"31", "Nebraska")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"32", "Nevada")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"33", "New Hampshire")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"34", "New Jersey")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"35", "New Mexico")),
+			new CodeableConcept().addCoding(new Coding("urn:oid:2.16.840.1.113883.6.245","9755772", "New York City")), //Unique codesystem just for New York City
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"36", "New York")), //Unique codesystem just for New York City
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"37", "North Carolina")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"38", "North Dekota")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"69", "Northern Mariana Islands")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"39", "Ohio")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"40", "Oklahoma")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"41", "Oregon")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"42", "Pennsylvania")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"72", "Puerto Rico")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"44", "Rhode Island")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"45", "South Carolina")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"46", "South Dakota")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"47", "Tennessee")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"48", "Texas")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"78", "U.S. Virgin Islands")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"49", "Utah")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"50", "Vermont")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"51", "Virginia")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"53", "Washington")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"54", "West Virginia")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"55", "Wisconsin")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"56", "Wyoming"))));
+	public static final HashSet<CodeableConcept> ucumUnitsConceptSet = new HashSet<>(Arrays.asList(
+			new CodeableConcept().addCoding(new Coding(CommonUtil.unitsOfMeasureUrl,"min","Minutes")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.unitsOfMeasureUrl,"d","Days")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.unitsOfMeasureUrl,"h", "Hours")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.unitsOfMeasureUrl,"mo", "Months")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.unitsOfMeasureUrl,"a", "Years"))));
+	public static final HashSet<CodeableConcept> missingValueConceptSet = new HashSet<>(Arrays.asList(
+			new CodeableConcept().addCoding(new Coding(CommonUtil.missingValueReasonUrl,"R","Refused")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.missingValueReasonUrl,"S","Sought, but unknown")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.missingValueReasonUrl,"C", "Not obtainable"))));
 	
 	public static Extension getExtension(DomainResource resource, String url) {
 		for (Extension extension : resource.getExtension()) {
@@ -82,6 +202,15 @@ public class CommonUtil {
 		for(CodeableConcept conceptIter:collection) {
 			Coding coding = conceptIter.getCodingFirstRep();
 			if(coding.getCode().equalsIgnoreCase(key) || coding.getDisplay().equalsIgnoreCase(key)) {
+				return conceptIter;
+			}
+		}
+		return null;
+	}
+	
+	public static CodeType findCodeFromCollectionUsingSimpleString(String key,Collection<CodeType> collection) {
+		for(CodeType conceptIter:collection) {
+			if(conceptIter.getValue().equalsIgnoreCase(key)) {
 				return conceptIter;
 			}
 		}
