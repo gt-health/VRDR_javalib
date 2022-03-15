@@ -5,10 +5,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.hl7.fhir.r4.model.Bundle;
+import org.hl7.fhir.r4.model.Extension;
 import org.hl7.fhir.r4.model.Resource;
+import org.hl7.fhir.r4.model.StringType;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.VRDR.model.util.CommonUtil;
+import edu.gatech.chai.VRDR.model.util.DeathCertificateDocumentUtil;
 
 @ResourceDef(name = "Bundle", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Certificate-Document")
 public class DeathCertificateDocument extends Bundle {
@@ -17,6 +20,13 @@ public class DeathCertificateDocument extends Bundle {
 		super();
 		CommonUtil.initResource(this);
 		setType(BundleType.DOCUMENT);
+	}
+	
+	public void addAuxillaryStateIdentifier(String auxillaryStateIdentifierValue) {
+		Extension extension = new Extension();
+		extension.setUrl(DeathCertificateDocumentUtil.auxillaryStateIndentifierUrl);
+		extension.setValue(new StringType(auxillaryStateIdentifierValue));
+		this.getIdentifier().addExtension(extension);
 	}
 	
 	//Helper Accessor methods

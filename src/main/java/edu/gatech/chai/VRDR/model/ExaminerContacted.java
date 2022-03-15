@@ -26,14 +26,14 @@ public class ExaminerContacted extends Observation {
 		}
 	}
 	
-	public ExaminerContacted(CodeableConcept code) {
+	public ExaminerContacted(CodeableConcept yesNoUnknownCode) {
 		this();
-		setValue(code);
+		setValue(yesNoUnknownCode);
 	}
 	
-	public ExaminerContacted(String code) {
+	public ExaminerContacted(String yesNoUnknownCode) {
 		this();
-		setValue(code);
+		setValue(yesNoUnknownCode);
 	}
 	
 	public void setValue(String code) {

@@ -14,4 +14,10 @@ public class DecedentAge extends Observation {
 		setStatus(DecedentAgeUtil.status);
 		setCode(DecedentAgeUtil.code);
 	}
+	
+	public DecedentAge setDataAbsentReason(String dataAbsentReason) {
+		this.setDataAbsentReason(CommonUtil.findConceptFromCollectionUsingSimpleString(dataAbsentReason, CommonUtil.dataAbsentReasonConceptSet));
+		return this;
+	}
+	
 }

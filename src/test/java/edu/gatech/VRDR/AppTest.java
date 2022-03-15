@@ -10,6 +10,8 @@ import ca.uhn.fhir.parser.DataFormatException;
 import edu.gatech.chai.VRDR.context.VRDRFhirContext;
 import edu.gatech.chai.VRDR.model.CauseOfDeathPathway;
 import edu.gatech.chai.VRDR.model.DeathCertificateDocument;
+import edu.gatech.chai.VRDR.model.DeathDate;
+import edu.gatech.chai.VRDR.model.Decedent;
 import edu.gatech.chai.VRDR.model.MannerOfDeath;
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -75,5 +77,17 @@ public class AppTest
     		String jsonForm = context.getCtx().newJsonParser().encodeResourceToString(manner);
     		System.out.println(jsonForm);
     	}
+    }
+    
+    public void testPartialDecedentBirthDateRecord() {
+    	Decedent decedent = BuildDCD.buildDecedentWithBirthDateAbsentReason();
+    	String jsonForm = context.getCtx().newJsonParser().encodeResourceToString(decedent);
+		System.out.println(jsonForm);
+    }
+    
+    public void testPartialDeathDateRecord() {
+    	DeathDate deathDate = BuildDCD.buildDeathWithPartialDateAbsentReason();
+    	String jsonForm = context.getCtx().newJsonParser().encodeResourceToString(deathDate);
+		System.out.println(jsonForm);
     }
 }
