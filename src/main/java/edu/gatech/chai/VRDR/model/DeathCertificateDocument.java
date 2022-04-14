@@ -13,7 +13,7 @@ import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.VRDR.model.util.CommonUtil;
 import edu.gatech.chai.VRDR.model.util.DeathCertificateDocumentUtil;
 
-@ResourceDef(name = "Bundle", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Certificate-Document")
+@ResourceDef(name = "Bundle", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-certificate-document")
 public class DeathCertificateDocument extends Bundle {
 
 	public DeathCertificateDocument() {
@@ -59,13 +59,13 @@ public class DeathCertificateDocument extends Bundle {
 		return castListOfRecords(resources);
 	}
 	
-	public List<CauseOfDeathCondition> getCauseOfDeathCondition(){
-		List<Resource> resources = getRecords(CauseOfDeathCondition.class);
+	public List<CauseOfDeathPart1> getCauseOfDeathCondition(){
+		List<Resource> resources = getRecords(CauseOfDeathPart1.class);
 		return castListOfRecords(resources);
 	}
 
-	public List<ConditionContributingToDeath> getConditionContributingToDeath(){
-		List<Resource> resources = getRecords(ConditionContributingToDeath.class);
+	public List<CauseOfDeathPart2> getConditionContributingToDeath(){
+		List<Resource> resources = getRecords(CauseOfDeathPart2.class);
 		return castListOfRecords(resources);
 	}
 

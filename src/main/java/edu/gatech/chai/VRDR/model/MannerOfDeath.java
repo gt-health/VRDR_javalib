@@ -6,10 +6,9 @@ import org.hl7.fhir.r4.model.Reference;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.VRDR.model.util.CommonUtil;
-import edu.gatech.chai.VRDR.model.util.DecedentDispositionMethodUtil;
 import edu.gatech.chai.VRDR.model.util.MannerOfDeathUtil;
 
-@ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Manner-of-Death")
+@ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-manner-of-death")
 public class MannerOfDeath extends Observation {
 
 	public MannerOfDeath() {

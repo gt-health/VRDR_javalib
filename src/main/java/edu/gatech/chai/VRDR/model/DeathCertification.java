@@ -11,7 +11,7 @@ import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.VRDR.model.util.CommonUtil;
 import edu.gatech.chai.VRDR.model.util.DeathCertificationUtil;
 
-@ResourceDef(name = "Procedure", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Certification")
+@ResourceDef(name = "Procedure", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-certification")
 public class DeathCertification extends Procedure {
 
 	public DeathCertification() {

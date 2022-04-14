@@ -11,7 +11,7 @@ import edu.gatech.chai.VRDR.model.util.CommonUtil;
 import edu.gatech.chai.VRDR.model.util.DecedentMilitaryServiceUtil;
 import edu.gatech.chai.VRDR.model.util.DecedentUsualWorkUtil;
 
-@ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent-Military-Service")
+@ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-decedent-Military-Service")
 public class DecedentMilitaryService extends Observation {
 	public DecedentMilitaryService() {
 		super();

@@ -20,18 +20,16 @@ import org.hl7.fhir.r4.model.HumanName.NameUse;
 import org.hl7.fhir.r4.model.Identifier;
 import org.hl7.fhir.r4.model.IntegerType;
 import org.hl7.fhir.r4.model.ListResource.ListEntryComponent;
-import org.hl7.fhir.r4.model.MessageHeader;
 import org.hl7.fhir.r4.model.Quantity;
 import org.hl7.fhir.r4.model.Reference;
 import org.hl7.fhir.r4.model.Resource;
-import org.hl7.fhir.r4.model.UriType;
 
 import edu.gatech.chai.VRDR.model.AutopsyPerformedIndicator;
 import edu.gatech.chai.VRDR.model.BirthRecordIdentifier;
-import edu.gatech.chai.VRDR.model.CauseOfDeathCondition;
+import edu.gatech.chai.VRDR.model.CauseOfDeathPart1;
+import edu.gatech.chai.VRDR.model.CauseOfDeathPart2;
 import edu.gatech.chai.VRDR.model.CauseOfDeathPathway;
 import edu.gatech.chai.VRDR.model.Certifier;
-import edu.gatech.chai.VRDR.model.ConditionContributingToDeath;
 import edu.gatech.chai.VRDR.model.DeathCertificate;
 import edu.gatech.chai.VRDR.model.DeathCertificateDocument;
 import edu.gatech.chai.VRDR.model.DeathCertificateReference;
@@ -143,26 +141,26 @@ public class BuildDCD {
     	initResourceForTesting(autopsyPerformedIndicator);
     	autopsyPerformedIndicator.setSubject(decedentReference);
     	contents.add(autopsyPerformedIndicator);
-    	//CauseOfDeathCondition
-    	CauseOfDeathCondition causeOfDeathCondition = new CauseOfDeathCondition();
-    	initResourceForTesting(causeOfDeathCondition);
-    	causeOfDeathCondition.setDecedent(decedent);
-    	causeOfDeathCondition.setAsserter(certifier);
-    	causeOfDeathCondition.setCode(new CodeableConcept().addCoding(new Coding("http://snomed.info/sct","42343007","Congestive heart failure (disorder)")));
-    	causeOfDeathCondition.createInterval("10 minutes");
-    	contents.add(causeOfDeathCondition);
-    	//ConditionContributingToDeath
-    	ConditionContributingToDeath conditionContributingToDeath = new ConditionContributingToDeath();
-    	initResourceForTesting(conditionContributingToDeath);
-    	conditionContributingToDeath.setDecedent(decedent);
-    	conditionContributingToDeath.setAsserter(certifier);
-    	conditionContributingToDeath.setCode(new CodeableConcept().addCoding(new Coding("http://snomed.info/sct","241006","Epilepsia partialis continua")));
-    	contents.add(conditionContributingToDeath);
-    	//CauseOfDeathPathway: this defines the cause of death pathway, it's a chain BEGINNING with the CauseOfDeathCondition
+    	//CauseOfDeathPart1
+    	CauseOfDeathPart1 causeOfDeathPart1 = new CauseOfDeathPart1();
+    	initResourceForTesting(causeOfDeathPart1);
+    	causeOfDeathPart1.setDecedent(decedent);
+    	causeOfDeathPart1.setAsserter(certifier);
+    	causeOfDeathPart1.setCode(new CodeableConcept().addCoding(new Coding("http://snomed.info/sct","42343007","Congestive heart failure (disorder)")));
+    	causeOfDeathPart1.createInterval("10 minutes");
+    	contents.add(causeOfDeathPart1);
+    	//CauseOfDeathPart2
+    	CauseOfDeathPart2 causeOfDeathPart2 = new CauseOfDeathPart2();
+    	initResourceForTesting(causeOfDeathPart2);
+    	causeOfDeathPart2.setDecedent(decedent);
+    	causeOfDeathPart2.setAsserter(certifier);
+    	causeOfDeathPart2.setCode(new CodeableConcept().addCoding(new Coding("http://snomed.info/sct","241006","Epilepsia partialis continua")));
+    	contents.add(causeOfDeathPart2);
+    	//CauseOfDeathPathway: this defines the cause of death pathway, it's a chain BEGINNING with the CauseOfDeathPart1
     	CauseOfDeathPathway causeOfDeathPathway = new CauseOfDeathPathway();
     	initResourceForTesting(causeOfDeathPathway);
     	causeOfDeathPathway.setSource(certifierReference);
-    	causeOfDeathPathway.addEntry(new ListEntryComponent().setItem(new Reference(causeOfDeathCondition.getId())));
+    	causeOfDeathPathway.addEntry(new ListEntryComponent().setItem(new Reference(causeOfDeathPart1.getId())));
     	contents.add(causeOfDeathPathway);
     	//DeathCertificateReference: use if you have an attachment you can link as a file reference to the death certificate
     	DeathCertificateReference deathCertificateReference = new DeathCertificateReference(DocumentReferenceStatus.CURRENT);

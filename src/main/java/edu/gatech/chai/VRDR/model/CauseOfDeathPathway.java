@@ -6,7 +6,7 @@ import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.VRDR.model.util.CauseOfDeathPathwayUtil;
 import edu.gatech.chai.VRDR.model.util.CommonUtil;
 
-@ResourceDef(name = "List", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Cause-of-Death-Pathway")
+@ResourceDef(name = "List", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-cause-of-death-pathway")
 public class CauseOfDeathPathway extends ListResource {
 	public CauseOfDeathPathway() {
 		super();

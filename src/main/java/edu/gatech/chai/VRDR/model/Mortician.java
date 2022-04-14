@@ -8,7 +8,7 @@ import org.hl7.fhir.r4.model.Practitioner;
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.VRDR.model.util.CommonUtil;
 
-@ResourceDef(name = "Practitioner", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Mortician")
+@ResourceDef(name = "Practitioner", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-mortician")
 public class Mortician extends Practitioner {
 	public Mortician() {
 		super();

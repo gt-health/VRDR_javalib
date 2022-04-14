@@ -8,7 +8,7 @@ import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.VRDR.model.util.CommonUtil;
 import edu.gatech.chai.VRDR.model.util.DeathCertificateReferenceUtil;
 
-@ResourceDef(name = "DocumentReference", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Certificate-Reference")
+@ResourceDef(name = "DocumentReference", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-certificate-reference")
 public class DeathCertificateReference extends DocumentReference {
 	public DeathCertificateReference() {
 		super();
