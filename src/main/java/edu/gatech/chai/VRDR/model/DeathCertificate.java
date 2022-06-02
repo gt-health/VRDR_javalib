@@ -2,6 +2,7 @@ package edu.gatech.chai.VRDR.model;
 
 import java.util.Date;
 
+import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.Composition;
 import org.hl7.fhir.r4.model.Organization;
 import org.hl7.fhir.r4.model.Patient;
@@ -23,7 +24,14 @@ public class DeathCertificate extends Composition {
 		setDate(new Date());
 	}
 	
-	public DeathCertificate(DeathCertification resource) {
+	public DeathCertificate(CompositionStatus status, Decedent decedent, DeathCertificationProcedure resource) {
+		this();
+		setStatus(status);
+		setSubject(new Reference(decedent));
+		addEvent(resource);
+	}
+	
+	public DeathCertificate(DeathCertificationProcedure resource) {
 		this();
 		addEvent(resource);
 	}
@@ -53,11 +61,45 @@ public class DeathCertificate extends Composition {
 		addAttester(component);
 	}
 
-	public void addEvent(DeathCertification resource) {
+	public void addEvent(DeathCertificationProcedure resource) {
 		CompositionEventComponent component = new CompositionEventComponent();
 		component.addCode(DeathCertificateUtil.eventCodeFixedValue);
 		component.addDetail(new Reference(resource.getId()));
 		addEvent(component);
 	}
 	
+	public void addResource(Resource resource) {
+		if(CommonUtil.assignableFrom(resource.getClass(), DeathCertificateUtil.decedentDemographicResources)) {
+			addResource(resource, DeathCertificateUtil.decendentDemographicsSectionCode);
+		}
+		else if(CommonUtil.assignableFrom(resource.getClass(), DeathCertificateUtil.deathInvestigationResources)) {
+			addResource(resource, DeathCertificateUtil.deathInvestigationSectionCode);
+		}
+		else if(CommonUtil.assignableFrom(resource.getClass(), DeathCertificateUtil.deathCertificationResources)) {
+			addResource(resource, DeathCertificateUtil.deathCertificationSectionCode);
+		}
+		else if(CommonUtil.assignableFrom(resource.getClass(), DeathCertificateUtil.decedentDispositionResources)) {
+			addResource(resource, DeathCertificateUtil.decedentDispositionSectionCode);
+		}
+		else if(CommonUtil.assignableFrom(resource.getClass(), DeathCertificateUtil.codedContentResources)) {
+			addResource(resource, DeathCertificateUtil.codedContentSectionCode);
+		}
+	}
+	
+	public void addResource(Resource resource, CodeableConcept sectionCode) {
+		SectionComponent section = findOrCreateSection(sectionCode);
+		section.addEntry(new Reference(resource.getId()));
+	}
+	
+	public SectionComponent findOrCreateSection(CodeableConcept sectionCode) {
+		for(SectionComponent section: this.getSection()) {
+			if(section.getCode().equals(sectionCode)) {
+				return section;
+			}
+		}
+		SectionComponent newSection = new SectionComponent();
+		newSection.setCode(sectionCode);
+		this.addSection(newSection);
+		return newSection;
+	}
 }

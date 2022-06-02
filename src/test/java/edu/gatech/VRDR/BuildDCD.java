@@ -33,7 +33,7 @@ import edu.gatech.chai.VRDR.model.Certifier;
 import edu.gatech.chai.VRDR.model.DeathCertificate;
 import edu.gatech.chai.VRDR.model.DeathCertificateDocument;
 import edu.gatech.chai.VRDR.model.DeathCertificateReference;
-import edu.gatech.chai.VRDR.model.DeathCertification;
+import edu.gatech.chai.VRDR.model.DeathCertificationProcedure;
 import edu.gatech.chai.VRDR.model.DeathDate;
 import edu.gatech.chai.VRDR.model.DeathLocation;
 import edu.gatech.chai.VRDR.model.DeathPronouncementPerformer;
@@ -44,7 +44,7 @@ import edu.gatech.chai.VRDR.model.DecedentEducationLevel;
 import edu.gatech.chai.VRDR.model.DecedentFather;
 import edu.gatech.chai.VRDR.model.DecedentMilitaryService;
 import edu.gatech.chai.VRDR.model.DecedentMother;
-import edu.gatech.chai.VRDR.model.DecedentPregnancy;
+import edu.gatech.chai.VRDR.model.DecedentPregnancyStatus;
 import edu.gatech.chai.VRDR.model.DecedentSpouse;
 import edu.gatech.chai.VRDR.model.DecedentTransportationRole;
 import edu.gatech.chai.VRDR.model.DecedentUsualWork;
@@ -58,6 +58,7 @@ import edu.gatech.chai.VRDR.model.InterestedParty;
 import edu.gatech.chai.VRDR.model.MannerOfDeath;
 import edu.gatech.chai.VRDR.model.Mortician;
 import edu.gatech.chai.VRDR.model.TobaccoUseContributedToDeath;
+import edu.gatech.chai.VRDR.model.util.AddressUtil;
 import edu.gatech.chai.VRDR.model.util.CommonUtil;
 import edu.gatech.chai.VRDR.model.util.DecedentUtil;
 
@@ -85,9 +86,8 @@ public class BuildDCD {
     	decedent.setGender(AdministrativeGender.MALE);
     	decedent.addRace("White"); //Refer to Decedent fhir profile, or DecedentUtil.java for complete list of races
     	decedent.addEthnicity("HispanicCuban"); //Refer to Decedent fhir profile, or DecedentUtil.java for complete list of ethnicities
-    	decedent.setBirthSex("M", "Male");
     	decedent.setBirthPlace(decedentsHome);
-    	decedent.addIdentifier("1AN2BN3DE45");
+    	decedent.addSSNIdentifier("1AN2BN3DE45");
     	decedent.addName(new HumanName().setFamily("Wright").addGiven("Vivien Lee").setUse(NameUse.OFFICIAL));
     	Reference decedentReference = new Reference(decedent.getId());
     	deathCertificate.setSubject(decedentReference);
@@ -170,15 +170,15 @@ public class BuildDCD {
     	deathCertificateReference.addAuthor(certifierReference);
     	deathCertificateReference.addDeathCertificateURL("https://www.examplemecfilestore.com/some/filepath/to/thisdocument.pdf");
     	contents.add(deathCertificateReference);
-    	//DeathCertification: represent the event of certification
-    	DeathCertification deathCertification = new DeathCertification();
-    	initResourceForTesting(deathCertification);
-    	deathCertification.setPerformed(new DateTimeType(today));
-		deathCertification.addPerformer(certifier, "Medical Examiner/Coroner");
-    	deathCertificate.addEvent(deathCertification);
-    	contents.add(deathCertification);
+    	//DeathCertificationProcedure: represent the event of certification
+    	DeathCertificationProcedure deathCertificationProcedure = new DeathCertificationProcedure();
+    	initResourceForTesting(deathCertificationProcedure);
+    	deathCertificationProcedure.setPerformed(new DateTimeType(today));
+		deathCertificationProcedure.addPerformer(certifier, "Medical Examiner/Coroner");
+    	deathCertificate.addEvent(deathCertificationProcedure);
+    	contents.add(deathCertificationProcedure);
     	//DeathDate
-    	DeathDate deathDate = new DeathDate(today,today);
+    	DeathDate deathDate = new DeathDate(today,today, "Death in hospital");
     	initResourceForTesting(deathDate);
     	deathDate.setSubject(decedentReference);
     	contents.add(deathDate);
@@ -186,10 +186,13 @@ public class BuildDCD {
     	CodeableConcept deathLocationType = new CodeableConcept().addCoding(new Coding("http://hl7.org/fhir/v3/RoleCode","wi","Wing"));
     	Address hospitalAddress = new Address().addLine("80 Jesse Hill Jr Dr SE").setCity("Atlanta")
     			.setState("GA").setPostalCode("30303").setCountry("USA").setUse(AddressUse.WORK);
+    	//Address Utils to add extensions to addresses
+    	AddressUtil.addCityCode(11122, hospitalAddress);
+    	AddressUtil.addDistrictCode(22233, hospitalAddress);
+    	AddressUtil.addStateJurisdiction("GA", hospitalAddress);
     	DeathLocation deathLocation = new DeathLocation("Grady Hospital","Grady Hospital of Atlanta",deathLocationType,hospitalAddress);
     	initResourceForTesting(deathLocation);
     	contents.add(deathLocation);
-    	deathDate.addPatientLocationExtension(deathLocation);
     	//DeathPronouncementPerformer
     	HumanName pronouncerName = new HumanName().setFamily("Bladerslad").addGiven("Bernard");
     	CodeableConcept qualifierCode = new CodeableConcept().addCoding(new Coding("http://hl7.org/fhir/v2/0360/2.7","MD","Doctor of Medicine"));
@@ -220,11 +223,11 @@ public class BuildDCD {
     	decedentMilitaryService.setSubject(decedentReference);
     	initResourceForTesting(decedentMilitaryService);
     	contents.add(decedentUsualWork);
-    	//DecedentPregnancy
-    	DecedentPregnancy decedentPregnancy = new DecedentPregnancy("No");
-    	decedentPregnancy.setSubject(decedentReference);
-    	initResourceForTesting(decedentPregnancy);
-    	contents.add(decedentPregnancy);
+    	//DecedentPregnancyStatus
+    	DecedentPregnancyStatus decedentPregnancyStatus = new DecedentPregnancyStatus("No");
+    	decedentPregnancyStatus.setSubject(decedentReference);
+    	initResourceForTesting(decedentPregnancyStatus);
+    	contents.add(decedentPregnancyStatus);
     	//DecedentTransportationRole
     	DecedentTransportationRole decedentTransportationRole = new DecedentTransportationRole("Driver/Operator");
     	decedentTransportationRole.setSubject(decedentReference);
@@ -283,8 +286,7 @@ public class BuildDCD {
     	contents.add(tobaccoUseContributedToDeath);
     	
     	for(Resource resource:contents) {
-    		CommonUtil.addSectionEntry(deathCertificate, resource);
-    		CommonUtil.addBundleEntry(deathCertificateDocument,resource);
+    		deathCertificateDocument.addResource(resource);
     	}
     	return deathCertificateDocument;
 	}
@@ -305,9 +307,8 @@ public class BuildDCD {
     	decedent.setGender(AdministrativeGender.MALE);
     	decedent.addRace("White"); //Refer to Decedent fhir profile, or DecedentUtil.java for complete list of races
     	decedent.addEthnicity("HispanicCuban"); //Refer to Decedent fhir profile, or DecedentUtil.java for complete list of ethnicities
-    	decedent.setBirthSex("M", "Male");
     	decedent.setBirthPlace(decedentsHome);
-    	decedent.addIdentifier("1AN2BN3DE45");
+    	decedent.addSSNIdentifier("1AN2BN3DE45");
     	decedent.addName(new HumanName().setFamily("Wright").addGiven("Vivien Lee").setUse(NameUse.OFFICIAL));
     	//Adding partial where the specific date of birth is unknown, but the year is known
     	decedent.addPartialBirthDateExtension(new IntegerType(1960), "", null, "unknown", null, "unknown");
