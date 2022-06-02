@@ -8,10 +8,11 @@ import edu.gatech.chai.VRDR.model.CauseOfDeathPart2;
 import edu.gatech.chai.VRDR.model.CauseOfDeathPathway;
 import edu.gatech.chai.VRDR.model.Certifier;
 import edu.gatech.chai.VRDR.model.CodedRaceAndEthnicity;
+import edu.gatech.chai.VRDR.model.CodingStatusValues;
 import edu.gatech.chai.VRDR.model.DeathCertificate;
 import edu.gatech.chai.VRDR.model.DeathCertificateDocument;
 import edu.gatech.chai.VRDR.model.DeathCertificateReference;
-import edu.gatech.chai.VRDR.model.DeathCertification;
+import edu.gatech.chai.VRDR.model.DeathCertificationProcedure;
 import edu.gatech.chai.VRDR.model.DeathDate;
 import edu.gatech.chai.VRDR.model.DeathLocation;
 import edu.gatech.chai.VRDR.model.DeathPronouncementPerformer;
@@ -20,8 +21,9 @@ import edu.gatech.chai.VRDR.model.DecedentAge;
 import edu.gatech.chai.VRDR.model.DecedentDispositionMethod;
 import edu.gatech.chai.VRDR.model.DecedentEducationLevel;
 import edu.gatech.chai.VRDR.model.DecedentFather;
+import edu.gatech.chai.VRDR.model.DecedentMilitaryService;
 import edu.gatech.chai.VRDR.model.DecedentMother;
-import edu.gatech.chai.VRDR.model.DecedentPregnancy;
+import edu.gatech.chai.VRDR.model.DecedentPregnancyStatus;
 import edu.gatech.chai.VRDR.model.DecedentSpouse;
 import edu.gatech.chai.VRDR.model.DecedentTransportationRole;
 import edu.gatech.chai.VRDR.model.DecedentUsualWork;
@@ -73,7 +75,7 @@ public class VRDRFhirContext {
 		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-certificate-reference",
 				DeathCertificateReference.class);
 		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-certification",
-				DeathCertification.class);
+				DeathCertificationProcedure.class);
 		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-date",
 				DeathDate.class);
 		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-location",
@@ -95,7 +97,7 @@ public class VRDRFhirContext {
 		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-decedent-mother",
 				DecedentMother.class);
 		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-decedent-pregnancy",
-				DecedentPregnancy.class);
+				DecedentPregnancyStatus.class);
 		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-decedent-spouse",
 				DecedentSpouse.class);
 		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-decedent-transportation-role",

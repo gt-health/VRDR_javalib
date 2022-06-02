@@ -29,7 +29,7 @@ public class CommonUtil {
 	public static final String snomedSystemUrl = "http://snomed.info/sct";
 	public static final String loincSystemUrl = "http://loinc.org";
 	
-	public static final String locationJurisdictionOID = "urn:oid:2.16.840.1.113883.6.92";
+	public static final String locationJurisdictionURL = "https://www.usps.com/";
 	public static final String dataAbsentReasonUrl = "http://terminology.hl7.org/CodeSystem/data-absent-reason";
 	public static final String unitsOfMeasureUrl = "http://terminology.hl7.org/CodeSystem/data-absent-reason";
 	public static final String missingValueReasonUrl = "http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-missing-value-reason-cs";
@@ -40,6 +40,8 @@ public class CommonUtil {
 	public static final String partialDateDateMonthAbsentReasonURL = "month-absent-reason";
 	public static final String partialDateDateDayURL = "date-day";
 	public static final String partialDateDateDayAbsentReasonURL = "day-absent-reason";
+	public static final String vrdrObservationCsUrl = "http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-observations-cs";
+	public static final String vrdrComponentCsUrl = "http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-component-cs";
 	public static CodeableConcept noCode = new CodeableConcept().addCoding(new Coding(yesNoNASystemOID,"N","No"));
 	public static CodeableConcept yesCode = new CodeableConcept().addCoding(new Coding(yesNoNASystemOID,"Y","Yes"));
 	public static CodeableConcept unknownCode = new CodeableConcept().addCoding(new Coding(nullFlavorSystemOID,"UNK","unknown"));
@@ -94,66 +96,66 @@ public class CommonUtil {
 			new CodeableConcept().addCoding(new Coding(CommonUtil.dataAbsentReasonUrl,"not-performed", "Not Performed")),
 			new CodeableConcept().addCoding(new Coding(CommonUtil.dataAbsentReasonUrl,"not-permitted", "Not Permitted"))));
 	public static final HashSet<CodeableConcept> locationJurisdictionalConceptSet = new HashSet<>(Arrays.asList(
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"01","Alabama")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"02","Alaska")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"05", "Arkansas")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"60", "American Samoa")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID, "04", "Arizona")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"06", "California")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"08", "Colorado")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"09", "Connecticut")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"10", "Delaware")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"11", "District of Columbia")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"64", "Federated States of Micronesia")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"12", "Florida")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"13", "Georgia")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"66", "Guam")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"15", "Hawaii")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"84", "Howland Island")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"16", "Idaho")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"17", "Illinois")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"18", "Indiana")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"19", "Iowa")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"20", "Kansas")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"21", "Kentucky")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"22", "Louisiana")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"23", "Maine")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"24", "Maryland")),	
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"25", "Massachusetts")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"26", "Michigan")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"27", "Minnesota")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"28", "Mississippi")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"29", "Missouri")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"MP", "Northern Mariana Islands")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"30", "Montana")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"31", "Nebraska")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"32", "Nevada")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"33", "New Hampshire")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"34", "New Jersey")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"35", "New Mexico")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"01","Alabama")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"02","Alaska")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"05", "Arkansas")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"60", "American Samoa")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL, "04", "Arizona")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"06", "California")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"08", "Colorado")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"09", "Connecticut")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"10", "Delaware")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"11", "District of Columbia")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"64", "Federated States of Micronesia")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"12", "Florida")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"13", "Georgia")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"66", "Guam")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"15", "Hawaii")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"84", "Howland Island")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"16", "Idaho")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"17", "Illinois")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"18", "Indiana")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"19", "Iowa")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"20", "Kansas")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"21", "Kentucky")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"22", "Louisiana")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"23", "Maine")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"24", "Maryland")),	
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"25", "Massachusetts")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"26", "Michigan")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"27", "Minnesota")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"28", "Mississippi")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"29", "Missouri")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"MP", "Northern Mariana Islands")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"30", "Montana")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"31", "Nebraska")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"32", "Nevada")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"33", "New Hampshire")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"34", "New Jersey")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"35", "New Mexico")),
 			new CodeableConcept().addCoding(new Coding("urn:oid:2.16.840.1.113883.6.245","9755772", "New York City")), //Unique codesystem just for New York City
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"36", "New York")), //Unique codesystem just for New York City
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"37", "North Carolina")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"38", "North Dekota")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"69", "Northern Mariana Islands")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"39", "Ohio")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"40", "Oklahoma")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"41", "Oregon")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"42", "Pennsylvania")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"72", "Puerto Rico")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"44", "Rhode Island")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"45", "South Carolina")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"46", "South Dakota")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"47", "Tennessee")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"48", "Texas")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"78", "U.S. Virgin Islands")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"49", "Utah")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"50", "Vermont")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"51", "Virginia")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"53", "Washington")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"54", "West Virginia")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"55", "Wisconsin")),
-			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionOID,"56", "Wyoming"))));
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"36", "New York")), //Unique codesystem just for New York City
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"37", "North Carolina")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"38", "North Dekota")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"69", "Northern Mariana Islands")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"39", "Ohio")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"40", "Oklahoma")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"41", "Oregon")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"42", "Pennsylvania")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"72", "Puerto Rico")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"44", "Rhode Island")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"45", "South Carolina")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"46", "South Dakota")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"47", "Tennessee")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"48", "Texas")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"78", "U.S. Virgin Islands")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"49", "Utah")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"50", "Vermont")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"51", "Virginia")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"53", "Washington")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"54", "West Virginia")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"55", "Wisconsin")),
+			new CodeableConcept().addCoding(new Coding(CommonUtil.locationJurisdictionURL,"56", "Wyoming"))));
 	public static final HashSet<CodeableConcept> ucumUnitsConceptSet = new HashSet<>(Arrays.asList(
 			new CodeableConcept().addCoding(new Coding(CommonUtil.unitsOfMeasureUrl,"min","Minutes")),
 			new CodeableConcept().addCoding(new Coding(CommonUtil.unitsOfMeasureUrl,"d","Days")),
@@ -213,5 +215,15 @@ public class CommonUtil {
 			}
 		}
 		return null;
+	}
+	
+	public static boolean assignableFrom(Class test, Class[] candidates){
+	    for(Class candidate : candidates){
+	        if(candidate.isAssignableFrom(test)){
+	            return true;
+	        }
+	    }
+
+	    return false;
 	}
 }

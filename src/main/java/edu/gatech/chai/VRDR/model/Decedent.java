@@ -34,7 +34,7 @@ public class Decedent extends Patient {
 			baseRaceExtension.setUrl(DecedentUtil.raceExtensionURL);
 			this.addExtension(baseRaceExtension);
 		}
-		for(String raceUrl: DecedentUtil.raceNVSSUrlSet) {
+		for(String raceUrl: DecedentUtil.raceNVSSSet) {
 			if(raceUrl.contains(raceString)) {
 				Extension specificRaceExtension = new Extension();
 				specificRaceExtension.setUrl(raceUrl);
@@ -66,7 +66,7 @@ public class Decedent extends Patient {
 			baseEthnicityExtension.setUrl(DecedentUtil.ethnicityExtensionURL);
 			this.addExtension(baseEthnicityExtension);
 		}
-		for(String ethnicityUrl: DecedentUtil.ethnicityNVSSUrlSet) {
+		for(String ethnicityUrl: DecedentUtil.ethnicityNVSSSet) {
 			if(ethnicityUrl.contains(ethnicityString)) {
 				Extension specificRaceExtension = new Extension();
 				specificRaceExtension.setUrl(ethnicityUrl);
@@ -84,31 +84,40 @@ public class Decedent extends Patient {
 		return baseEthnicityExtension;
 	}
 
-	public Extension getBirthSex() {
-		return CommonUtil.getExtension(this, DecedentUtil.birthSexExtensionURL);
+	public Extension getSexAtDeath() {
+		return CommonUtil.getExtension(this, DecedentUtil.sexAtDeathExtensionURL);
 	}
 
-	public Extension setBirthSex(String value) {
-		Extension extension = getBirthSex();
-		if (extension != null) {
-			CodeType birthSexCode = new CodeType(value);
-			extension.setValue(birthSexCode);
-			return extension;
-		}
-		return addBirthSex(value);
-	}
-	public Extension setBirthSex(String value, String display) {
-		return setBirthSex(value);
-	}
-
-	public Extension addBirthSex(String value, String display) {
-		return addBirthSex(value);
+	public Extension setSexAtDeath(String value) {
+		CodeableConcept ccSAD = CommonUtil.findConceptFromCollectionUsingSimpleString(value, DecedentUtil.sexAtDeathSet);
+		return setSexAtDeath(ccSAD);
 	}
 	
-	public Extension addBirthSex(String value) {
-		Extension extension = new Extension(DecedentUtil.birthSexExtensionURL);
-		CodeType birthSexCode = new CodeType(value);
-		extension.setValue(birthSexCode);
+	public Extension setSexAtDeath(CodeableConcept value) {
+		Extension extension = getSexAtDeath();
+		if (extension == null) {
+			extension = new Extension(DecedentUtil.sexAtDeathExtensionURL);
+		}
+		extension.setValue(value);
+		this.addExtension(extension);
+		return extension;
+	}
+	
+	public Extension getSpouseAlive() {
+		return CommonUtil.getExtension(this, DecedentUtil.spouseAliveExtensionURL);
+	}
+
+	public Extension setSpouseAlive(String value) {
+		CodeableConcept ccSAD = CommonUtil.findConceptFromCollectionUsingSimpleString(value, DecedentUtil.spouseAliveSet);
+		return setSpouseAlive(ccSAD);
+	}
+	
+	public Extension setSpouseAlive(CodeableConcept value) {
+		Extension extension = getSpouseAlive();
+		if (extension == null) {
+			extension = new Extension(DecedentUtil.spouseAliveExtensionURL);
+		}
+		extension.setValue(value);
 		this.addExtension(extension);
 		return extension;
 	}
@@ -133,7 +142,7 @@ public class Decedent extends Patient {
 		return extension;
 	}
 
-	public Identifier addIdentifier(String value) {
+	public Identifier addSSNIdentifier(String value) {
 		Identifier identifier = new Identifier();
 		identifier.setType(DecedentUtil.identifierTypeFixedValue);
 		identifier.setValue(value);
@@ -144,6 +153,17 @@ public class Decedent extends Patient {
 	
 	public Decedent setMaritalStatus(String maritalStatus) {
 		CodeableConcept maritalStatusCC = CommonUtil.findConceptFromCollectionUsingSimpleString(maritalStatus, DecedentUtil.maritalStatusSet);
+		this.setMaritalStatus(maritalStatusCC);
+		return this;
+	}
+	
+	public Decedent setMaritalStatus(String maritalStatus, CodeableConcept bypassEditFlag) {
+		CodeableConcept maritalStatusCC = CommonUtil.findConceptFromCollectionUsingSimpleString(maritalStatus, DecedentUtil.maritalStatusSet);
+		maritalStatusCC = maritalStatusCC.copy();
+		if(bypassEditFlag != null) {
+			Extension extension = new Extension();
+			extension.setUrl(maritalStatus);
+		}
 		this.setMaritalStatus(maritalStatusCC);
 		return this;
 	}

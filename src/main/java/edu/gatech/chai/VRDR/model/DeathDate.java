@@ -2,6 +2,7 @@ package edu.gatech.chai.VRDR.model;
 
 import java.util.Date;
 
+import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.DateTimeType;
 import org.hl7.fhir.r4.model.Extension;
 import org.hl7.fhir.r4.model.IntegerType;
@@ -28,31 +29,30 @@ public class DeathDate extends Observation {
 		setStatus(DeathDateUtil.status);
 	}
 
-	public DeathDate(Date effectiveDateTime,Date datePronouncedDead) {
+	public DeathDate(Date effectiveDateTime,Date datePronouncedDead, String placeOfDeath) {
 		this();
 		setEffective(new DateTimeType(effectiveDateTime));
 		addDatePronouncedDead(new DateTimeType(datePronouncedDead));
+		addPlaceOfDeathComponent(placeOfDeath);
 	}
 
-	public void addPatientLocationExtension(Location location) {
-		Extension extension = new Extension(DeathDateUtil.patientLocationExtensionURL);
-		Reference reference = new Reference(location.getId());
-		extension.setValue(reference);
-		this.addExtension(extension);
-	}
-
-	public Extension getPatientLocationExtension() {
-		return CommonUtil.getExtension(this, DeathDateUtil.patientLocationExtensionURL);
-	}
-
-	public void addEstimatedMethod() {
-		setMethod(DeathDateUtil.method);
+	public void addMethod(String method) {
+		CodeableConcept ccMethod = CommonUtil.findConceptFromCollectionUsingSimpleString(method, DeathDateUtil.deathDeterminationMethodSet);
+		setMethod(ccMethod);
 	}
 	
 	public void addDatePronouncedDead(DateTimeType dtType) {
 		ObservationComponentComponent component = new ObservationComponentComponent();
 		component.setCode(DeathDateUtil.componentDatePronouncedDeadCode);
 		component.setValue(dtType);
+		addComponent(component);
+	}
+	
+	public void addPlaceOfDeathComponent(String placeOfDeath) {
+		ObservationComponentComponent component = new ObservationComponentComponent();
+		component.setCode(DeathDateUtil.componentPlaceOfDeathCode);
+		CodeableConcept ccPoD = CommonUtil.findConceptFromCollectionUsingSimpleString(placeOfDeath, DeathDateUtil.placeOfDeathTypeSet);
+		component.setCode(ccPoD);
 		addComponent(component);
 	}
 	

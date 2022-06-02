@@ -17,6 +17,7 @@ public class AddressUtil {
 	public static String streetDesignatorUrl = "http://hl7.org/fhir/us/vrdr/StructureDefinition/StreetDesignator";
 	public static String postDirectionalUrl = "http://hl7.org/fhir/us/vrdr/StructureDefinition/PostDirectional";
 	public static String unitOrApartmentNumberUrl = "http://hl7.org/fhir/us/vrdr/StructureDefinition/UnitOrAptNumber";
+	public static String uspsSystemUrl = "https://www.usps.com/";
 	public static Address addCityLimitsIndicator(CodeableConcept indicator,Address address) {
 		Extension extension = new Extension();
 		extension.setUrl(withinCityLimitsIndicatorUrl);
@@ -52,6 +53,17 @@ public class AddressUtil {
 		Extension extension = new Extension();
 		extension.setUrl(districtCodeUrl);
 		extension.setValue(integer);
+		address.addExtension(extension);
+		return address;
+	}
+	
+	public static Address addStateJurisdiction(String stateValue,Address address) {
+		if(stateValue.length() > 2) {
+			throw new IllegalArgumentException("State Jurisdicition value "+stateValue+" is too long, must be 2 characters or less.");
+		}
+		Extension extension = new Extension();
+		extension.setUrl(locationJurisdictionIdUrl);
+		extension.setValue(new StringType(stateValue));
 		address.addExtension(extension);
 		return address;
 	}

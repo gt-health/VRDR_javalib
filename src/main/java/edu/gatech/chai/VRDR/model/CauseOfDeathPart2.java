@@ -1,5 +1,6 @@
 package edu.gatech.chai.VRDR.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hl7.fhir.r4.model.Observation;
@@ -16,6 +17,7 @@ public class CauseOfDeathPart2 extends Observation {
 		super();
 		CommonUtil.initResource(this);
 		this.setCode(ConditionContributingToDeathUtil.code);
+		this.setPerformer(new ArrayList<Reference>());
 	}
 	
 	public CauseOfDeathPart2(Decedent decedent, Certifier certifier, String value) {
