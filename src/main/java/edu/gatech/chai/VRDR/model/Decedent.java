@@ -4,6 +4,7 @@ import org.hl7.fhir.r4.model.Address;
 import org.hl7.fhir.r4.model.BooleanType;
 import org.hl7.fhir.r4.model.CodeType;
 import org.hl7.fhir.r4.model.CodeableConcept;
+import org.hl7.fhir.r4.model.Coding;
 import org.hl7.fhir.r4.model.DateType;
 import org.hl7.fhir.r4.model.Extension;
 import org.hl7.fhir.r4.model.Identifier;
@@ -27,61 +28,84 @@ public class Decedent extends Patient {
 		return CommonUtil.getExtension(this, DecedentUtil.raceExtensionURL);
 	}
 
-	public Extension addRace(String raceString) {
-		Extension baseRaceExtension = getRace();
-		if(baseRaceExtension == null) {
-			baseRaceExtension = new Extension();
-			baseRaceExtension.setUrl(DecedentUtil.raceExtensionURL);
-			this.addExtension(baseRaceExtension);
-		}
-		for(String raceUrl: DecedentUtil.raceNVSSSet) {
-			if(raceUrl.contains(raceString)) {
-				Extension specificRaceExtension = new Extension();
-				specificRaceExtension.setUrl(raceUrl);
-				if(raceUrl.contains("Literal")) { //Literal subtype urls use strings, not booleans
-					specificRaceExtension.setValue(new StringType(raceString));
+	public Extension setRace(String ombCategory, Coding detailed, String text) {
+		Extension extension = getRace();
+		if (extension != null) {
+			for (Extension subExtension : extension.getExtension()) {
+				if (subExtension.getUrl().equals("ombCategory")) {
+					((Coding) subExtension.getValue()).setCode(ombCategory);
 				}
-				else {
-					specificRaceExtension.setValue(new BooleanType(true));
+				if (subExtension.getUrl().equals("detailed")) {
+					subExtension.setValue(detailed);
 				}
-				baseRaceExtension.addExtension(specificRaceExtension);
-				return baseRaceExtension;
+				if (subExtension.getUrl().equals("text")) {
+					subExtension.setValue(new StringType(text));
+				}
 			}
+			return extension;
 		}
-		return baseRaceExtension;
+		return addRace(ombCategory, detailed, text);
 	}
-	
+
+	public Extension addRace(String ombCategory, Coding detailed, String text) {
+		Extension extension = new Extension(DecedentUtil.raceExtensionURL);
+		if(!ombCategory.isEmpty()) {
+			Extension ombCategoryExt = new Extension("ombCategory",
+					new Coding().setCode(ombCategory).setSystem(DecedentUtil.raceSystem));
+			extension.addExtension(ombCategoryExt);
+		}
+		if(!detailed.isEmpty()) {
+			Extension detailedExt = new Extension("detailed",detailed);
+			extension.addExtension(detailedExt);
+		}
+		if(!text.isEmpty()) {
+			Extension textExt = new Extension("text", new StringType(text));
+			extension.addExtension(textExt);
+		}
+		this.addExtension(extension);
+		return extension;
+	}
+
 	public Extension getEthnicity() {
 		return CommonUtil.getExtension(this, DecedentUtil.ethnicityExtensionURL);
 	}
-	
-	public Extension addEthnicity(String ethnicityString) {
-		return addEthnicity (ethnicityString, "yes");
-	}
-	
-	public Extension addEthnicity(String ethnicityString, String yesNoUnknown) {
-		Extension baseEthnicityExtension = getEthnicity();
-		if(baseEthnicityExtension == null) {
-			baseEthnicityExtension = new Extension();
-			baseEthnicityExtension.setUrl(DecedentUtil.ethnicityExtensionURL);
-			this.addExtension(baseEthnicityExtension);
-		}
-		for(String ethnicityUrl: DecedentUtil.ethnicityNVSSSet) {
-			if(ethnicityUrl.contains(ethnicityString)) {
-				Extension specificRaceExtension = new Extension();
-				specificRaceExtension.setUrl(ethnicityUrl);
-				if(ethnicityUrl.contains("Literal")) { //Literal subtype urls use strings, not booleans
-					specificRaceExtension.setValue(new StringType(ethnicityString));
+
+	public Extension setEthnicity(String ombCategory, Coding detailed, String text) {
+		Extension extension = getEthnicity();
+		if (extension != null) {
+			for (Extension subExtension : extension.getExtension()) {
+				if (subExtension.getUrl().equals("ombCategory")) {
+					((Coding) subExtension.getValue()).setCode(ombCategory);
 				}
-				else {
-					CodeableConcept yesNoUnknownCodeableConcept = CommonUtil.findConceptFromCollectionUsingSimpleString(yesNoUnknown, CommonUtil.yesNoUnknownSet);
-					specificRaceExtension.setValue(yesNoUnknownCodeableConcept);
+				if (subExtension.getUrl().equals("detailed")) {
+					subExtension.setValue(detailed);
 				}
-				baseEthnicityExtension.addExtension(specificRaceExtension);
-				return baseEthnicityExtension;
+				if (subExtension.getUrl().equals("text")) {
+					subExtension.setValue(new StringType(text));
+				}
 			}
+			return extension;
 		}
-		return baseEthnicityExtension;
+		return addEthnicity(ombCategory, detailed, text);
+	}
+
+	public Extension addEthnicity(String ombCategory, Coding detailed, String text) {
+		Extension extension = new Extension(DecedentUtil.ethnicityExtensionURL);
+		if(!ombCategory.isEmpty()) {
+			Extension ombCategoryExt = new Extension("ombCategory",
+					new Coding().setCode(ombCategory).setSystem(DecedentUtil.ethnicitySystem));
+			extension.addExtension(ombCategoryExt);
+		}
+		if(!detailed.isEmpty()) {
+			Extension detailedExt = new Extension("detailed",detailed);
+			extension.addExtension(detailedExt);
+		}
+		if(!text.isEmpty()) {
+			Extension textExt = new Extension("text", new StringType(text));
+			extension.addExtension(textExt);
+		}
+		this.addExtension(extension);
+		return extension;
 	}
 
 	public Extension getSexAtDeath() {

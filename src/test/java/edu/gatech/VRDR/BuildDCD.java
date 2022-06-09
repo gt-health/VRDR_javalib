@@ -20,9 +20,13 @@ import org.hl7.fhir.r4.model.HumanName.NameUse;
 import org.hl7.fhir.r4.model.Identifier;
 import org.hl7.fhir.r4.model.IntegerType;
 import org.hl7.fhir.r4.model.ListResource.ListEntryComponent;
+import org.hl7.fhir.r4.model.MessageHeader;
+import org.hl7.fhir.r4.model.MessageHeader.MessageSourceComponent;
 import org.hl7.fhir.r4.model.Quantity;
 import org.hl7.fhir.r4.model.Reference;
 import org.hl7.fhir.r4.model.Resource;
+import org.hl7.fhir.r4.model.StringType;
+import org.hl7.fhir.r4.model.UrlType;
 
 import edu.gatech.chai.VRDR.model.AutopsyPerformedIndicator;
 import edu.gatech.chai.VRDR.model.BirthRecordIdentifier;
@@ -84,8 +88,8 @@ public class BuildDCD {
 		withinCityLimits.setValue(new BooleanType(true));
 		decedentsHome.addExtension(withinCityLimits);
     	decedent.setGender(AdministrativeGender.MALE);
-    	decedent.addRace("White"); //Refer to Decedent fhir profile, or DecedentUtil.java for complete list of races
-    	decedent.addEthnicity("HispanicCuban"); //Refer to Decedent fhir profile, or DecedentUtil.java for complete list of ethnicities
+    	decedent.addRace("Asian", new Coding("2034-7","Chinese","Chinese"), "Asian Chinese"); //Must provide a Coding for a "Detailed" section
+    	decedent.addEthnicity("Not Hispanic", new Coding(), "Not Hispanic Or Latino"); //Provide empty coding for no detailed section
     	decedent.setBirthPlace(decedentsHome);
     	decedent.addSSNIdentifier("1AN2BN3DE45");
     	decedent.addName(new HumanName().setFamily("Wright").addGiven("Vivien Lee").setUse(NameUse.OFFICIAL));
@@ -189,7 +193,7 @@ public class BuildDCD {
     	//Address Utils to add extensions to addresses
     	AddressUtil.addCityCode(11122, hospitalAddress);
     	AddressUtil.addDistrictCode(22233, hospitalAddress);
-    	AddressUtil.addStateJurisdiction("GA", hospitalAddress);
+    	AddressUtil.addStateJurisdiction("GA", hospitalAddress); //Do not need to do this if the jurisdiction matches the state
     	DeathLocation deathLocation = new DeathLocation("Grady Hospital","Grady Hospital of Atlanta",deathLocationType,hospitalAddress);
     	initResourceForTesting(deathLocation);
     	contents.add(deathLocation);
@@ -288,6 +292,7 @@ public class BuildDCD {
     	for(Resource resource:contents) {
     		deathCertificateDocument.addResource(resource);
     	}
+    	StringType eventUri = new StringType("http://nchs.cdc.gov/vrdr_submission");
     	return deathCertificateDocument;
 	}
 	
@@ -305,8 +310,8 @@ public class BuildDCD {
 		withinCityLimits.setValue(new BooleanType(true));
 		decedentsHome.addExtension(withinCityLimits);
     	decedent.setGender(AdministrativeGender.MALE);
-    	decedent.addRace("White"); //Refer to Decedent fhir profile, or DecedentUtil.java for complete list of races
-    	decedent.addEthnicity("HispanicCuban"); //Refer to Decedent fhir profile, or DecedentUtil.java for complete list of ethnicities
+    	decedent.addRace("Asian", new Coding("2034-7","Chinese","Chinese"), "Asian Chinese"); //Must provide a Coding for a "Detailed" section
+    	decedent.addEthnicity("Not Hispanic", new Coding(), "Not Hispanic Or Latino"); //Provide empty coding for no detailed section
     	decedent.setBirthPlace(decedentsHome);
     	decedent.addSSNIdentifier("1AN2BN3DE45");
     	decedent.addName(new HumanName().setFamily("Wright").addGiven("Vivien Lee").setUse(NameUse.OFFICIAL));
