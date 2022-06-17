@@ -42,7 +42,7 @@ public class DeathCertificateDocument extends Bundle {
 	public void addResource(Resource resource) {
 		DeathCertificate deathCertificate = getDeathCertificate().get(0);
 		deathCertificate.addResource(resource);
-		this.addEntry(new BundleEntryComponent().setResource(deathCertificate));
+		this.addEntry(new BundleEntryComponent().setResource(resource));
 	}
 	
 	//Helper Accessor methods

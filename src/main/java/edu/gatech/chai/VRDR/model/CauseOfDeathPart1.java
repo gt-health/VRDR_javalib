@@ -86,7 +86,7 @@ public class CauseOfDeathPart1 extends Observation {
 		if((value.getValue().length() > 120)) {
 			throw new IllegalArgumentException("CauseOfDeathPart1 value "+value.getValue()+" is too long, must be 120 characters or less.");
 		}
-		this.setValue(value);
+		super.setValue(value);
 	}
 	
 	public void setValue(String value) {
