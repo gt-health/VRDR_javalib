@@ -7,7 +7,7 @@ import org.hl7.fhir.r4.model.Practitioner;
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.VRDR.model.util.CommonUtil;
 
-@ResourceDef(name = "Practitioner", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Certifier")
+@ResourceDef(name = "Practitioner", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-certifier")
 public class Certifier extends Practitioner {
 
 	public Certifier() {

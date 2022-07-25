@@ -8,7 +8,6 @@ import java.util.List;
 import ca.uhn.fhir.context.ConfigurationException;
 import ca.uhn.fhir.parser.DataFormatException;
 import edu.gatech.chai.VRDR.context.VRDRFhirContext;
-import edu.gatech.chai.VRDR.model.CauseOfDeathPathway;
 import edu.gatech.chai.VRDR.model.DeathCertificateDocument;
 import edu.gatech.chai.VRDR.model.DeathDate;
 import edu.gatech.chai.VRDR.model.Decedent;

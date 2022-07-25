@@ -10,7 +10,7 @@ import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.VRDR.model.util.CommonUtil;
 import edu.gatech.chai.VRDR.model.util.DecedentUsualWorkUtil;
 
-@ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent-Usual-Work")
+@ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-decedent-usual-work")
 public class DecedentUsualWork extends Observation {
 	public DecedentUsualWork() {
 		super();
