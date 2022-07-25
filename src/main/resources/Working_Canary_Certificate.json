@@ -3,7 +3,7 @@
   "id": "eabfa919-99d5-4028-b1f8-19bcfd5d71d8",
   "meta": {
     "profile": [
-      "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Certificate-Document"
+      "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-certificate-document"
     ]
   },
   "type": "document",
@@ -14,7 +14,7 @@
         "id": "4689062c-de9a-48ee-a3cc-ddaff39995bc",
         "meta": {
           "profile": [
-            "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Certificate"
+            "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-certificate"
           ]
         },
         "status": "final",
@@ -85,7 +85,7 @@
         "id": "69efc1d5-ca14-42a8-9536-83fa1a35988c",
         "meta": {
           "profile": [
-            "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Decedent"
+            "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-decedent"
           ]
         },
         "extension": [
@@ -197,7 +197,7 @@
         "id": "ffbb25ab-8a3e-49d2-8d98-69a33b85dac4",
         "meta": {
           "profile": [
-            "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Certifier"
+            "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-certifier"
           ]
         },
         "name": [
@@ -247,7 +247,7 @@
         "id": "00d2be90-2847-4d96-84e5-1bbafe05b199",
         "meta": {
           "profile": [
-            "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Injury-Location"
+            "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-injury-location"
           ]
         },
         "name": "Hospital",
@@ -287,7 +287,7 @@
         "id": "b8c9b373-2b03-4a08-a72a-95c8eabb68de",
         "meta": {
           "profile": [
-            "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Certification"
+            "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-certification"
           ]
         },
         "status": "completed",
@@ -315,7 +315,7 @@
         "id": "ea2fa914-9f7f-4986-a428-a3075ca75bec",
         "meta": {
           "profile": [
-            "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Autopsy-Performed-Indicator"
+            "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-autopsy-performed-indicator"
           ]
         },
         "status": "final",
@@ -362,7 +362,7 @@
         "id": "fc66500a-4e75-4c6d-bc7f-035c7f54cce5",
         "meta": {
           "profile": [
-            "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/-VRDR-Cause-Of-Death-Condition"
+            "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/-vrdr-Cause-Of-Death-Condition"
           ]
         },
         "subject": {
@@ -380,7 +380,7 @@
         "id": "68b79725-a91a-469d-b70e-c1d438c38a8e",
         "meta": {
           "profile": [
-            "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Death-Date"
+            "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-date"
           ]
         },
         "status": "final",
@@ -406,7 +406,7 @@
         "id": "e9f6152d-21e6-468a-8707-fda33d84cf60",
         "meta": {
           "profile": [
-            "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Injury-Incident"
+            "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-injury-incident"
           ]
         },
         "status": "final",
@@ -428,7 +428,7 @@
         "id": "3a2831e9-cb14-4db8-a85d-b34924b407a8",
         "meta": {
           "profile": [
-            "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Manner-of-Death"
+            "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-manner-of-death"
           ]
         },
         "status": "final",

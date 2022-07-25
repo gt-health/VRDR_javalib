@@ -6,7 +6,7 @@ import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.VRDR.model.util.CommonUtil;
 import edu.gatech.chai.VRDR.model.util.DecedentSpouseUtil;
 
-@ResourceDef(name = "RelatedPerson", profile = "http://hl7.org/fhir/us/vrdr/VRDR-Decedent-Spouse")
+@ResourceDef(name = "RelatedPerson", profile = "http://hl7.org/fhir/us/vrdr/vrdr-decedent-spouse")
 public class DecedentSpouse extends RelatedPerson {
 	public DecedentSpouse() {
 		super();

@@ -7,7 +7,7 @@ import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.VRDR.model.util.CommonUtil;
 import edu.gatech.chai.VRDR.model.util.DecedentDispositionMethodUtil;
 
-@ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/vrdr/VRDR-Decedent-Disposition-Method")
+@ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/vrdr/vrdr-decedent-disposition-method")
 public class DecedentDispositionMethod extends Observation {
 	public DecedentDispositionMethod() {
 		super();

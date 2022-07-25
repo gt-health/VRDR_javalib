@@ -1,7 +1,11 @@
 package edu.gatech.chai.VRDR.model.util;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 import org.hl7.fhir.r4.model.Address;
 import org.hl7.fhir.r4.model.CodeableConcept;
+import org.hl7.fhir.r4.model.Coding;
 import org.hl7.fhir.r4.model.Extension;
 import org.hl7.fhir.r4.model.PositiveIntType;
 import org.hl7.fhir.r4.model.StringType;
@@ -17,6 +21,66 @@ public class AddressUtil {
 	public static String streetDesignatorUrl = "http://hl7.org/fhir/us/vrdr/StructureDefinition/StreetDesignator";
 	public static String postDirectionalUrl = "http://hl7.org/fhir/us/vrdr/StructureDefinition/PostDirectional";
 	public static String unitOrApartmentNumberUrl = "http://hl7.org/fhir/us/vrdr/StructureDefinition/UnitOrAptNumber";
+	public static String uspsSystemUrl = "https://www.usps.com/";
+	
+	public static final HashSet<CodeableConcept> locationJurisdictionalConceptSet = new HashSet<>(Arrays.asList(
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"AL","Alabama")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"AK","Alaska")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"AR", "Arkansas")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"AS", "American Samoa")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl, "AZ", "Arizona")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"CA", "California")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"CO", "Colorado")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"CT", "Connecticut")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"DE", "Delaware")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"DC", "District of Columbia")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"FL", "Florida")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"GA", "Georgia")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"GU", "Guam")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"HI", "Hawaii")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"ID", "Idaho")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"IL", "Illinois")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"IN", "Indiana")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"IA", "Iowa")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"KA", "Kansas")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"KY", "Kentucky")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"LA", "Louisiana")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"ME", "Maine")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"MD", "Maryland")),	
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"MA", "Massachusetts")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"MI", "Michigan")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"MN", "Minnesota")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"MS", "Mississippi")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"MO", "Missouri")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"MT", "Montana")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"NE", "Nebraska")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"NV", "Nevada")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"NH", "New Hampshire")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"NJ", "New Jersey")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"NM", "New Mexico")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"YC", "New York City")), //Unique codesystem just for New York City
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"NY", "New York")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"MC", "North Carolina")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"MD", "North Dekota")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"MP", "Northern Mariana Islands")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"OH", "Ohio")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"OK", "Oklahoma")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"OR", "Oregon")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"PN", "Pennsylvania")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"PR", "Puerto Rico")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"RI", "Rhode Island")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"SC", "South Carolina")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"SD", "South Dakota")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"TN", "Tennessee")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"TX", "Texas")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"VI", "Virgin Islands")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"UT", "Utah")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"VT", "Vermont")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"VA", "Virginia")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"WA", "Washington")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"WV", "West Virginia")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"WI", "Wisconsin")),
+			new CodeableConcept().addCoding(new Coding(uspsSystemUrl,"WY", "Wyoming"))));
 	public static Address addCityLimitsIndicator(CodeableConcept indicator,Address address) {
 		Extension extension = new Extension();
 		extension.setUrl(withinCityLimitsIndicatorUrl);
@@ -52,6 +116,17 @@ public class AddressUtil {
 		Extension extension = new Extension();
 		extension.setUrl(districtCodeUrl);
 		extension.setValue(integer);
+		address.addExtension(extension);
+		return address;
+	}
+	
+	public static Address addStateJurisdiction(String stateValue,Address address) {
+		if(stateValue.length() > 2) {
+			throw new IllegalArgumentException("State Jurisdicition value "+stateValue+" is too long, must be 2 characters or less.");
+		}
+		Extension extension = new Extension();
+		extension.setUrl(locationJurisdictionIdUrl);
+		extension.setValue(new StringType(stateValue));
 		address.addExtension(extension);
 		return address;
 	}

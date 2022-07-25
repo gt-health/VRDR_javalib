@@ -7,7 +7,7 @@ import org.hl7.fhir.r4.model.Location;
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.VRDR.model.util.CommonUtil;
 
-@ResourceDef(name = "Location", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/VRDR-Injury-Location")
+@ResourceDef(name = "Location", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-injury-location")
 public class InjuryLocation extends Location {
 
 	public InjuryLocation() {
