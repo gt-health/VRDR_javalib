@@ -16,6 +16,11 @@ import edu.gatech.chai.VRDR.model.util.DeathCertificateUtil;
 
 @ResourceDef(name = "Composition", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-certificate")
 public class DeathCertificate extends Composition {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2537704080131333367L;
+
 	public DeathCertificate() {
 		super();
 		CommonUtil.initResource(this);
@@ -83,6 +88,10 @@ public class DeathCertificate extends Composition {
 		}
 		else if(CommonUtil.assignableFrom(resource.getClass(), DeathCertificateUtil.codedContentResources)) {
 			addResource(resource, DeathCertificateUtil.codedContentSectionCode);
+		}
+		else {
+			System.out.println("resource not added successfuly Id: " + resource.getId());
+			System.out.println("resourceType: " + resource.getClass().getCanonicalName());
 		}
 	}
 	

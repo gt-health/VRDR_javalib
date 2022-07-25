@@ -22,7 +22,7 @@ public class InputRaceAndEthnicity extends Observation {
 				addRaceComponent(raceOrEth);
 			}
 			else if(InputRaceAndEthnicityUtil.ethnicitySystemStrings.contains(raceOrEth)) {
-				addEthnicityComponent(raceOrEth);
+				addHispanicEthnicityComponent(raceOrEth);
 			}
 		}
 	}
@@ -39,19 +39,19 @@ public class InputRaceAndEthnicity extends Observation {
 		addComponent(codeName, value);
 	}
 	
-	public void addEthnicityComponent(String codeName) {
+	public void addHispanicEthnicityComponent(String codeName) {
 		addComponent(codeName, CommonUtil.findConceptFromCollectionUsingSimpleString("Yes", CommonUtil.yesNoUnknownSet));
 	}
 	
-	public void addEthnicityComponent(String codeName, CodeableConcept value) {
+	public void addHispanicEthnicityComponent(String codeName, CodeableConcept value) {
 		addComponent(codeName, value);
 	}
 	
-	public void addEthnicityLiteralComponent(String codeName, String value) {
+	public void addHispanicEthnicityLiteralComponent(String codeName, String value) {
 		addComponent(codeName, new StringType(value));
 	}
 	
-	public void addEthnicityLiteralComponent(String codeName, StringType value) {
+	public void addHispanicEthnicityLiteralComponent(String codeName, StringType value) {
 		addComponent(codeName, value);
 	}
 	
@@ -77,7 +77,7 @@ public class InputRaceAndEthnicity extends Observation {
 	
 	private ObservationComponentComponent addComponentCommon(String codeName) {
 		ObservationComponentComponent occ = new ObservationComponentComponent();
-		occ.setCode(new CodeableConcept().addCoding(new Coding("",codeName,codeName)));
+		occ.setCode(new CodeableConcept().addCoding(new Coding(InputRaceAndEthnicityUtil.codeAndComponentSystemUrl,codeName,"")));
 		return occ;
 	}
 	

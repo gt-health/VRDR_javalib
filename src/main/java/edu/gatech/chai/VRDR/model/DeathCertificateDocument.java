@@ -17,6 +17,11 @@ import edu.gatech.chai.VRDR.model.util.DeathCertificateDocumentUtil;
 @ResourceDef(name = "Bundle", profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-certificate-document")
 public class DeathCertificateDocument extends Bundle {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -429197004514766374L;
+
 	public DeathCertificateDocument() {
 		super();
 		CommonUtil.initResource(this);
@@ -84,11 +89,6 @@ public class DeathCertificateDocument extends Bundle {
 		List<Resource> resources = getRecords(CauseOfDeathPart2.class);
 		return castListOfRecords(resources);
 	}
-
-	public List<CauseOfDeathPathway> getCauseOfDeathPathway(){
-		List<Resource> resources = getRecords(CauseOfDeathPathway.class);
-		return castListOfRecords(resources);
-	}
 	
 	public List<Certifier> getCertifier(){
 		List<Resource> resources = getRecords(Certifier.class);
@@ -100,10 +100,6 @@ public class DeathCertificateDocument extends Bundle {
 		return castListOfRecords(resources);
 	}
 	
-	public List<DeathCertificateReference> getDeathCertificateReference(){
-		List<Resource> resources = getRecords(DeathCertificateReference.class);
-		return castListOfRecords(resources);
-	}
 	
 	public List<DeathCertificationProcedure> getDeathCertificationProcedure(){
 		List<Resource> resources = getRecords(DeathCertificationProcedure.class);
@@ -117,11 +113,6 @@ public class DeathCertificateDocument extends Bundle {
 	
 	public List<DeathLocation> getDeathLocation(){
 		List<Resource> resources = getRecords(DeathLocation.class);
-		return castListOfRecords(resources);
-	}
-	
-	public List<DeathPronouncementPerformer> getDeathPronouncementPerformer(){
-		List<Resource> resources = getRecords(DeathPronouncementPerformer.class);
 		return castListOfRecords(resources);
 	}
 	
@@ -170,11 +161,6 @@ public class DeathCertificateDocument extends Bundle {
 		return castListOfRecords(resources);
 	}
 	
-	public List<DecedentTransportationRole> getDecedentTransportationRole(){
-		List<Resource> resources = getRecords(DecedentTransportationRole.class);
-		return castListOfRecords(resources);
-	}
-	
 	public List<DecedentUsualWork> getDecedentUsualWork(){
 		List<Resource> resources = getRecords(DecedentUsualWork.class);
 		return castListOfRecords(resources);
@@ -195,11 +181,6 @@ public class DeathCertificateDocument extends Bundle {
 		return castListOfRecords(resources);
 	}
 	
-	public List<FuneralServiceLicensee> getFuneralServiceLicensee(){
-		List<Resource> resources = getRecords(FuneralServiceLicensee.class);
-		return castListOfRecords(resources);
-	}
-	
 	public List<InjuryIncident> getInjuryIncident(){
 		List<Resource> resources = getRecords(InjuryIncident.class);
 		return castListOfRecords(resources);
@@ -207,11 +188,6 @@ public class DeathCertificateDocument extends Bundle {
 	
 	public List<InjuryLocation> getInjuryLocation(){
 		List<Resource> resources = getRecords(InjuryLocation.class);
-		return castListOfRecords(resources);
-	}
-	
-	public List<InterestedParty> getInterestedParty(){
-		List<Resource> resources = getRecords(InterestedParty.class);
 		return castListOfRecords(resources);
 	}
 	

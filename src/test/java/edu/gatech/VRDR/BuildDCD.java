@@ -13,34 +13,26 @@ import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.Coding;
 import org.hl7.fhir.r4.model.DateTimeType;
 import org.hl7.fhir.r4.model.Enumerations.AdministrativeGender;
-import org.hl7.fhir.r4.model.Enumerations.DocumentReferenceStatus;
 import org.hl7.fhir.r4.model.Extension;
 import org.hl7.fhir.r4.model.HumanName;
 import org.hl7.fhir.r4.model.HumanName.NameUse;
 import org.hl7.fhir.r4.model.Identifier;
 import org.hl7.fhir.r4.model.IntegerType;
-import org.hl7.fhir.r4.model.ListResource.ListEntryComponent;
-import org.hl7.fhir.r4.model.MessageHeader;
-import org.hl7.fhir.r4.model.MessageHeader.MessageSourceComponent;
 import org.hl7.fhir.r4.model.Quantity;
 import org.hl7.fhir.r4.model.Reference;
 import org.hl7.fhir.r4.model.Resource;
 import org.hl7.fhir.r4.model.StringType;
-import org.hl7.fhir.r4.model.UrlType;
 
 import edu.gatech.chai.VRDR.model.AutopsyPerformedIndicator;
 import edu.gatech.chai.VRDR.model.BirthRecordIdentifier;
 import edu.gatech.chai.VRDR.model.CauseOfDeathPart1;
 import edu.gatech.chai.VRDR.model.CauseOfDeathPart2;
-import edu.gatech.chai.VRDR.model.CauseOfDeathPathway;
 import edu.gatech.chai.VRDR.model.Certifier;
 import edu.gatech.chai.VRDR.model.DeathCertificate;
 import edu.gatech.chai.VRDR.model.DeathCertificateDocument;
-import edu.gatech.chai.VRDR.model.DeathCertificateReference;
 import edu.gatech.chai.VRDR.model.DeathCertificationProcedure;
 import edu.gatech.chai.VRDR.model.DeathDate;
 import edu.gatech.chai.VRDR.model.DeathLocation;
-import edu.gatech.chai.VRDR.model.DeathPronouncementPerformer;
 import edu.gatech.chai.VRDR.model.Decedent;
 import edu.gatech.chai.VRDR.model.DecedentAge;
 import edu.gatech.chai.VRDR.model.DecedentDispositionMethod;
@@ -50,17 +42,13 @@ import edu.gatech.chai.VRDR.model.DecedentMilitaryService;
 import edu.gatech.chai.VRDR.model.DecedentMother;
 import edu.gatech.chai.VRDR.model.DecedentPregnancyStatus;
 import edu.gatech.chai.VRDR.model.DecedentSpouse;
-import edu.gatech.chai.VRDR.model.DecedentTransportationRole;
 import edu.gatech.chai.VRDR.model.DecedentUsualWork;
 import edu.gatech.chai.VRDR.model.DispositionLocation;
 import edu.gatech.chai.VRDR.model.ExaminerContacted;
 import edu.gatech.chai.VRDR.model.FuneralHome;
-import edu.gatech.chai.VRDR.model.FuneralServiceLicensee;
 import edu.gatech.chai.VRDR.model.InjuryIncident;
 import edu.gatech.chai.VRDR.model.InjuryLocation;
-import edu.gatech.chai.VRDR.model.InterestedParty;
 import edu.gatech.chai.VRDR.model.MannerOfDeath;
-import edu.gatech.chai.VRDR.model.Mortician;
 import edu.gatech.chai.VRDR.model.TobaccoUseContributedToDeath;
 import edu.gatech.chai.VRDR.model.util.AddressUtil;
 import edu.gatech.chai.VRDR.model.util.CommonUtil;
@@ -160,20 +148,6 @@ public class BuildDCD {
     	causeOfDeathPart2.setAsserter(certifier);
     	causeOfDeathPart2.setCode(new CodeableConcept().addCoding(new Coding("http://snomed.info/sct","241006","Epilepsia partialis continua")));
     	contents.add(causeOfDeathPart2);
-    	//CauseOfDeathPathway: this defines the cause of death pathway, it's a chain BEGINNING with the CauseOfDeathPart1
-    	CauseOfDeathPathway causeOfDeathPathway = new CauseOfDeathPathway();
-    	initResourceForTesting(causeOfDeathPathway);
-    	causeOfDeathPathway.setSource(certifierReference);
-    	causeOfDeathPathway.addEntry(new ListEntryComponent().setItem(new Reference(causeOfDeathPart1.getId())));
-    	contents.add(causeOfDeathPathway);
-    	//DeathCertificateReference: use if you have an attachment you can link as a file reference to the death certificate
-    	DeathCertificateReference deathCertificateReference = new DeathCertificateReference(DocumentReferenceStatus.CURRENT);
-		initResourceForTesting(deathCertificateReference);
-    	deathCertificateReference.setSubject(decedentReference);
-    	deathCertificateReference.setDate(today);
-    	deathCertificateReference.addAuthor(certifierReference);
-    	deathCertificateReference.addDeathCertificateURL("https://www.examplemecfilestore.com/some/filepath/to/thisdocument.pdf");
-    	contents.add(deathCertificateReference);
     	//DeathCertificationProcedure: represent the event of certification
     	DeathCertificationProcedure deathCertificationProcedure = new DeathCertificationProcedure();
     	initResourceForTesting(deathCertificationProcedure);
@@ -197,16 +171,12 @@ public class BuildDCD {
     	DeathLocation deathLocation = new DeathLocation("Grady Hospital","Grady Hospital of Atlanta",deathLocationType,hospitalAddress);
     	initResourceForTesting(deathLocation);
     	contents.add(deathLocation);
-    	//DeathPronouncementPerformer
-    	HumanName pronouncerName = new HumanName().setFamily("Bladerslad").addGiven("Bernard");
-    	CodeableConcept qualifierCode = new CodeableConcept().addCoding(new Coding("http://hl7.org/fhir/v2/0360/2.7","MD","Doctor of Medicine"));
-    	DeathPronouncementPerformer deathPronouncementPerformer = new DeathPronouncementPerformer(pronouncerName,"1",qualifierCode);
-    	initResourceForTesting(deathPronouncementPerformer);
-    	contents.add(deathPronouncementPerformer);
     	//DecedentAge
-    	DecedentAge decedentAge = new DecedentAge();
+    	Quantity decedentAgeQuantity = new Quantity(79);
+    	decedentAgeQuantity.setCode("a"); //Can either be "a" or "mo"
+    	decedentAgeQuantity.setUnit("a");
+    	DecedentAge decedentAge = new DecedentAge(decedentAgeQuantity);
 		initResourceForTesting(decedentAge);
-    	decedentAge.setValue(new Quantity(79).setUnit("a"));
     	contents.add(decedentAge);
     	//DecedentDispositionMethod
     	DecedentDispositionMethod decedentDispostionMethod = new DecedentDispositionMethod("Burial");
@@ -232,11 +202,6 @@ public class BuildDCD {
     	decedentPregnancyStatus.setSubject(decedentReference);
     	initResourceForTesting(decedentPregnancyStatus);
     	contents.add(decedentPregnancyStatus);
-    	//DecedentTransportationRole
-    	DecedentTransportationRole decedentTransportationRole = new DecedentTransportationRole("Driver/Operator");
-    	decedentTransportationRole.setSubject(decedentReference);
-    	initResourceForTesting(decedentTransportationRole);
-    	contents.add(decedentTransportationRole);
     	//DispositionLocation
     	DispositionLocation dispositionLocation = new DispositionLocation(hospitalAddress);
     	initResourceForTesting(dispositionLocation);
@@ -250,17 +215,10 @@ public class BuildDCD {
     	FuneralHome funeralHome = new FuneralHome("Home Bodies Funeral Services", hospitalAddress);
     	initResourceForTesting(funeralHome);
     	contents.add(funeralHome);
-    	//Mortician
-    	Mortician mortician = new Mortician(pronouncerName,"1",qualifierCode);
+    	//Mortician TODO: Change from Mortician Resource -> USCorePractitioner
+    	/*Mortician mortician = new Mortician(pronouncerName,"1",qualifierCode);
     	initResourceForTesting(mortician);
-    	contents.add(mortician);
-    	//FuneralServiceLicensee
-    	CodeableConcept doctorRole = new CodeableConcept().addCoding(new Coding("http://hl7.org/fhir/practitioner-role","doctor","Doctor"));
-    	FuneralServiceLicensee funeralServiceLicensee = new FuneralServiceLicensee(doctorRole);
-    	funeralServiceLicensee.setPractitioner(new Reference(mortician.getId()));
-    	funeralServiceLicensee.setOrganization(new Reference(funeralHome.getId()));
-    	initResourceForTesting(funeralServiceLicensee);
-    	contents.add(funeralServiceLicensee);
+    	contents.add(mortician); */
     	//InjuryIncident
     	InjuryIncident injuryIncident = new InjuryIncident(decedent, "Home", "No", "No");
     	initResourceForTesting(injuryIncident);
@@ -274,11 +232,6 @@ public class BuildDCD {
     	injuryLocation.setAddress(decedentsHome);
     	initResourceForTesting(injuryLocation);
     	contents.add(injuryLocation);
-    	//InterestedParty
-    	CodeableConcept organizationType = new CodeableConcept().addCoding(new Coding("http://hl7.org/fhir/ValueSet/organization-type","dept","Hospital Department"));
-    	InterestedParty interestedParty = new InterestedParty("54673-2",true,organizationType,"Grady Hospital Associates",hospitalAddress);
-    	initResourceForTesting(interestedParty);
-    	contents.add(interestedParty);
     	//MannerOfDeath
     	MannerOfDeath mannerOfDeath = new MannerOfDeath("Accidental death",decedent,certifier);
     	initResourceForTesting(mannerOfDeath);

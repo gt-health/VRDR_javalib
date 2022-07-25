@@ -30,7 +30,7 @@ public class CommonUtil {
 	public static final String loincSystemUrl = "http://loinc.org";
 	
 	public static final String locationJurisdictionURL = "https://www.usps.com/";
-	public static final String dataAbsentReasonUrl = "http://terminology.hl7.org/CodeSystem/data-absent-reason";
+	public static final String dataAbsentReasonUrl = "http://unitsofmeasure.org";
 	public static final String unitsOfMeasureUrl = "http://terminology.hl7.org/CodeSystem/data-absent-reason";
 	public static final String missingValueReasonUrl = "http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-missing-value-reason-cs";
 	public static final String partialDatePartAbsentReasonURL = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-Partial-date-part-absent-reason";
@@ -42,9 +42,9 @@ public class CommonUtil {
 	public static final String partialDateDateDayAbsentReasonURL = "day-absent-reason";
 	public static final String vrdrObservationCsUrl = "http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-observations-cs";
 	public static final String vrdrComponentCsUrl = "http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-component-cs";
-	public static CodeableConcept noCode = new CodeableConcept().addCoding(new Coding(yesNoNASystemOID,"N","No"));
-	public static CodeableConcept yesCode = new CodeableConcept().addCoding(new Coding(yesNoNASystemOID,"Y","Yes"));
-	public static CodeableConcept unknownCode = new CodeableConcept().addCoding(new Coding(nullFlavorSystemOID,"UNK","unknown"));
+	public static CodeableConcept noCode = new CodeableConcept().addCoding(new Coding(basicBooleanHL7System,"N","No"));
+	public static CodeableConcept yesCode = new CodeableConcept().addCoding(new Coding(basicBooleanHL7System,"Y","Yes"));
+	public static CodeableConcept unknownCode = new CodeableConcept().addCoding(new Coding(nullFlavorHL7System,"UNK","unknown"));
 	public static CodeableConcept otherCode = new CodeableConcept().addCoding(new Coding(nullFlavorHL7System,"OTH","other"));
 	public static CodeableConcept notApplicableCode = new CodeableConcept().addCoding(new Coding(nullFlavorHL7System,"NA","not applicable"));
 	public static CodeableConcept notAskedCode = new CodeableConcept().addCoding(new Coding(nullFlavorHL7System,"NASK","not asked"));
@@ -223,7 +223,6 @@ public class CommonUtil {
 	            return true;
 	        }
 	    }
-
 	    return false;
 	}
 }

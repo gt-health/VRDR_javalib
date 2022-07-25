@@ -8,9 +8,8 @@ import java.util.Set;
 import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.Coding;
 
-import ca.uhn.fhir.model.primitive.CodeDt;
-
 public class DecedentUtil {
+    
 	public static final String raceExtensionURL = "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race";
 	public static final String raceSystem = "urn:oid:2.16.840.1.113883.6.238";
 	public static final String ethnicityExtensionURL = "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity";
@@ -28,10 +27,10 @@ public class DecedentUtil {
 	
 	public static final HashSet<CodeableConcept> maritalStatusSet = new HashSet<>(Arrays.asList(
 			new CodeableConcept().addCoding(new Coding(maritalStatusURL,"M","Married")),
-			new CodeableConcept().addCoding(new Coding(maritalStatusURL,"A","Seperated")),
 			new CodeableConcept().addCoding(new Coding(maritalStatusURL,"W","Widowed")),
 			new CodeableConcept().addCoding(new Coding(maritalStatusURL,"D","Divorced")),
-			new CodeableConcept().addCoding(new Coding(maritalStatusURL,"S","Single")),
+			new CodeableConcept().addCoding(new Coding(maritalStatusURL,"S","Never Marriew")),
+			new CodeableConcept().addCoding(new Coding(maritalStatusURL,"L","Legally Separated")),
 			CommonUtil.unknownCode));
 	
 	public static final List<String> raceNVSSSet = Arrays.asList("White", "BlackOrAfricanAmerican",

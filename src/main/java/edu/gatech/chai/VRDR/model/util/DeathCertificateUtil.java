@@ -4,7 +4,6 @@ import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.Coding;
 import org.hl7.fhir.r4.model.Composition;
 import org.hl7.fhir.r4.model.Composition.CompositionStatus;
-import org.hl7.fhir.r4.model.Resource;
 
 import edu.gatech.chai.VRDR.model.ActivityAtTimeOfDeath;
 import edu.gatech.chai.VRDR.model.AutomatedUnderlyingCauseOfDeath;
@@ -17,6 +16,7 @@ import edu.gatech.chai.VRDR.model.CodedRaceAndEthnicity;
 import edu.gatech.chai.VRDR.model.CodingStatusValues;
 import edu.gatech.chai.VRDR.model.DeathCertificationProcedure;
 import edu.gatech.chai.VRDR.model.DeathDate;
+import edu.gatech.chai.VRDR.model.DeathLocation;
 import edu.gatech.chai.VRDR.model.Decedent;
 import edu.gatech.chai.VRDR.model.DecedentAge;
 import edu.gatech.chai.VRDR.model.DecedentDispositionMethod;
@@ -33,6 +33,7 @@ import edu.gatech.chai.VRDR.model.EntityAxisCauseOfDeath;
 import edu.gatech.chai.VRDR.model.ExaminerContacted;
 import edu.gatech.chai.VRDR.model.FuneralHome;
 import edu.gatech.chai.VRDR.model.InjuryIncident;
+import edu.gatech.chai.VRDR.model.InjuryLocation;
 import edu.gatech.chai.VRDR.model.InputRaceAndEthnicity;
 import edu.gatech.chai.VRDR.model.MannerOfDeath;
 import edu.gatech.chai.VRDR.model.PlaceOfInjury;
@@ -63,8 +64,8 @@ public class DeathCertificateUtil {
 			DecedentSpouse.class, DecedentAge.class, BirthRecordIdentifier.class, DecedentEducationLevel.class,
 			DecedentMilitaryService.class, DecedentUsualWork.class, EmergingIssues.class, InputRaceAndEthnicity.class};
 	public static final Class[] deathInvestigationResources = {ExaminerContacted.class, DecedentPregnancyStatus.class,
-			TobaccoUseContributedToDeath.class,PlaceOfInjury.class, InjuryIncident.class, AutopsyPerformedIndicator.class,
-			DeathDate.class, SurgeryDate.class};
+			TobaccoUseContributedToDeath.class,PlaceOfInjury.class, InjuryLocation.class, InjuryIncident.class, AutopsyPerformedIndicator.class,
+			DeathDate.class, DeathLocation.class, SurgeryDate.class};
 	public static final Class[] deathCertificationResources = {Certifier.class, DeathCertificationProcedure.class,
 			MannerOfDeath.class,CauseOfDeathPart1.class, CauseOfDeathPart2.class};
 	public static final Class[] decedentDispositionResources = {DispositionLocation.class, FuneralHome.class,
